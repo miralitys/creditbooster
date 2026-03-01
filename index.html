@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Credit Booster | Credit Repair Guidance</title>
+    <meta
+      name="description"
+      content="Credit Booster: transparent credit report review, dispute guidance, and progress tracking with compliance-first approach."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./script.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header" id="top">
+        <div class="container header-inner">
+          <a href="#top" class="brand" aria-label="Credit Booster">
+            <img
+              class="brand-logo"
+              src="./assets/creditbooster-logo.svg"
+              alt="Credit Booster"
+              width="237"
+              height="40"
+            />
+          </a>
+
+          <nav class="desktop-nav" aria-label="Главная навигация">
+            <a href="#quiz" id="nav-quiz"></a>
+            <a href="#how-it-works" id="nav-how"></a>
+            <a href="#faq" id="nav-faq"></a>
+          </nav>
+
+          <div class="header-actions">
+            <button
+              class="btn btn-outline"
+              type="button"
+              data-scroll-target="quiz"
+              data-cta-id="header_secondary"
+              id="header-secondary-cta"
+            >
+            </button>
+            <button
+              class="btn btn-primary"
+              type="button"
+              data-scroll-target="quiz"
+              data-cta-id="header_primary"
+              id="header-primary-cta"
+            >
+            </button>
+          </div>
+
+          <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu">☰</button>
+        </div>
+
+        <nav id="mobile-menu" class="mobile-nav" aria-label="Мобильная навигация">
+          <a href="#quiz" id="mobile-nav-quiz"></a>
+          <a href="#how-it-works" id="mobile-nav-how"></a>
+          <a href="#faq" id="mobile-nav-faq"></a>
+          <button
+            class="btn btn-primary mobile-nav-cta"
+            type="button"
+            data-scroll-target="quiz"
+            data-cta-id="mobile_menu_primary"
+            id="mobile-nav-primary-cta"
+          >
+          </button>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero section-padded" id="hero">
+          <div class="container hero-grid">
+            <div class="hero-copy reveal">
+              <p class="eyebrow" id="hero-eyebrow"></p>
+              <h1 id="hero-title"></h1>
+              <p class="hero-lead" id="hero-subtitle"></p>
+              <ul class="hero-bullets" id="hero-bullets"></ul>
+
+              <div class="hero-actions">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  data-scroll-target="quiz"
+                  data-cta-id="hero_primary"
+                  id="hero-primary-cta"
+                ></button>
+                <button
+                  class="btn btn-outline"
+                  type="button"
+                  data-scroll-target="quiz"
+                  data-cta-id="hero_secondary"
+                  id="hero-secondary-cta"
+                ></button>
+              </div>
+
+              <p class="microcopy" id="hero-microcopy"></p>
+
+              <div class="trust-row" id="hero-trust-row" aria-label="Trust indicators"></div>
+            </div>
+
+            <aside class="overview-card reveal" aria-label="Protection overview">
+              <p class="eyebrow" id="overview-eyebrow"></p>
+              <h2 id="overview-title"></h2>
+              <p id="overview-text"></p>
+              <ul id="overview-items"></ul>
+            </aside>
+          </div>
+        </section>
+
+        <section class="message-match section-compact" id="message-match">
+          <div class="container reveal">
+            <h2 id="message-match-title"></h2>
+            <p id="message-match-text"></p>
+          </div>
+        </section>
+
+        <section class="quiz section-padded" id="quiz" aria-labelledby="quiz-heading">
+          <div class="container">
+            <div class="quiz-layout reveal">
+              <div class="quiz-head">
+                <p class="eyebrow" id="quiz-eyebrow"></p>
+                <h2 id="quiz-heading"></h2>
+                <p id="quiz-subtitle"></p>
+              </div>
+
+              <div class="quiz-progress-wrap" aria-live="polite">
+                <div class="quiz-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                  <span id="quiz-progress-bar"></span>
+                </div>
+                <p id="quiz-progress-label"></p>
+              </div>
+
+              <section class="quiz-panel" id="quiz-question-panel">
+                <h3 id="quiz-question-title"></h3>
+                <div class="quiz-options" id="quiz-options"></div>
+              </section>
+
+              <section class="quiz-panel hidden" id="quiz-result-panel">
+                <h3 id="quiz-result-title"></h3>
+                <p id="quiz-result-text"></p>
+                <div class="quiz-result-actions">
+                  <a class="link-call hidden" id="quiz-call-link" href="tel:+18005550199"></a>
+                  <button type="button" class="btn btn-primary" id="quiz-result-cta"></button>
+                </div>
+              </section>
+
+              <section class="quiz-panel hidden" id="quiz-contact-panel">
+                <h3 id="quiz-contact-title"></h3>
+                <p id="quiz-contact-text"></p>
+
+                <form id="lead-form" novalidate>
+                  <div class="form-grid">
+                    <label>
+                      <span id="lead-name-label"></span>
+                      <input type="text" name="name" id="lead-name" autocomplete="name" required />
+                    </label>
+                    <label>
+                      <span id="lead-email-label"></span>
+                      <input type="email" name="email" id="lead-email" autocomplete="email" required />
+                    </label>
+                    <label>
+                      <span id="lead-phone-label"></span>
+                      <input
+                        type="tel"
+                        name="phone"
+                        id="lead-phone"
+                        autocomplete="tel"
+                        inputmode="tel"
+                        placeholder="(555) 123-4567"
+                      />
+                    </label>
+                  </div>
+
+                  <label class="consent-row hidden" id="tcpa-row">
+                    <input type="checkbox" id="tcpa-consent" />
+                    <span id="tcpa-text"></span>
+                  </label>
+
+                  <p class="disclaimer short" id="quiz-short-disclosure"></p>
+
+                  <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" id="lead-submit-btn"></button>
+                  </div>
+                </form>
+              </section>
+
+              <section class="quiz-panel hidden" id="quiz-success-panel" aria-live="polite">
+                <h3 id="quiz-success-title"></h3>
+                <p id="quiz-success-text"></p>
+                <ul class="next-steps" id="next-steps-list"></ul>
+              </section>
+
+              <div class="quiz-navigation" id="quiz-navigation">
+                <button type="button" class="btn btn-ghost" id="quiz-back-btn"></button>
+                <button type="button" class="btn btn-primary" id="quiz-next-btn"></button>
+              </div>
+
+              <p class="state-message" id="quiz-state" aria-live="polite"></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="social-proof section-compact" id="social-proof">
+          <div class="container reveal">
+            <h2 id="social-proof-title"></h2>
+            <div id="social-proof-body"></div>
+          </div>
+        </section>
+
+        <section class="section-padded" id="solutions">
+          <div class="container">
+            <div class="section-title reveal center">
+              <p class="eyebrow" id="solutions-eyebrow"></p>
+              <h2 id="solutions-title"></h2>
+            </div>
+            <div class="cards-grid" id="solutions-grid"></div>
+          </div>
+        </section>
+
+        <section class="section-padded alt" id="how-it-works">
+          <div class="container">
+            <div class="section-title reveal center">
+              <p class="eyebrow" id="how-eyebrow"></p>
+              <h2 id="how-title"></h2>
+            </div>
+            <ol class="steps-list" id="how-steps"></ol>
+          </div>
+        </section>
+
+        <section class="section-padded" id="fit">
+          <div class="container">
+            <div class="section-title reveal">
+              <p class="eyebrow" id="fit-eyebrow"></p>
+              <h2 id="audience-title"></h2>
+            </div>
+
+            <div class="fit-grid">
+              <article class="fit-card reveal">
+                <h3 id="for-who-title"></h3>
+                <ul id="for-who-list"></ul>
+              </article>
+              <article class="fit-card reveal">
+                <h3 id="not-fit-title"></h3>
+                <ul id="not-fit-list"></ul>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-padded alt" id="why-us">
+          <div class="container">
+            <div class="section-title reveal center">
+              <p class="eyebrow" id="why-eyebrow"></p>
+              <h2 id="why-title"></h2>
+            </div>
+            <div class="why-grid" id="why-grid"></div>
+          </div>
+        </section>
+
+        <section class="section-padded" id="honest-expectations">
+          <div class="container reveal">
+            <div class="expectations-box">
+              <p class="eyebrow" id="expectations-eyebrow"></p>
+              <h2 id="expectations-title"></h2>
+              <ul id="expectations-list"></ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-padded alt" id="faq">
+          <div class="container">
+            <div class="section-title reveal center">
+              <p class="eyebrow" id="faq-eyebrow"></p>
+              <h2 id="faq-title"></h2>
+            </div>
+            <div class="faq-list" id="faq-list"></div>
+          </div>
+        </section>
+
+        <section class="final-cta section-padded" id="contact">
+          <div class="container reveal">
+            <div class="final-cta-box">
+              <h2 id="final-cta-title"></h2>
+              <p id="final-cta-text"></p>
+              <button
+                class="btn btn-primary"
+                type="button"
+                data-scroll-target="quiz"
+                data-cta-id="final_cta"
+                id="final-cta-button"
+              ></button>
+              <p class="microcopy" id="final-cta-disclosure"></p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-grid">
+          <div>
+            <a href="#top" class="brand footer-brand" aria-label="Credit Booster">
+              <img
+                class="brand-logo"
+                src="./assets/creditbooster-logo.svg"
+                alt="Credit Booster"
+                width="237"
+                height="40"
+              />
+            </a>
+            <p class="footer-copy">© <span id="year"></span> Credit Booster. <span id="footer-copy-text"></span></p>
+          </div>
+
+          <div>
+            <h3 id="legal-heading"></h3>
+            <ul class="footer-links" id="legal-links"></ul>
+          </div>
+
+          <div>
+            <h3 id="footer-disclosures-title"></h3>
+            <ul class="footer-disclosure-list" id="footer-disclosures-list"></ul>
+          </div>
+        </div>
+      </footer>
+
+      <button
+        class="sticky-mobile-cta"
+        type="button"
+        data-scroll-target="quiz"
+        data-cta-id="sticky_mobile"
+        id="sticky-mobile-cta"
+      >
+      </button>
+    </div>
+  </body>
+</html>
