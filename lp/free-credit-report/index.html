@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Credit Booster</title>
+    <meta
+      name="description"
+      content="Credit Booster: русскоязычное сопровождение в США по кредитному профилю и плану действий."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/lp/styles.css" />
+    <script type="module" src="/lp/lp-app.js"></script>
+  </head>
+  <body data-lp-slug="free-credit-report">
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="Credit Booster">
+          <img src="/assets/creditbooster-logo.svg" alt="Credit Booster" width="230" height="39" />
+        </a>
+
+        <nav class="nav-links" aria-label="Навигация">
+          <a href="#how" id="nav-how"></a>
+          <a href="#packages" id="nav-packages"></a>
+          <a href="#faq" id="nav-faq"></a>
+          <button
+            id="header-cta"
+            class="btn btn-primary"
+            type="button"
+            data-scroll-quiz
+            data-cta-id="header_primary"
+            data-event="click_cta"
+          ></button>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero section" id="hero">
+        <div class="container">
+          <div class="hero-card">
+            <h1 id="hero-h1"></h1>
+            <p class="hero-sub" id="hero-subheadline"></p>
+            <ul class="hero-benefits" id="hero-benefits"></ul>
+            <div class="hero-actions">
+              <button
+                id="hero-cta"
+                class="btn btn-primary"
+                type="button"
+                data-scroll-quiz
+                data-cta-id="hero_primary"
+                data-event="click_cta"
+              ></button>
+            </div>
+            <p class="microcopy" id="hero-microcopy"></p>
+            <p class="trust-line" id="hero-trust-line"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="short">
+        <div class="container">
+          <div class="short-box">
+            <h2 class="section-title" id="short-title"></h2>
+            <ul class="list" id="short-points"></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="quiz">
+        <div class="container">
+          <div class="quiz-box">
+            <div class="quiz-head">
+              <h2 id="quiz-title"></h2>
+              <p id="quiz-subtitle"></p>
+            </div>
+
+            <div class="quiz-progress" aria-hidden="true"><span id="quiz-progress-bar"></span></div>
+            <p id="quiz-progress-label"></p>
+
+            <section class="quiz-panel" id="quiz-question-panel">
+              <h3 id="quiz-question-title"></h3>
+              <div class="quiz-options" id="quiz-options"></div>
+            </section>
+
+            <section class="quiz-panel hidden" id="quiz-mini-panel">
+              <h3 id="quiz-mini-title"></h3>
+              <div class="quiz-options" id="quiz-mini-options"></div>
+            </section>
+
+            <section class="quiz-panel hidden" id="quiz-result-panel">
+              <h3 id="quiz-result-title"></h3>
+              <p class="quiz-result" id="quiz-result-text"></p>
+              <div class="quiz-result-cta">
+                <button id="quiz-result-btn" class="btn btn-primary" type="button"></button>
+                <a id="quiz-result-call" class="link-call hidden" href="tel:+18005550199"></a>
+              </div>
+            </section>
+
+            <section class="quiz-panel hidden" id="quiz-contact-panel">
+              <h3 id="quiz-contact-title"></h3>
+              <p id="quiz-contact-subtitle"></p>
+
+              <form id="lead-form" novalidate>
+                <input id="lp-id-field" name="lp_id" type="hidden" value="" />
+                <input id="lp-slug-field" name="lp_slug" type="hidden" value="" />
+                <input id="lp-intent-field" name="intent_cluster" type="hidden" value="" />
+
+                <div class="form-grid">
+                  <label>
+                    <span id="label-name"></span>
+                    <input id="lead-name" name="name" type="text" autocomplete="name" required />
+                  </label>
+
+                  <label>
+                    <span id="label-email"></span>
+                    <input id="lead-email" name="email" type="email" autocomplete="email" required />
+                  </label>
+
+                  <label>
+                    <span id="label-phone"></span>
+                    <input
+                      id="lead-phone"
+                      name="phone"
+                      type="tel"
+                      autocomplete="tel"
+                      inputmode="tel"
+                      placeholder="(555) 123-4567"
+                    />
+                  </label>
+                </div>
+
+                <label class="consent-row hidden" id="consent-row">
+                  <input id="consent-checkbox" type="checkbox" />
+                  <span id="label-consent"></span>
+                </label>
+
+                <p class="disclaimer" id="quiz-short-disclaimer"></p>
+
+                <div class="form-actions">
+                  <button id="lead-submit-btn" class="btn btn-primary" type="submit"></button>
+                </div>
+              </form>
+            </section>
+
+            <section class="quiz-panel hidden" id="quiz-success-panel">
+              <h3 id="quiz-success-title"></h3>
+              <p id="quiz-success-text"></p>
+            </section>
+
+            <div class="quiz-nav" id="quiz-nav">
+              <button id="quiz-back-btn" class="btn btn-outline" type="button"></button>
+              <button id="quiz-next-btn" class="btn btn-primary" type="button"></button>
+            </div>
+
+            <p class="quiz-message" id="quiz-message" aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="how">
+        <div class="container">
+          <h2 class="section-title" id="how-title"></h2>
+          <ol class="steps" id="how-steps"></ol>
+          <p class="how-note" id="how-note"></p>
+        </div>
+      </section>
+
+      <section class="section" id="packages">
+        <div class="container">
+          <h2 class="section-title" id="packages-title"></h2>
+          <div class="cards-grid" id="packages-grid"></div>
+          <p class="how-note" id="packages-note"></p>
+        </div>
+      </section>
+
+      <section class="section" id="includes">
+        <div class="container">
+          <h2 class="section-title" id="includes-title"></h2>
+          <div class="cards-grid" id="includes-grid"></div>
+        </div>
+      </section>
+
+      <section class="section" id="guarantee">
+        <div class="container">
+          <div class="guarantee-box">
+            <h2 id="guarantee-title"></h2>
+            <p id="guarantee-text"></p>
+            <p class="guarantee-placeholder" id="guarantee-placeholder"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="fit">
+        <div class="container">
+          <h2 class="section-title" id="fit-title"></h2>
+          <div class="fit-grid">
+            <article class="fit-card">
+              <h3 id="fit-for-title"></h3>
+              <ul id="fit-for-list"></ul>
+            </article>
+            <article class="fit-card">
+              <h3 id="fit-not-title"></h3>
+              <ul id="fit-not-list"></ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="value-proof">
+        <div class="container">
+          <h2 class="section-title" id="value-proof-title"></h2>
+          <ul class="list" id="value-proof-list"></ul>
+        </div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="container">
+          <h2 class="section-title" id="faq-title"></h2>
+          <div class="faq-list" id="faq-list"></div>
+        </div>
+      </section>
+
+      <section class="section" id="final-cta">
+        <div class="container">
+          <div class="final-cta">
+            <h2 id="final-cta-title"></h2>
+            <p id="final-cta-text"></p>
+            <button
+              id="final-cta-btn"
+              class="btn btn-primary"
+              type="button"
+              data-scroll-quiz
+              data-cta-id="final_primary"
+              data-event="click_cta"
+            ></button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <nav class="footer-links" aria-label="Legal links">
+          <a href="/privacy/">Privacy Policy</a>
+          <a href="/terms/">Terms</a>
+          <a href="/disclosures/">Disclosures</a>
+        </nav>
+        <p class="footer-disclaimer" id="footer-disclaimer"></p>
+        <p class="footer-rights" id="footer-rights"></p>
+      </div>
+    </footer>
+
+    <div class="sticky-mobile-cta">
+      <button
+        id="sticky-cta"
+        class="btn btn-primary"
+        type="button"
+        data-scroll-quiz
+        data-cta-id="sticky_mobile"
+        data-event="click_sticky_cta"
+      ></button>
+    </div>
+  </body>
+</html>
