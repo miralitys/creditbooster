@@ -283,7 +283,7 @@ function renderQuestionPanel() {
   options.querySelectorAll('.quiz-option').forEach((button) => {
     button.addEventListener('click', () => {
       quizState.answers[question.id] = button.dataset.value || '';
-      renderQuestionPanel();
+      renderPanels();
       showMessage('');
     });
   });
@@ -320,7 +320,7 @@ function renderMiniFraudPanel() {
     button.addEventListener('click', () => {
       quizState.miniFraudAnswer = button.dataset.miniValue || '';
       quizState.answers.q_fraud_suspected = quizState.miniFraudAnswer;
-      renderMiniFraudPanel();
+      renderPanels();
       showMessage('');
     });
   });
