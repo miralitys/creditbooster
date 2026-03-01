@@ -66,11 +66,11 @@ input:focus-visible {
 }
 
 .section-padded {
-  padding: 84px 0;
+  padding: 42px 0;
 }
 
 .section-compact {
-  padding: 44px 0;
+  padding: 16px 0;
 }
 
 .alt {
@@ -330,6 +330,14 @@ input:focus-visible {
   border: 1px solid #dde5ef;
   border-radius: var(--radius-md);
   padding: 24px;
+}
+
+#message-match {
+  padding-bottom: 8px;
+}
+
+#quiz {
+  padding-top: 18px;
 }
 
 .message-match h2 {
@@ -907,11 +915,19 @@ input:focus-visible {
   }
 
   .section-padded {
-    padding: 64px 0;
+    padding: 28px 0;
   }
 
   .section-compact {
-    padding: 36px 0;
+    padding: 12px 0;
+  }
+
+  #message-match {
+    padding-bottom: 6px;
+  }
+
+  #quiz {
+    padding-top: 12px;
   }
 
   .hero-actions,
