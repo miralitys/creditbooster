@@ -157,6 +157,13 @@ input:focus-visible {
   padding-bottom: 18px;
 }
 
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 20px;
+  align-items: flex-start;
+}
+
 .hero-card {
   background: var(--surface);
   border: 1px solid #d7e0eb;
@@ -244,7 +251,7 @@ input:focus-visible {
 .quick-result-card h2 {
   margin: 0;
   font-family: "Sora", "Manrope", sans-serif;
-  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
   line-height: 1.12;
 }
 
@@ -735,6 +742,10 @@ input:focus-visible {
 }
 
 @media (max-width: 1080px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
   .cards-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
