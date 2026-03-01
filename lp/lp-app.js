@@ -91,10 +91,11 @@ function attachGlobalCtas() {
 }
 
 function renderHeader() {
+  setText('nav-quiz', 'Квиз');
   setText('nav-how', 'Как работаем');
-  setText('nav-packages', 'Пакеты');
-  setText('nav-faq', 'FAQ');
-  setText('header-cta', LP_SHARED.primaryCta);
+  setText('nav-faq', 'Частые вопросы');
+  setText('header-secondary-cta', 'Получить консультацию');
+  setText('header-primary-cta', 'Начать с квиза');
 }
 
 function renderHero() {

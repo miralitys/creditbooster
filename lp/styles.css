@@ -101,21 +101,27 @@ input:focus-visible {
   height: auto;
 }
 
-.nav-links {
+.desktop-nav {
   margin-left: auto;
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 28px;
 }
 
-.nav-links a {
+.desktop-nav a {
   font-weight: 700;
   color: #283247;
   transition: color 0.2s ease;
 }
 
-.nav-links a:hover {
+.desktop-nav a:hover {
   color: var(--blue-mid);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .btn {
@@ -742,6 +748,14 @@ input:focus-visible {
 }
 
 @media (max-width: 1080px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  .header-actions #header-secondary-cta {
+    display: none;
+  }
+
   .hero-grid {
     grid-template-columns: 1fr;
   }
@@ -756,12 +770,6 @@ input:focus-visible {
 
   .fit-grid {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 980px) {
-  .nav-links a {
-    display: none;
   }
 }
 

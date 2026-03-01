@@ -24,19 +24,30 @@
           <img src="/assets/creditbooster-logo.svg" alt="Credit Booster" width="230" height="39" />
         </a>
 
-        <nav class="nav-links" aria-label="Навигация">
+        <nav class="desktop-nav" aria-label="Навигация">
+          <a href="#quiz" id="nav-quiz"></a>
           <a href="#how" id="nav-how"></a>
-          <a href="#packages" id="nav-packages"></a>
           <a href="#faq" id="nav-faq"></a>
+        </nav>
+
+        <div class="header-actions">
           <button
-            id="header-cta"
+            id="header-secondary-cta"
+            class="btn btn-outline"
+            type="button"
+            data-scroll-quiz
+            data-cta-id="header_secondary"
+            data-event="click_cta"
+          ></button>
+          <button
+            id="header-primary-cta"
             class="btn btn-primary"
             type="button"
             data-scroll-quiz
             data-cta-id="header_primary"
             data-event="click_cta"
           ></button>
-        </nav>
+        </div>
       </div>
     </header>
 
