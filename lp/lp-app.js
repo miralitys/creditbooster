@@ -601,7 +601,7 @@ function validateLeadForm(formData) {
   }
 
   const digits = phone.replace(/\D/g, '');
-  if (digits.length > 0 && digits.length < US_PHONE_DIGITS) {
+  if (digits.length !== US_PHONE_DIGITS) {
     showMessage(LP_SHARED.quiz.phoneError, 'error');
     return false;
   }
@@ -640,6 +640,8 @@ function initQuiz() {
   }
 
   if (phoneInput) {
+    phoneInput.required = true;
+    phoneInput.setAttribute('aria-required', 'true');
     phoneInput.addEventListener('input', () => {
       phoneInput.value = formatPhone(phoneInput.value);
     });

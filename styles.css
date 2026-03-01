@@ -205,7 +205,7 @@ input:focus-visible {
 
 .hero {
   background: linear-gradient(180deg, #edf1f8 0%, #f7f9fc 100%);
-  overflow: hidden;
+  overflow: visible;
   padding: var(--hero-space-top) 0 var(--hero-space-bottom);
 }
 
@@ -213,7 +213,8 @@ input:focus-visible {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   gap: 20px;
-  align-items: stretch;
+  align-items: flex-start;
+  position: relative;
 }
 
 .eyebrow {
@@ -303,6 +304,25 @@ input:focus-visible {
   box-shadow: 0 8px 18px rgba(20, 38, 90, 0.18);
   padding: 20px;
   align-self: flex-start;
+  position: relative;
+  z-index: 4;
+  width: 100%;
+}
+
+.overview-card.is-fixed {
+  position: fixed;
+  top: var(--overview-top-offset, 98px);
+  left: var(--overview-fixed-left, auto);
+  width: var(--overview-fixed-width, 100%);
+  z-index: 12;
+}
+
+.overview-card.is-stopped {
+  position: absolute;
+  top: var(--overview-stop-top, 0px);
+  left: var(--overview-stop-left, auto);
+  width: var(--overview-fixed-width, 100%);
+  z-index: 4;
 }
 
 .overview-card h2 {
@@ -972,6 +992,21 @@ input:focus-visible {
 
   .hero-grid {
     grid-template-columns: 1fr;
+  }
+
+  .overview-card {
+    position: static;
+    top: auto;
+    left: auto;
+    width: 100%;
+  }
+
+  .overview-card.is-fixed,
+  .overview-card.is-stopped {
+    position: static;
+    top: auto;
+    left: auto;
+    width: 100%;
   }
 
   .cards-grid {

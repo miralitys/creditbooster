@@ -13,10 +13,10 @@ export const LP_SHARED = {
     showResult: 'Показать результат',
     toContacts: 'Продолжить',
     contactTitle: 'Куда отправить ваш план',
-    contactSubtitle: 'Оставьте контакты. Телефон - по желанию.',
+    contactSubtitle: 'Оставьте контакты. Телефон обязателен для связи по вашему плану.',
     contactName: 'Имя',
     contactEmail: 'Email',
-    contactPhone: 'Телефон (опционально)',
+    contactPhone: 'Телефон',
     contactSubmit: 'Отправить и получить план',
     consentText:
       'Ставя галочку, вы соглашаетесь на связь по телефону/смс по вашему запросу. Согласие не обязательно для покупки услуг.',
@@ -28,7 +28,7 @@ export const LP_SHARED = {
     requiredChoiceError: 'Выберите вариант, чтобы продолжить.',
     nameError: 'Введите имя (минимум 2 символа).',
     emailError: 'Введите корректный email.',
-    phoneError: 'Телефон должен содержать 10 цифр (US).',
+    phoneError: 'Укажите телефон в US формате (10 цифр).',
     consentError: 'Для выбранного формата связи подтвердите согласие.',
   },
   howItWorks: {

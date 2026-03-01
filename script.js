@@ -379,6 +379,103 @@ function bindCtaScroll() {
   });
 }
 
+function initOverviewCardFollowScroll() {
+  const card = document.querySelector('.overview-card');
+  const heroGrid = document.querySelector('.hero-grid');
+  const messageMatch = document.getElementById('message-match');
+  const header = document.querySelector('.site-header');
+  const desktopQuery = window.matchMedia('(min-width: 1081px)');
+
+  if (!card || !heroGrid || !messageMatch) return;
+
+  let bounds = null;
+  let rafId = 0;
+
+  const resetState = () => {
+    card.classList.remove('is-fixed', 'is-stopped');
+    card.style.removeProperty('--overview-top-offset');
+    card.style.removeProperty('--overview-fixed-left');
+    card.style.removeProperty('--overview-fixed-width');
+    card.style.removeProperty('--overview-stop-top');
+    card.style.removeProperty('--overview-stop-left');
+  };
+
+  const updatePosition = () => {
+    rafId = 0;
+    if (!desktopQuery.matches || !bounds) {
+      resetState();
+      return;
+    }
+
+    const scrollY = window.scrollY || window.pageYOffset;
+    if (scrollY <= bounds.start) {
+      card.classList.remove('is-fixed', 'is-stopped');
+      return;
+    }
+
+    if (scrollY < bounds.stop) {
+      card.classList.add('is-fixed');
+      card.classList.remove('is-stopped');
+      return;
+    }
+
+    card.classList.remove('is-fixed');
+    card.classList.add('is-stopped');
+  };
+
+  const requestUpdate = () => {
+    if (rafId) return;
+    rafId = window.requestAnimationFrame(updatePosition);
+  };
+
+  const measure = () => {
+    resetState();
+    const scrollY = window.scrollY || window.pageYOffset;
+    const headerHeight = header ? header.getBoundingClientRect().height : 84;
+    const topOffset = headerHeight + 12;
+
+    const cardRect = card.getBoundingClientRect();
+    const heroRect = heroGrid.getBoundingClientRect();
+    const messageRect = messageMatch.getBoundingClientRect();
+
+    const cardTopAbs = scrollY + cardRect.top;
+    const messageTopAbs = scrollY + messageRect.top;
+    const heroTopAbs = scrollY + heroRect.top;
+
+    const start = cardTopAbs - topOffset;
+    const stop = Math.max(start, messageTopAbs - cardRect.height - 12);
+    const stopTop = Math.max(0, messageTopAbs - heroTopAbs - cardRect.height - 12);
+    const stopLeft = Math.max(0, cardRect.left - heroRect.left);
+
+    bounds = {
+      start,
+      stop,
+    };
+
+    card.style.setProperty('--overview-top-offset', `${Math.round(topOffset)}px`);
+    card.style.setProperty('--overview-fixed-left', `${Math.round(cardRect.left)}px`);
+    card.style.setProperty('--overview-fixed-width', `${Math.round(cardRect.width)}px`);
+    card.style.setProperty('--overview-stop-top', `${Math.round(stopTop)}px`);
+    card.style.setProperty('--overview-stop-left', `${Math.round(stopLeft)}px`);
+
+    requestUpdate();
+  };
+
+  const onResize = () => measure();
+  const onScroll = () => requestUpdate();
+  const onMediaChange = () => measure();
+
+  measure();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onResize);
+
+  if (desktopQuery.addEventListener) {
+    desktopQuery.addEventListener('change', onMediaChange);
+  } else if (desktopQuery.addListener) {
+    desktopQuery.addListener(onMediaChange);
+  }
+}
+
 function updateQuizProgress(step, total, labelText) {
   const progressBar = document.getElementById('quiz-progress-bar');
   const progressLabel = document.getElementById('quiz-progress-label');
@@ -609,7 +706,7 @@ function validateLeadPayload(payload) {
     return ui.form.tcpaError;
   }
 
-  if (payload.phone && payload.phone.replace(/\D/g, '').length < 10) {
+  if (payload.phone.replace(/\D/g, '').length !== 10) {
     return ui.form.phoneError;
   }
 
@@ -693,6 +790,8 @@ function initQuiz() {
   leadForm?.addEventListener('submit', handleLeadSubmit);
 
   if (phoneInput instanceof HTMLInputElement) {
+    phoneInput.required = true;
+    phoneInput.setAttribute('aria-required', 'true');
     phoneInput.addEventListener('input', () => {
       phoneInput.value = formatUSPhone(phoneInput.value);
     });
@@ -751,6 +850,7 @@ function initStaticContent() {
 function init() {
   initHeaderMenu();
   initStaticContent();
+  initOverviewCardFollowScroll();
   initQuiz();
   bindCtaScroll();
   initRevealAnimations();
