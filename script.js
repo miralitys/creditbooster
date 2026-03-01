@@ -174,6 +174,7 @@ function renderUiLabels() {
   setText('lead-phone-label', ui.form.phoneLabel);
   setText('quiz-back-btn', ui.quizUi.back);
   setText('quiz-next-btn', ui.quizUi.next);
+  setText('quiz-progress-note', ui.quizUi.timeHint);
   setText('legal-heading', ui.legalHeading);
   setText('for-who-title', ui.forWhoTitle);
   setText('footer-copy-text', ui.footerCopy);
@@ -228,8 +229,8 @@ function renderSolutions() {
 
   grid.innerHTML = shared.solutions.items
     .map(
-      (item) => `
-        <article class="card reveal">
+      (item, index) => `
+        <article class="card card-solution ${index === 0 ? 'card-solution-main' : ''} reveal">
           <h3>${escapeHtml(item.title)}</h3>
           <p>${escapeHtml(item.text)}</p>
         </article>
@@ -273,7 +274,14 @@ function renderWhyUs() {
   if (!grid) return;
 
   grid.innerHTML = shared.whyUs.reasons
-    .map((reason) => `<article class="why-item reveal">${escapeHtml(reason)}</article>`)
+    .map(
+      (reason) => `
+        <article class="why-item reveal">
+          <span class="why-item-marker" aria-hidden="true">✓</span>
+          <p>${escapeHtml(reason)}</p>
+        </article>
+      `
+    )
     .join('');
 }
 
@@ -361,6 +369,12 @@ function bindCtaScroll() {
       const ctaId = element.getAttribute('data-cta-id') || 'unknown';
       track('click_cta', { variant, ctaId });
       scrollToQuiz();
+
+      if (ctaId === 'header_secondary') {
+        setTimeout(() => {
+          showStateMessage('Сначала пройдите квиз - это займёт около 3 минут.');
+        }, 360);
+      }
     });
   });
 }
@@ -381,6 +395,12 @@ function getCurrentQuestion() {
   return quizCopy.questions[quizState.questionIndex];
 }
 
+function animatePanelEntry(panel) {
+  if (!panel) return;
+  panel.classList.add('is-enter');
+  requestAnimationFrame(() => panel.classList.remove('is-enter'));
+}
+
 function showQuizPanels(mode) {
   const questionPanel = document.getElementById('quiz-question-panel');
   const resultPanel = document.getElementById('quiz-result-panel');
@@ -391,6 +411,11 @@ function showQuizPanels(mode) {
   resultPanel?.classList.toggle('hidden', mode !== 'result');
   contactPanel?.classList.toggle('hidden', mode !== 'contact');
   successPanel?.classList.toggle('hidden', mode !== 'success');
+
+  if (mode === 'question') animatePanelEntry(questionPanel);
+  if (mode === 'result') animatePanelEntry(resultPanel);
+  if (mode === 'contact') animatePanelEntry(contactPanel);
+  if (mode === 'success') animatePanelEntry(successPanel);
 }
 
 function renderQuizQuestion() {
