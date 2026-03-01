@@ -111,6 +111,19 @@ function renderHero() {
   }
 }
 
+function renderQuickResult() {
+  setText('quick-result-eyebrow', LP_SHARED.quickResult.eyebrow);
+  setText('quick-result-title', LP_SHARED.quickResult.title);
+  setText('quick-result-text', LP_SHARED.quickResult.text);
+
+  const list = document.getElementById('quick-result-items');
+  if (list) {
+    list.innerHTML = LP_SHARED.quickResult.items
+      .map((item) => `<li>${escapeHtml(item)}</li>`)
+      .join('');
+  }
+}
+
 function renderShortBlock() {
   setText('short-title', LP_SHARED.shortBlockTitle);
   const list = document.getElementById('short-points');
@@ -447,7 +460,8 @@ function renderPanels() {
 
   if (quizState.mode === 'question') {
     backBtn.disabled = quizState.index === 0;
-    nextBtn.disabled = !quizState.answers[getCurrentQuestion()?.id || ''];
+    backBtn.classList.toggle('hidden', quizState.index === 0);
+    nextBtn.disabled = false;
     nextBtn.textContent = quizState.index === questions.length - 1 ? LP_SHARED.quiz.showResult : LP_SHARED.quiz.next;
     nav.classList.remove('hidden');
     renderQuestionPanel();
@@ -456,7 +470,8 @@ function renderPanels() {
 
   if (quizState.mode === 'mini_fraud') {
     backBtn.disabled = false;
-    nextBtn.disabled = !quizState.miniFraudAnswer;
+    backBtn.classList.remove('hidden');
+    nextBtn.disabled = false;
     nextBtn.textContent = LP_SHARED.quiz.showResult;
     nav.classList.remove('hidden');
     renderMiniFraudPanel();
@@ -465,6 +480,7 @@ function renderPanels() {
 
   if (quizState.mode === 'result') {
     backBtn.disabled = false;
+    backBtn.classList.remove('hidden');
     nextBtn.disabled = false;
     nextBtn.textContent = LP_SHARED.quiz.toContacts;
     nav.classList.remove('hidden');
@@ -621,6 +637,8 @@ function initQuiz() {
   setText('quiz-subtitle', LP_SHARED.quiz.subtitle);
   setText('quiz-short-disclaimer', LP_SHARED.quiz.shortDisclosure);
   setText('quiz-progress-label', `Шаг 1 из ${questions.length}`);
+  setText('quiz-back-btn', LP_SHARED.quiz.back);
+  setText('quiz-next-btn', LP_SHARED.quiz.next);
 
   const back = document.getElementById('quiz-back-btn');
   const next = document.getElementById('quiz-next-btn');
@@ -714,6 +732,7 @@ function initPageMetaFields() {
 function renderAll() {
   renderHeader();
   renderHero();
+  renderQuickResult();
   renderShortBlock();
   renderHow();
   renderPackages();

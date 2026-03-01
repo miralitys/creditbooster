@@ -224,6 +224,63 @@ input:focus-visible {
   font-weight: 700;
 }
 
+.quick-result-card {
+  background: linear-gradient(160deg, #2945ad 0%, #1a338f 58%, #163286 100%);
+  border-radius: var(--radius-lg);
+  color: #f5f8ff;
+  box-shadow: 0 8px 18px rgba(20, 38, 90, 0.18);
+  padding: 24px;
+}
+
+.quick-result-card .eyebrow {
+  margin: 0 0 8px;
+  color: #b6c7ff;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.quick-result-card h2 {
+  margin: 0;
+  font-family: "Sora", "Manrope", sans-serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.12;
+}
+
+.quick-result-text {
+  margin: 10px 0 0;
+  color: #d2dcff;
+  font-size: 1.08rem;
+}
+
+.quick-result-items {
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.quick-result-items li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 12px 14px;
+  border-radius: 22px;
+  border: 1px solid rgba(208, 221, 255, 0.26);
+  background: rgba(255, 255, 255, 0.09);
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.quick-result-items li::before {
+  content: "✓";
+  color: #cfe0ff;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
 .short-box {
   background: #fff;
   border: 1px solid #dde5ef;
@@ -707,6 +764,7 @@ input:focus-visible {
   }
 
   .hero-card,
+  .quick-result-card,
   .quiz-box,
   .short-box,
   .guarantee-box,
