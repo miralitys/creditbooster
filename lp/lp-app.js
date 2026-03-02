@@ -1,5 +1,6 @@
 import { LP_SHARED, LP_BY_SLUG } from '/content/lpConfigs.js';
 import { track } from '/lib/analytics.js';
+import { submitLead } from '/lib/leadApi.js';
 
 const bodySlug = document.body?.dataset?.lpSlug;
 const pathSlug = window.location.pathname.split('/').filter(Boolean).at(-1) || 'credit-score';
@@ -680,21 +681,43 @@ function initQuiz() {
       const submitButton = document.getElementById('lead-submit-btn');
       if (submitButton) submitButton.textContent = LP_SHARED.quiz.loadingText;
 
-      window.setTimeout(() => {
-        quizState.submitting = false;
-        if (submitButton) submitButton.textContent = LP_SHARED.quiz.contactSubmit;
+      const leadPayload = {
+        name: (formData.get('name') || '').toString().trim(),
+        email: (formData.get('email') || '').toString().trim(),
+        phone: (formData.get('phone') || '').toString().trim(),
+        source: 'lp_quiz',
+        tcpaRequired: ['call_10_15', 'sms_allowed'].includes(quizState.answers.q5_contact_pref),
+        tcpaAccepted: Boolean(document.getElementById('consent-checkbox')?.checked),
+        pageUrl: window.location.href,
+        pageTitle: document.title,
+        context: {
+          ...buildTrackPayload(),
+          result_type: quizState.resultType,
+        },
+        quizAnswers: { ...quizState.answers },
+      };
 
-        track(
-          'lead_submit',
-          buildTrackPayload({
-            result_type: quizState.resultType,
-            has_phone: Boolean((formData.get('phone') || '').toString().trim()),
-          })
-        );
+      submitLead(leadPayload)
+        .then(() => {
+          quizState.submitting = false;
+          if (submitButton) submitButton.textContent = LP_SHARED.quiz.contactSubmit;
 
-        quizState.mode = 'success';
-        renderPanels();
-      }, 650);
+          track(
+            'lead_submit',
+            buildTrackPayload({
+              result_type: quizState.resultType,
+              has_phone: Boolean((formData.get('phone') || '').toString().trim()),
+            })
+          );
+
+          quizState.mode = 'success';
+          renderPanels();
+        })
+        .catch((error) => {
+          quizState.submitting = false;
+          if (submitButton) submitButton.textContent = LP_SHARED.quiz.contactSubmit;
+          showMessage(error instanceof Error ? error.message : 'Ошибка отправки. Попробуйте ещё раз.', 'error');
+        });
     });
   }
 

@@ -1,5 +1,6 @@
 import { landingCopy } from './content/landingCopy.js';
 import { track } from './lib/analytics.js';
+import { submitLead } from './lib/leadApi.js';
 
 const params = new URLSearchParams(window.location.search);
 const requestedVariant = (params.get('v') || '').toLowerCase();
@@ -713,7 +714,7 @@ function validateLeadPayload(payload) {
   return '';
 }
 
-function handleLeadSubmit(event) {
+async function handleLeadSubmit(event) {
   event.preventDefault();
   if (quizState.submitting) return;
 
@@ -738,18 +739,21 @@ function handleLeadSubmit(event) {
     submitButton.textContent = ui.quizUi.loading;
   }
 
-  setTimeout(() => {
-    const shouldFail = payload.email.toLowerCase().endsWith('@example.com');
-
-    if (shouldFail) {
-      quizState.submitting = false;
-      if (submitButton instanceof HTMLButtonElement) {
-        submitButton.disabled = false;
-        submitButton.textContent = quizCopy.contact.submit;
-      }
-      showStateMessage(ui.quizUi.submitError, 'error');
-      return;
-    }
+  try {
+    await submitLead({
+      ...payload,
+      source: 'main_quiz',
+      tcpaRequired: ['call_10_15', 'sms_allowed'].includes(quizState.answers.q8_contact_format),
+      tcpaAccepted: Boolean(document.getElementById('tcpa-consent')?.checked),
+      pageUrl: window.location.href,
+      pageTitle: document.title,
+      context: {
+        variant,
+        branch: quizState.branch,
+        preferredFormat: quizState.answers.q8_contact_format || '',
+      },
+      quizAnswers: { ...quizState.answers },
+    });
 
     track('lead_submit', {
       variant,
@@ -759,9 +763,20 @@ function handleLeadSubmit(event) {
     });
 
     quizState.submitting = false;
+    if (submitButton instanceof HTMLButtonElement) {
+      submitButton.disabled = false;
+      submitButton.textContent = quizCopy.contact.submit;
+    }
     quizState.mode = 'success';
     renderQuiz();
-  }, 850);
+  } catch (error) {
+    quizState.submitting = false;
+    if (submitButton instanceof HTMLButtonElement) {
+      submitButton.disabled = false;
+      submitButton.textContent = quizCopy.contact.submit;
+    }
+    showStateMessage(error instanceof Error ? error.message : ui.quizUi.submitError, 'error');
+  }
 }
 
 function initQuiz() {

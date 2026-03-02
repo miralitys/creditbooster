@@ -5,3 +5,8 @@ services:
     plan: free
     buildCommand: npm install
     startCommand: npm start
+    envVars:
+      - key: GHL_WEBHOOK_URL
+        sync: false
+      - key: GHL_WEBHOOK_SECRET
+        sync: false
