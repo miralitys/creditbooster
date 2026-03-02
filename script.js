@@ -22,6 +22,12 @@ const quizState = {
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+function getMainLeadSource() {
+  const rawPath = window.location.pathname.replace(/^\/+|\/+$/g, '') || 'home';
+  const normalized = rawPath.replace(/[^a-zA-Z0-9/_-]/g, '').replace(/\//g, '_') || 'home';
+  return `website_${normalized}`;
+}
+
 function setText(id, text) {
   const el = document.getElementById(id);
   if (!el) return;
@@ -742,7 +748,7 @@ async function handleLeadSubmit(event) {
   try {
     await submitLead({
       ...payload,
-      source: 'main_quiz',
+      source: getMainLeadSource(),
       tcpaRequired: ['call_10_15', 'sms_allowed'].includes(quizState.answers.q8_contact_format),
       tcpaAccepted: Boolean(document.getElementById('tcpa-consent')?.checked),
       pageUrl: window.location.href,
