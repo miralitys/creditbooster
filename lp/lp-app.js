@@ -685,7 +685,7 @@ function initQuiz() {
         name: (formData.get('name') || '').toString().trim(),
         email: (formData.get('email') || '').toString().trim(),
         phone: (formData.get('phone') || '').toString().trim(),
-        source: `website_${currentPage.lp_slug}`,
+        source: `website|${currentPage.lp_slug}`,
         tcpaRequired: ['call_10_15', 'sms_allowed'].includes(quizState.answers.q5_contact_pref),
         tcpaAccepted: Boolean(document.getElementById('consent-checkbox')?.checked),
         pageUrl: window.location.href,

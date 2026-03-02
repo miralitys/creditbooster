@@ -25,7 +25,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 function getMainLeadSource() {
   const rawPath = window.location.pathname.replace(/^\/+|\/+$/g, '') || 'home';
   const normalized = rawPath.replace(/[^a-zA-Z0-9/_-]/g, '').replace(/\//g, '_') || 'home';
-  return `website_${normalized}`;
+  return `website|${normalized}`;
 }
 
 function setText(id, text) {
