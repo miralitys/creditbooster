@@ -10,11 +10,20 @@ const GHL_WEBHOOK_SECRET = (process.env.GHL_WEBHOOK_SECRET || '').trim();
 const ADMIN_USER = (process.env.ADMIN_USER || '').trim();
 const ADMIN_PASS = (process.env.ADMIN_PASS || '').trim();
 
-const dbPath = process.env.LEADS_DB_PATH
+const preferredDbPath = process.env.LEADS_DB_PATH
   ? String(process.env.LEADS_DB_PATH)
   : path.join(__dirname, 'data', 'leads.sqlite');
+let dbPath = preferredDbPath;
 
-initLeadsDb(dbPath);
+try {
+  initLeadsDb(dbPath);
+} catch (err) {
+  const fallbackPath = path.join(__dirname, 'data', 'leads.sqlite');
+  console.error('[leads] Failed to init DB at preferred path:', dbPath, err instanceof Error ? err.message : err);
+  console.error('[leads] Falling back to local path:', fallbackPath);
+  dbPath = fallbackPath;
+  initLeadsDb(dbPath);
+}
 
 app.use(express.json({ limit: '1mb' }));
 app.use(express.urlencoded({ extended: true }));
