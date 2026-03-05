@@ -10,3 +10,9 @@ services:
         sync: false
       - key: GHL_WEBHOOK_SECRET
         sync: false
+      - key: ADMIN_USER
+        sync: false
+      - key: ADMIN_PASS
+        sync: false
+      - key: LEADS_DB_PATH
+        sync: false
