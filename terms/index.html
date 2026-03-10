@@ -12,6 +12,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Terms | Credit Booster</title>
+    <link rel="stylesheet" href="/assets/testimonials.css" />
+    <script type="module" src="/lib/testimonials.js"></script>
     <style>
       body { font-family: Manrope, Segoe UI, sans-serif; background:#f2f4f8; color:#1a2132; margin:0; }
       .wrap { width:min(900px, calc(100% - 32px)); margin:40px auto; background:#fff; border:1px solid #dbe3ef; border-radius:16px; padding:24px; }
@@ -37,6 +39,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li>No legal representation unless explicitly stated in a separate legal agreement.</li>
         <li>Client is responsible for accurate information provided in forms.</li>
       </ul>
+
+      <section class="testimonials-shell testimonials-shell--compact" data-testimonials-root>
+        <div class="testimonials-inner">
+          <p class="testimonials-eyebrow" data-testimonials-eyebrow></p>
+          <h2 class="testimonials-title" data-testimonials-title></h2>
+          <p class="testimonials-subtitle" data-testimonials-subtitle></p>
+          <div class="testimonial-list" data-testimonials-list></div>
+          <p class="testimonial-note" data-testimonials-note></p>
+        </div>
+      </section>
+
       <p><a href="/">Back to landing page</a></p>
     </main>
   </body>
