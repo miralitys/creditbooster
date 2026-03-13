@@ -249,7 +249,7 @@
     const isNarrowMobile = window.innerWidth <= 639;
     syncT396RecordHeight(SECOND_SECTION_ID, {
       extra: isNarrowMobile ? 28 : 12,
-      minHeight: isNarrowMobile ? 1180 : 0,
+      minHeight: isNarrowMobile ? 0 : 0,
     });
     syncT396RecordHeight(THIRD_SECTION_ID, { extra: 18, minHeight: 680 });
     syncT396RecordHeight(WHY_DESKTOP_ID, { extra: 30, minHeight: 700 });

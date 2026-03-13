@@ -4762,7 +4762,9 @@ body.bb-refined .bb-playlist-record.bb-playlist-custom .bb-playlist-item__cta {
   body.bb-refined #rec375352383.bb-second-enhanced .t396__artboard,
   body.bb-refined #rec375352383.bb-second-enhanced .t396__filter,
   body.bb-refined #rec375352383.bb-second-enhanced .t396__carrier {
-    height: 1180px !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
   }
 
   body.bb-refined #rec375352383 .bb-second-layout {
