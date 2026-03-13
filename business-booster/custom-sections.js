@@ -252,7 +252,10 @@
       extra: isNarrowMobile ? 28 : 12,
       minHeight: isNarrowMobile ? 0 : 0,
     });
-    syncT396RecordHeight(THIRD_SECTION_ID, { extra: 18, minHeight: 680 });
+    syncT396RecordHeight(THIRD_SECTION_ID, {
+      extra: isNarrowMobile ? 12 : 18,
+      minHeight: isNarrowMobile ? 0 : 680,
+    });
     syncT396RecordHeight(WHY_DESKTOP_ID, { extra: 30, minHeight: 700 });
     syncT396RecordHeight(WHY_MOBILE_ID, { extra: 28, minHeight: isNarrowMobile ? 760 : 580 });
     syncT396RecordHeight(INLINE_FORM_DESKTOP_ID, { extra: 8, minHeight: 272 });

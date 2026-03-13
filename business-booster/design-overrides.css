@@ -5378,6 +5378,9 @@ body.bb-refined .bb-playlist-record.bb-playlist-custom .bb-playlist-item__cta {
     display: grid !important;
     gap: 16px !important;
     padding: 22px 18px 18px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
     border: 1px solid var(--bb-border) !important;
     border-radius: 24px !important;
     background: var(--bb-surface) !important;
@@ -5414,16 +5417,22 @@ body.bb-refined .bb-playlist-record.bb-playlist-custom .bb-playlist-item__cta {
   body.bb-refined #rec376777237 .bb-why-mobile-shell__cta {
     display: inline-flex !important;
     width: 100% !important;
+    max-width: 100% !important;
     justify-content: center !important;
+    justify-self: stretch !important;
+    align-self: stretch !important;
     align-items: center !important;
     min-height: 56px !important;
     padding: 0 22px !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
     border-radius: 18px !important;
     background: var(--bb-primary) !important;
     color: #ffffff !important;
     font-size: 18px !important;
     font-weight: 600 !important;
     text-decoration: none !important;
+    white-space: normal !important;
     box-shadow: 0 16px 30px rgba(80, 94, 206, 0.18) !important;
   }
 }
