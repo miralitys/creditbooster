@@ -598,22 +598,15 @@
             </div>
             <div class="t-input-group t-input-group_ph" data-field-type="ph" data-field-name="Phone">
               <div class="t-input-block">
-                <div class="t-input t-input-phonemask__wrap">
-                  <span class="t-input-phonemask__select" aria-hidden="true">
-                    <span class="t-input-phonemask__select-flag" data-phonemask-flag="us"></span>
-                    <span class="t-input-phonemask__select-triangle"></span>
-                    <span class="t-input-phonemask__select-code">+1</span>
-                  </span>
-                  <input
-                    aria-label="phone"
-                    type="tel"
-                    name="Phone"
-                    class="t-input t-input-phonemask js-tilda-rule"
-                    placeholder="(000) 000-0000"
-                    autocomplete="tel-national"
-                    inputmode="tel"
-                  />
-                </div>
+                <input
+                  aria-label="phone"
+                  type="tel"
+                  name="Phone"
+                  class="t-input js-tilda-rule t-input-inline-styles bb-phone-input"
+                  placeholder="(555) 555-5555"
+                  autocomplete="tel"
+                  inputmode="tel"
+                />
                 <div class="t-input-error"></div>
               </div>
             </div>

@@ -3247,6 +3247,13 @@ body.bb-refined .bb-inline-form-record .t-input-group_ph .t-input-block {
   height: 56px;
 }
 
+body.bb-refined .bb-inline-form-record .bb-phone-input {
+  position: relative;
+  z-index: 1;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 body.bb-refined .bb-inline-form-record .t-submit {
   display: inline-flex !important;
   align-items: center;
