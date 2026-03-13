@@ -3248,6 +3248,7 @@ body.bb-refined .bb-inline-form-record .t-input-phonemask__wrap,
 body.bb-refined .bb-popup-form-record .t-input-phonemask__wrap {
   display: flex;
   align-items: center;
+  flex-wrap: nowrap;
   min-height: 56px;
   padding: 0 14px 0 10px !important;
 }
@@ -3258,8 +3259,10 @@ body.bb-refined .bb-popup-form-record .t-input-phonemask__select {
   display: inline-flex;
   align-items: center;
   align-self: stretch;
+  flex: 0 0 auto;
   margin-right: 12px;
   padding-right: 10px;
+  white-space: nowrap;
   border-right: 1px solid rgba(129, 146, 232, 0.28);
 }
 
@@ -3271,13 +3274,16 @@ body.bb-refined .bb-popup-form-record .t-input-phonemask__select-code {
 
 body.bb-refined .bb-inline-form-record .t-input-phonemask,
 body.bb-refined .bb-popup-form-record .t-input-phonemask {
-  flex: 1;
-  min-width: 0;
+  flex: 1 1 auto;
+  width: 0 !important;
+  min-width: 0 !important;
   height: auto !important;
   padding: 0 !important;
   border: 0 !important;
   background: transparent !important;
   box-shadow: none !important;
+  white-space: nowrap;
+  line-height: 1.2 !important;
 }
 
 body.bb-refined .bb-inline-form-record .t-input-group_cb,
@@ -4999,6 +5005,30 @@ body.bb-refined .bb-playlist-record.bb-playlist-custom .bb-playlist-item__cta {
   body.bb-refined #rec727592444 .bb-inline-form-record .t-submit {
     min-height: 56px !important;
     font-size: 16px !important;
+  }
+
+  body.bb-refined #rec727595470 .bb-inline-form-record .t-input-phonemask__wrap,
+  body.bb-refined #rec727592444 .bb-inline-form-record .t-input-phonemask__wrap {
+    flex-wrap: nowrap !important;
+    gap: 0 !important;
+    padding: 0 12px 0 10px !important;
+  }
+
+  body.bb-refined #rec727595470 .bb-inline-form-record .t-input-phonemask__select,
+  body.bb-refined #rec727592444 .bb-inline-form-record .t-input-phonemask__select {
+    flex: 0 0 auto !important;
+    min-width: 84px !important;
+    margin-right: 10px !important;
+    padding-right: 10px !important;
+    white-space: nowrap !important;
+  }
+
+  body.bb-refined #rec727595470 .bb-inline-form-record .t-input-phonemask,
+  body.bb-refined #rec727592444 .bb-inline-form-record .t-input-phonemask {
+    flex: 1 1 auto !important;
+    width: 0 !important;
+    min-width: 0 !important;
+    white-space: nowrap !important;
   }
 
   body.bb-refined #rec727595470 .bb-inline-form-record .tn-form__submit,
