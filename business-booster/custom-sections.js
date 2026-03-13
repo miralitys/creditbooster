@@ -13,6 +13,7 @@
   const PLAYLIST_ID = '376684753';
   const PLAYLIST_HASH_RE = /^#tlection=\d+_\d+$/i;
   const WHY_YOUTUBE_ID = '-I_BtqI9Dnc';
+  const WHY_VIDEO_POSTER = 'images/why-video-poster.jpg';
 
   const secondSection = {
     eyebrow: 'Credit Booster',
@@ -418,6 +419,7 @@
       .forEach((button) => button.classList.add('bb-primary-button'));
 
     mountWhyVideoPreview();
+    buildWhyMobileSection();
   }
 
   function mountWhyVideoPreview() {
@@ -441,10 +443,14 @@
             class="bb-why-video-trigger"
             type="button"
             aria-label="Смотреть видео о Credit Booster"
-            style="background-image:
-              linear-gradient(180deg, rgba(11, 14, 24, 0.18) 0%, rgba(11, 14, 24, 0.52) 100%),
-              url('https://i.ytimg.com/vi/${WHY_YOUTUBE_ID}/hqdefault.jpg');"
           >
+            <img
+              class="bb-why-video-trigger__poster"
+              src="${WHY_VIDEO_POSTER}"
+              alt="Видео Credit Booster"
+              loading="eager"
+              decoding="async"
+            />
             <span class="bb-why-video-trigger__badge">Видео</span>
             <span class="bb-why-video-trigger__play" aria-hidden="true">
               <span class="bb-why-video-trigger__triangle"></span>
@@ -470,6 +476,76 @@
           `;
         });
       });
+    });
+  }
+
+  function buildWhyMobileSection() {
+    const record = document.getElementById(`rec${WHY_MOBILE_ID}`);
+    if (!(record instanceof HTMLElement)) return;
+
+    const artboard = record.querySelector('.t396__artboard');
+    if (!(artboard instanceof HTMLElement)) return;
+
+    if (artboard.dataset.bbWhyMobileBuilt === '1') return;
+
+    record.classList.add('bb-why-mobile-record');
+    artboard.classList.add('bb-why-mobile-artboard');
+    artboard.dataset.bbWhyMobileBuilt = '1';
+
+    const shell = document.createElement('section');
+    shell.className = 'bb-why-mobile-shell';
+    shell.innerHTML = `
+      <h2 class="bb-why-mobile-shell__title">
+        Почему выбирают <span>credit booster</span>?
+      </h2>
+      <button
+        class="bb-why-mobile-shell__video"
+        type="button"
+        data-bb-why-mobile-trigger
+        aria-label="Смотреть видео о Credit Booster"
+      >
+        <img
+          class="bb-why-mobile-shell__poster"
+          src="${WHY_VIDEO_POSTER}"
+          alt="Видео Credit Booster"
+          loading="eager"
+          decoding="async"
+        />
+        <span class="bb-why-mobile-shell__play" aria-hidden="true">
+          <span class="bb-why-mobile-shell__triangle"></span>
+        </span>
+      </button>
+      <div class="bb-why-mobile-shell__copy">
+        <p class="bb-why-mobile-shell__text">
+          Опираемся на анализ credit profile и опыт подготовки к подаче, чтобы вы лучше понимали,
+          какие шаги действительно помогают двигаться к финансированию.
+        </p>
+        <div class="bb-why-mobile-shell__facts" aria-hidden="true">
+          <span class="bb-why-mobile-shell__fact">17+ лет опыта</span>
+          <span class="bb-why-mobile-shell__fact">Частные клиенты и бизнес</span>
+          <span class="bb-why-mobile-shell__fact">Прозрачная работа</span>
+        </div>
+        <a class="bb-why-mobile-shell__cta" href="#application">Получить консультацию</a>
+      </div>
+    `;
+
+    artboard.replaceChildren(shell);
+
+    const trigger = shell.querySelector('[data-bb-why-mobile-trigger]');
+    if (!(trigger instanceof HTMLButtonElement)) return;
+
+    trigger.addEventListener('click', () => {
+      trigger.outerHTML = `
+        <iframe
+          class="bb-why-mobile-shell__player"
+          src="https://www.youtube-nocookie.com/embed/${WHY_YOUTUBE_ID}?autoplay=1&rel=0&modestbranding=1&playsinline=1"
+          title="Видео Credit Booster"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      `;
     });
   }
 

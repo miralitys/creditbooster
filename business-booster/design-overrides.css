@@ -2249,11 +2249,19 @@ body.bb-refined .bb-why-record .bb-why-video-trigger {
   position: relative;
   overflow: hidden;
   padding: 0;
+  -webkit-appearance: none;
+  appearance: none;
   background-color: #11141d;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
   cursor: pointer;
+}
+
+body.bb-refined .bb-why-record .bb-why-video-trigger__poster {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 body.bb-refined .bb-why-record .bb-why-video-trigger::after {
@@ -2333,6 +2341,10 @@ body.bb-refined .bb-why-record .bb-why-video-trigger__caption {
   font-weight: 500;
   line-height: 1.35;
   backdrop-filter: blur(8px);
+}
+
+body.bb-refined .bb-why-mobile-shell {
+  display: none;
 }
 
 body.bb-refined .bb-why-record .tn-elem[data-elem-id="1636124099979"] .tn-atom {
@@ -4606,6 +4618,147 @@ body.bb-refined .bb-playlist-record.bb-playlist-custom .bb-playlist-item__cta {
 
 /* Final phone-only stabilization pass for the current mobile layout. */
 @media screen and (max-width: 639px) {
+  body.bb-refined #rec376777237 {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    overflow: hidden !important;
+  }
+
+  body.bb-refined #rec376777237 .t396__artboard,
+  body.bb-refined #rec376777237 .t396__filter,
+  body.bb-refined #rec376777237 .t396__carrier {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  body.bb-refined #rec376777237 .tn-elem {
+    display: none !important;
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell {
+    display: grid !important;
+    gap: 18px;
+    width: calc(100% - 32px);
+    margin: 0 auto;
+    padding: 8px 0 24px;
+    box-sizing: border-box;
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__title {
+    margin: 0;
+    color: var(--bb-text);
+    font-size: 28px;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    text-wrap: pretty;
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__title span {
+    color: var(--bb-primary);
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__video,
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__player {
+    display: block;
+    width: 100%;
+    aspect-ratio: 15 / 11;
+    border: 0;
+    border-radius: 28px;
+    overflow: hidden;
+    background: #10141d;
+    box-shadow: 0 18px 34px rgba(14, 18, 31, 0.12);
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__video {
+    position: relative;
+    padding: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__poster {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__play {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 68px;
+    height: 68px;
+    border-radius: 999px;
+    background: rgba(16, 20, 32, 0.74);
+    box-shadow: 0 14px 26px rgba(8, 12, 22, 0.2);
+    transform: translate(-50%, -50%);
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__triangle {
+    width: 0;
+    height: 0;
+    margin-left: 4px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 16px solid #ffffff;
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__copy {
+    display: grid;
+    gap: 16px;
+    padding: 22px 18px 18px;
+    border: 1px solid var(--bb-border);
+    border-radius: 24px;
+    background: var(--bb-surface);
+    box-shadow: 0 18px 34px rgba(53, 65, 113, 0.06);
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__text {
+    margin: 0;
+    color: var(--bb-text-muted);
+    font-size: 16px;
+    line-height: 1.62;
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__fact {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(80, 94, 206, 0.09);
+    color: var(--bb-primary);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__cta {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 56px;
+    padding: 0 22px;
+    border-radius: 18px;
+    background: var(--bb-primary);
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 16px 30px rgba(80, 94, 206, 0.18);
+  }
+
   body.bb-refined #rec375352383.bb-second-enhanced .t396__artboard,
   body.bb-refined #rec375352383.bb-second-enhanced .t396__filter,
   body.bb-refined #rec375352383.bb-second-enhanced .t396__carrier {
@@ -4709,6 +4862,9 @@ body.bb-refined .bb-playlist-record.bb-playlist-custom .bb-playlist-item__cta {
     right: 16px !important;
     width: auto !important;
     height: 220px !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
   }
 
   body.bb-refined #rec376777237 .tn-elem[data-elem-id="1636124099979"] {
@@ -4717,6 +4873,9 @@ body.bb-refined .bb-playlist-record.bb-playlist-custom .bb-playlist-item__cta {
     right: 16px !important;
     width: auto !important;
     height: 184px !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
   }
 
   body.bb-refined #rec376777237 .tn-elem[data-elem-id="1636123691300"] {
@@ -4724,6 +4883,9 @@ body.bb-refined .bb-playlist-record.bb-playlist-custom .bb-playlist-item__cta {
     left: 28px !important;
     right: 28px !important;
     width: auto !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
   }
 
   body.bb-refined #rec376777237 .tn-elem[data-elem-id="1636123691300"] .tn-atom {
@@ -4737,6 +4899,19 @@ body.bb-refined .bb-playlist-record.bb-playlist-custom .bb-playlist-item__cta {
     right: 16px !important;
     width: auto !important;
     height: 54px !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  body.bb-refined #rec376777237 .tn-elem[data-elem-id="1636123715076"] .tn-atom,
+  body.bb-refined #rec376777237 .bb-why-video-atom,
+  body.bb-refined #rec376777237 .bb-why-video-trigger {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
   body.bb-refined #rec727595470,
@@ -5063,5 +5238,139 @@ body.bb-refined .bb-playlist-record.bb-playlist-custom .bb-playlist-item__cta {
     top: 736px !important;
     left: 24px !important;
     right: 24px !important;
+  }
+}
+
+/* Final override: replace the fragile Tilda mobile why-section with a single custom flow. */
+@media screen and (max-width: 639px) {
+  body.bb-refined #rec376777237 {
+    padding-top: 12px !important;
+    padding-bottom: 16px !important;
+    overflow: visible !important;
+  }
+
+  body.bb-refined #rec376777237 .t396__artboard,
+  body.bb-refined #rec376777237 .t396__filter,
+  body.bb-refined #rec376777237 .t396__carrier {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  body.bb-refined #rec376777237 .t396__artboard.bb-why-mobile-artboard {
+    display: block !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  body.bb-refined #rec376777237 .tn-elem {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell {
+    display: grid !important;
+    position: relative !important;
+    gap: 18px !important;
+    width: calc(100% - 32px) !important;
+    margin: 0 auto !important;
+    padding: 0 0 24px !important;
+    box-sizing: border-box !important;
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__title {
+    margin: 0 !important;
+    color: var(--bb-text) !important;
+    font-size: 27px !important;
+    line-height: 1.1 !important;
+    letter-spacing: -0.04em !important;
+    text-wrap: pretty !important;
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__title span {
+    color: var(--bb-primary) !important;
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__video,
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__player {
+    display: block !important;
+    width: 100% !important;
+    min-height: 244px !important;
+    aspect-ratio: 15 / 11 !important;
+    border: 0 !important;
+    border-radius: 28px !important;
+    overflow: hidden !important;
+    background: #10141d !important;
+    box-shadow: 0 18px 34px rgba(14, 18, 31, 0.12) !important;
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__video {
+    position: relative !important;
+    padding: 0 !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    cursor: pointer !important;
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__poster {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__copy {
+    display: grid !important;
+    gap: 16px !important;
+    padding: 22px 18px 18px !important;
+    border: 1px solid var(--bb-border) !important;
+    border-radius: 24px !important;
+    background: var(--bb-surface) !important;
+    box-shadow: 0 18px 34px rgba(53, 65, 113, 0.06) !important;
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__text {
+    margin: 0 !important;
+    color: var(--bb-text-muted) !important;
+    font-size: 16px !important;
+    line-height: 1.62 !important;
+    text-wrap: pretty !important;
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__facts {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__fact {
+    display: inline-flex !important;
+    align-items: center !important;
+    min-height: 34px !important;
+    padding: 0 14px !important;
+    border-radius: 999px !important;
+    background: rgba(80, 94, 206, 0.09) !important;
+    color: var(--bb-primary) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+  }
+
+  body.bb-refined #rec376777237 .bb-why-mobile-shell__cta {
+    display: inline-flex !important;
+    width: 100% !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 56px !important;
+    padding: 0 22px !important;
+    border-radius: 18px !important;
+    background: var(--bb-primary) !important;
+    color: #ffffff !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    box-shadow: 0 16px 30px rgba(80, 94, 206, 0.18) !important;
   }
 }
