@@ -247,6 +247,7 @@
 
   function syncRefinedLayout() {
     const isNarrowMobile = window.innerWidth <= 639;
+    const isDesktop = window.innerWidth >= 960;
     syncT396RecordHeight(SECOND_SECTION_ID, {
       extra: isNarrowMobile ? 28 : 12,
       minHeight: isNarrowMobile ? 0 : 0,
@@ -256,14 +257,26 @@
     syncT396RecordHeight(WHY_MOBILE_ID, { extra: 28, minHeight: isNarrowMobile ? 760 : 580 });
     syncT396RecordHeight(INLINE_FORM_DESKTOP_ID, { extra: 8, minHeight: 272 });
     syncT396RecordHeight(INLINE_FORM_MOBILE_ID, {
-      extra: isNarrowMobile ? 26 : 18,
-      minHeight: isNarrowMobile ? 820 : 460,
+      extra: isNarrowMobile ? 14 : 18,
+      minHeight: isNarrowMobile ? 660 : 460,
     });
-    syncMatchingT396Heights([INLINE_FORM_DESKTOP_ID, INLINE_FORM_MOBILE_ID], {
-      target: window.innerWidth >= 960 ? 360 : isNarrowMobile ? 820 : 560,
-      minHeight: window.innerWidth >= 960 ? 360 : isNarrowMobile ? 820 : 560,
-      maxHeight: window.innerWidth >= 960 ? 360 : isNarrowMobile ? 820 : 560,
-    });
+
+    if (isDesktop) {
+      syncMatchingT396Heights([INLINE_FORM_DESKTOP_ID, INLINE_FORM_MOBILE_ID], {
+        target: 360,
+        minHeight: 360,
+        maxHeight: 360,
+      });
+      return;
+    }
+
+    if (!isNarrowMobile) {
+      syncMatchingT396Heights([INLINE_FORM_DESKTOP_ID, INLINE_FORM_MOBILE_ID], {
+        target: 560,
+        minHeight: 560,
+        maxHeight: 560,
+      });
+    }
   }
 
   function clearPlaylistHash() {
