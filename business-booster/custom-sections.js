@@ -702,9 +702,13 @@
       )
       .forEach((button) => {
         if (!(button instanceof HTMLElement)) return;
+        button.style.setProperty('color', '#ffffff', 'important');
+        button.style.setProperty('-webkit-text-fill-color', '#ffffff', 'important');
         const innerLabel = button.querySelector('.t-btnflex__text');
         if (innerLabel instanceof HTMLElement) {
           innerLabel.textContent = 'Получить консультацию';
+          innerLabel.style.setProperty('color', '#ffffff', 'important');
+          innerLabel.style.setProperty('-webkit-text-fill-color', '#ffffff', 'important');
           return;
         }
 

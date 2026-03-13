@@ -1993,6 +1993,20 @@ body.bb-refined .bb-third-sidepanel__cta {
     box-shadow 0.2s ease;
 }
 
+body.bb-refined .bb-primary-button .tn-atom,
+body.bb-refined .bb-primary-button .tn-atom *,
+body.bb-refined #rec375704275 .t-submit,
+body.bb-refined #rec375704275 .t-submit *,
+body.bb-refined #rec375711892 .t-submit,
+body.bb-refined #rec375711892 .t-submit *,
+body.bb-refined .bb-inline-form-record .t-submit,
+body.bb-refined .bb-inline-form-record .t-submit *,
+body.bb-refined .bb-third-sidepanel__cta,
+body.bb-refined .bb-third-sidepanel__cta * {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
 body.bb-refined .bb-primary-button .tn-atom:hover,
 body.bb-refined #rec375704275 .t-submit:hover,
 body.bb-refined #rec375711892 .t-submit:hover,
