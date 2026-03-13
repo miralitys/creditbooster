@@ -17,7 +17,7 @@
 
   const secondSection = {
     eyebrow: 'Credit Booster',
-    title: 'Почему нам доверяют',
+    title: 'Почему нам доверяют?',
     intro: '',
     points: ['Более 17 лет на рынке', 'Более 20,000 довольных клиентов', 'Гарантия результата'],
     services: [
@@ -65,7 +65,7 @@
       metricsTitle: 'ДМИТРИЙ В ЦИФРАХ',
       metrics: [
         { label: 'Рейтинг', value: '612 -> 701' },
-        { label: 'Inquiries', value: '4 снято' },
+        { label: 'Inquiries', value: '3 снято' },
         { label: 'Срок', value: '14 дней' },
       ],
     },
@@ -898,9 +898,8 @@
               .join('')}
           </div>
         </div>
-        <section class="bb-playlist-cta-ribbon" aria-label="Бесплатная запись на консультацию">
+        <section class="bb-playlist-cta-ribbon" aria-label="Запись на консультацию">
           <div class="bb-playlist-cta-ribbon__copy">
-            <span class="bb-playlist-cta-ribbon__eyebrow">Бесплатная запись</span>
             <h3 class="bb-playlist-cta-ribbon__title">Запишитесь на бесплатную консультацию</h3>
             <p class="bb-playlist-cta-ribbon__text">
               Коротко разберем вашу ситуацию и подскажем, с чего лучше начать.
@@ -1030,6 +1029,56 @@
 
     record.classList.add('bb-third-enhanced');
 
+    function getMetricModifierClass(metric) {
+      const label = String(metric?.label || '').toLowerCase();
+
+      if (label.includes('рейтинг')) return ' bb-third-featured__metric--rating';
+      if (label.includes('inquiries')) return ' bb-third-featured__metric--inquiries';
+      if (label.includes('срок')) return ' bb-third-featured__metric--term';
+      if (label.includes('план')) return ' bb-third-featured__metric--plan';
+      if (label.includes('ответ')) return ' bb-third-featured__metric--response';
+
+      return '';
+    }
+
+    function renderMetricValue(metric) {
+      const rawValue = String(metric?.value || '').trim();
+
+      if (rawValue.includes('->')) {
+        const [fromValue, toValue] = rawValue.split('->').map((part) => part.trim()).filter(Boolean);
+
+        if (fromValue && toValue) {
+          return `
+            <span class="bb-third-featured__metric-rating">
+              <span class="bb-third-featured__metric-side">
+                <span class="bb-third-featured__metric-caption">Было</span>
+                <span class="bb-third-featured__metric-number">${fromValue}</span>
+              </span>
+              <span class="bb-third-featured__metric-arrow" aria-hidden="true">→</span>
+              <span class="bb-third-featured__metric-side bb-third-featured__metric-side--accent">
+                <span class="bb-third-featured__metric-caption">Стало</span>
+                <span class="bb-third-featured__metric-number bb-third-featured__metric-number--accent">${toValue}</span>
+              </span>
+            </span>
+          `;
+        }
+      }
+
+      const numericMatch = rawValue.match(/^([\d.,]+)\s+(.+)$/u);
+      if (numericMatch) {
+        const [, numericPart, unitPart] = numericMatch;
+
+        return `
+          <span class="bb-third-featured__metric-stat">
+            <span class="bb-third-featured__metric-number">${numericPart}</span>
+            <span class="bb-third-featured__metric-unit">${unitPart}</span>
+          </span>
+        `;
+      }
+
+      return `<span class="bb-third-featured__metric-plain">${rawValue}</span>`;
+    }
+
     function renderSlideMetrics(slide) {
       if (!slide || !Array.isArray(slide.metrics) || !slide.metrics.length) {
         return '';
@@ -1038,9 +1087,9 @@
       return slide.metrics
         .map(
           (metric) => `
-            <div class="bb-third-featured__metric">
+            <div class="bb-third-featured__metric${getMetricModifierClass(metric)}">
               <span class="bb-third-featured__metric-label">${metric.label}</span>
-              <span class="bb-third-featured__metric-value">${metric.value}</span>
+              <span class="bb-third-featured__metric-value">${renderMetricValue(metric)}</span>
             </div>
           `
         )
