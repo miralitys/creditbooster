@@ -46,31 +46,37 @@
     {
       title: 'Подготовка к подаче',
       src: 'Video/feedback_1.mp4',
+      poster: 'images/video-posters/feedback_1.png',
       caption: 'Клиент делится впечатлением от консультации и первых шагов по подготовке.',
     },
     {
       title: 'Опыт консультации',
       src: 'Video/feedback_2.mp4',
+      poster: 'images/video-posters/feedback_2.png',
       caption: 'Короткая история о консультации, коммуникации и понятном процессе.',
     },
     {
       title: 'Работа с профилем',
       src: 'Video/feedback_3.mp4',
+      poster: 'images/video-posters/feedback_3.png',
       caption: 'Отзыв о том, как выглядело сопровождение и подготовка к подаче.',
     },
     {
       title: 'Пошаговое сопровождение',
       src: 'Video/feedback_4.mp4',
+      poster: 'images/video-posters/feedback_4.png',
       caption: 'Клиент рассказывает, что было полезно в процессе и как была выстроена работа.',
     },
     {
       title: 'Коммуникация и поддержка',
       src: 'Video/feedback_5.mp4',
+      poster: 'images/video-posters/feedback_5.png',
       caption: 'Небольшой видеоотзыв о поддержке, обратной связи и понятных рекомендациях.',
     },
     {
       title: 'Общий результат',
       src: 'Video/feedback_6.mp4',
+      poster: 'images/video-posters/feedback_6.png',
       caption: 'Еще один отзыв о консультации и общем впечатлении от работы с командой.',
     },
   ];
@@ -240,16 +246,22 @@
 
   function syncRefinedLayout() {
     const isNarrowMobile = window.innerWidth <= 639;
-    syncT396RecordHeight(SECOND_SECTION_ID, { extra: 12, minHeight: 0 });
+    syncT396RecordHeight(SECOND_SECTION_ID, {
+      extra: isNarrowMobile ? 28 : 12,
+      minHeight: isNarrowMobile ? 1180 : 0,
+    });
     syncT396RecordHeight(THIRD_SECTION_ID, { extra: 18, minHeight: 680 });
     syncT396RecordHeight(WHY_DESKTOP_ID, { extra: 30, minHeight: 700 });
     syncT396RecordHeight(WHY_MOBILE_ID, { extra: 28, minHeight: isNarrowMobile ? 760 : 580 });
     syncT396RecordHeight(INLINE_FORM_DESKTOP_ID, { extra: 8, minHeight: 272 });
-    syncT396RecordHeight(INLINE_FORM_MOBILE_ID, { extra: 18, minHeight: isNarrowMobile ? 760 : 460 });
+    syncT396RecordHeight(INLINE_FORM_MOBILE_ID, {
+      extra: isNarrowMobile ? 26 : 18,
+      minHeight: isNarrowMobile ? 820 : 460,
+    });
     syncMatchingT396Heights([INLINE_FORM_DESKTOP_ID, INLINE_FORM_MOBILE_ID], {
-      target: window.innerWidth >= 960 ? 360 : isNarrowMobile ? 760 : 560,
-      minHeight: window.innerWidth >= 960 ? 360 : isNarrowMobile ? 760 : 560,
-      maxHeight: window.innerWidth >= 960 ? 360 : isNarrowMobile ? 760 : 560,
+      target: window.innerWidth >= 960 ? 360 : isNarrowMobile ? 820 : 560,
+      minHeight: window.innerWidth >= 960 ? 360 : isNarrowMobile ? 820 : 560,
+      maxHeight: window.innerWidth >= 960 ? 360 : isNarrowMobile ? 820 : 560,
     });
   }
 
@@ -792,6 +804,7 @@
               controls
               playsinline
               preload="metadata"
+              poster="${featuredSlide.poster}"
               data-bb-featured-video
             >
               <source src="${featuredSlide.src}" type="video/mp4" />
@@ -840,6 +853,7 @@
                     muted
                     playsinline
                     preload="metadata"
+                    poster="${slide.poster}"
                     tabindex="-1"
                     aria-hidden="true"
                   >
@@ -938,6 +952,7 @@
 
       featuredVideo.pause();
       featuredSource.src = slide.src;
+      featuredVideo.poster = slide.poster || '';
       featuredVideo.load();
       featuredTitle.textContent = slide.title;
       featuredCaption.textContent = slide.caption;
