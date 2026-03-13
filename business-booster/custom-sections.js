@@ -912,16 +912,34 @@
       <article class="bb-third-featured">
         <div class="bb-third-featured__media">
           <div class="bb-third-featured__frame">
-            <video
-              class="bb-third-featured__video"
-              controls
-              playsinline
-              preload="metadata"
-              poster="${featuredSlide.poster}"
-              data-bb-featured-video
-            >
-              <source src="${featuredSlide.src}" type="video/mp4" />
-            </video>
+            <div class="bb-third-featured__video-wrap">
+              <video
+                class="bb-third-featured__video"
+                controls
+                playsinline
+                preload="metadata"
+                poster="${featuredSlide.poster}"
+                data-bb-featured-video
+              >
+                <source src="${featuredSlide.src}" type="video/mp4" />
+              </video>
+              <button
+                class="bb-third-featured__poster"
+                type="button"
+                data-bb-featured-poster
+                style="--bb-poster-image: url('${featuredSlide.poster}')"
+                aria-label="Воспроизвести отзыв: ${featuredSlide.title}"
+              >
+                <img
+                  class="bb-third-featured__poster-image"
+                  src="${featuredSlide.poster}"
+                  alt="${featuredSlide.title}"
+                  loading="eager"
+                  decoding="async"
+                />
+                <span class="bb-third-featured__poster-play" aria-hidden="true">▶</span>
+              </button>
+            </div>
           </div>
         </div>
         <div class="bb-third-featured__copy">
@@ -960,18 +978,14 @@
                 data-bb-slide-index="${index}"
                 aria-pressed="${index === 0 ? 'true' : 'false'}"
               >
-                <span class="bb-third-choice__thumb">
-                  <video
-                    class="bb-third-choice__video"
-                    muted
-                    playsinline
-                    preload="metadata"
-                    poster="${slide.poster}"
-                    tabindex="-1"
-                    aria-hidden="true"
-                  >
-                    <source src="${slide.src}" type="video/mp4" />
-                  </video>
+                <span class="bb-third-choice__thumb" style="--bb-poster-image: url('${slide.poster}')">
+                  <img
+                    class="bb-third-choice__poster"
+                    src="${slide.poster}"
+                    alt="${slide.title}"
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <span class="bb-third-choice__play" aria-hidden="true">▶</span>
                 </span>
                 <span class="bb-third-choice__body">
@@ -1024,6 +1038,9 @@
 
     const featuredVideo = gallery.querySelector('[data-bb-featured-video]');
     const featuredSource = featuredVideo instanceof HTMLVideoElement ? featuredVideo.querySelector('source') : null;
+    const featuredPoster = gallery.querySelector('[data-bb-featured-poster]');
+    const featuredPosterImage =
+      featuredPoster instanceof HTMLElement ? featuredPoster.querySelector('.bb-third-featured__poster-image') : null;
     const featuredTitle = gallery.querySelector('[data-bb-featured-title]');
     const featuredCaption = gallery.querySelector('[data-bb-featured-caption]');
     const featuredCounter = gallery.querySelector('[data-bb-current-index]');
@@ -1039,6 +1056,8 @@
     if (
       !(featuredVideo instanceof HTMLVideoElement) ||
       !(featuredSource instanceof HTMLSourceElement) ||
+      !(featuredPoster instanceof HTMLButtonElement) ||
+      !(featuredPosterImage instanceof HTMLImageElement) ||
       !(featuredTitle instanceof HTMLElement) ||
       !(featuredCaption instanceof HTMLElement) ||
       !(featuredCounter instanceof HTMLElement) ||
@@ -1051,21 +1070,34 @@
       return;
     }
 
-    const choiceVideos = Array.from(gallery.querySelectorAll('.bb-third-choice__video')).filter(
-      (node) => node instanceof HTMLVideoElement
-    );
     let revealTimers = [];
     let pendingReveal = false;
     let stickyFrame = 0;
     let carouselFrame = 0;
+
+    function showFeaturedPoster() {
+      featuredPoster.hidden = false;
+      featuredPoster.setAttribute('aria-hidden', 'false');
+    }
+
+    function hideFeaturedPoster() {
+      featuredPoster.hidden = true;
+      featuredPoster.setAttribute('aria-hidden', 'true');
+    }
 
     function setActiveSlide(index, autoplay = false) {
       const slide = slides[index];
       if (!slide) return;
 
       featuredVideo.pause();
+      featuredVideo.currentTime = 0;
       featuredSource.src = slide.src;
       featuredVideo.poster = slide.poster || '';
+      featuredPoster.style.setProperty('--bb-poster-image', slide.poster ? `url('${slide.poster}')` : 'none');
+      featuredPosterImage.src = slide.poster || '';
+      featuredPosterImage.alt = slide.title;
+      featuredPoster.setAttribute('aria-label', `Воспроизвести отзыв: ${slide.title}`);
+      showFeaturedPoster();
       featuredVideo.load();
       featuredTitle.textContent = slide.title;
       featuredCaption.textContent = slide.caption;
@@ -1074,12 +1106,31 @@
       choiceButtons.forEach((button) => {
         const buttonIndex = Number.parseInt(button.dataset.bbSlideIndex || '', 10);
         const isActive = buttonIndex === index;
+        const thumb = button.querySelector('.bb-third-choice__thumb');
+        const poster = slides[buttonIndex] && slides[buttonIndex].poster ? slides[buttonIndex].poster : '';
+        if (thumb instanceof HTMLElement) {
+          thumb.style.setProperty('--bb-poster-image', poster ? `url('${poster}')` : 'none');
+        }
         button.classList.toggle('bb-third-choice--active', isActive);
         button.setAttribute('aria-pressed', String(isActive));
       });
 
       if (autoplay) {
-        featuredVideo.play().catch(() => {});
+        const tryAutoplay = () => {
+          hideFeaturedPoster();
+          const playPromise = featuredVideo.play();
+          if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(() => {
+              showFeaturedPoster();
+            });
+          }
+        };
+
+        if (featuredVideo.readyState >= 2) {
+          tryAutoplay();
+        } else {
+          featuredVideo.addEventListener('loadeddata', tryAutoplay, { once: true });
+        }
       }
     }
 
@@ -1190,6 +1241,16 @@
       scrollChooser(1);
     });
 
+    featuredPoster.addEventListener('click', () => {
+      hideFeaturedPoster();
+      const playPromise = featuredVideo.play();
+      if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(() => {
+          showFeaturedPoster();
+        });
+      }
+    });
+
     chooserList.addEventListener('scroll', requestChooserControlsSync, { passive: true });
 
     featuredVideo.addEventListener('loadeddata', () => {
@@ -1198,11 +1259,15 @@
     });
 
     featuredVideo.addEventListener('play', () => {
+      hideFeaturedPoster();
       if (pendingReveal) {
         revealFeaturedVideo({ behavior: 'smooth', force: true });
         pendingReveal = false;
       }
-      choiceVideos.forEach((video) => video.pause());
+    });
+
+    featuredVideo.addEventListener('ended', () => {
+      showFeaturedPoster();
     });
 
     const countdown = sidepanel.querySelector('[data-bb-countdown]');
