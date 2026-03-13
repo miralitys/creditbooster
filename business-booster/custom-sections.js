@@ -481,6 +481,110 @@
   }
 
   function refineFormSection() {
+    function buildInlineFormMarkup(recordId) {
+      return `
+        <form
+          class="t-form bb-inline-native-form"
+          id="bb-inline-form-${recordId}"
+          name="bb-inline-form-${recordId}"
+          action="#"
+          method="POST"
+          role="form"
+          novalidate
+        >
+          <div class="js-successbox t-form__successbox t-text t-text_sm" style="display: none;"></div>
+          <div class="t-form__inputsbox">
+            <div class="t-input-group t-input-group_nm" data-field-type="nm" data-field-name="Name">
+              <div class="t-input-block">
+                <input
+                  aria-label="name"
+                  type="text"
+                  name="Name"
+                  class="t-input js-tilda-rule t-input-inline-styles"
+                  placeholder="Ваше имя"
+                  autocomplete="name"
+                />
+                <div class="t-input-error"></div>
+              </div>
+            </div>
+            <div class="t-input-group t-input-group_em" data-field-type="em" data-field-name="email">
+              <div class="t-input-block">
+                <input
+                  aria-label="email"
+                  type="email"
+                  name="email"
+                  class="t-input js-tilda-rule t-input-inline-styles"
+                  placeholder="Ваш email"
+                  autocomplete="email"
+                />
+                <div class="t-input-error"></div>
+              </div>
+            </div>
+            <div class="t-input-group t-input-group_ph" data-field-type="ph" data-field-name="Phone">
+              <div class="t-input-block">
+                <div class="t-input t-input-phonemask__wrap">
+                  <span class="t-input-phonemask__select" aria-hidden="true">
+                    <span class="t-input-phonemask__select-flag" data-phonemask-flag="us"></span>
+                    <span class="t-input-phonemask__select-triangle"></span>
+                    <span class="t-input-phonemask__select-code">+1</span>
+                  </span>
+                  <input
+                    aria-label="phone"
+                    type="tel"
+                    name="Phone"
+                    class="t-input t-input-phonemask js-tilda-rule"
+                    placeholder="(000) 000-0000"
+                    autocomplete="tel-national"
+                    inputmode="tel"
+                  />
+                </div>
+                <div class="t-input-error"></div>
+              </div>
+            </div>
+            <div class="tn-form__submit">
+              <button type="submit" class="t-submit">
+                <span class="t-btnflex__text">Получить консультацию</span>
+              </button>
+            </div>
+            <div class="t-input-group t-input-group_cb" data-field-type="cb" data-field-name="Checkbox">
+              <div class="t-input-block">
+                <label class="t-checkbox__control t-checkbox__control_flex">
+                  <input type="checkbox" name="Checkbox" class="t-checkbox js-tilda-rule" value="yes" checked />
+                  <span class="t-checkbox__indicator"></span>
+                  <span class="t-checkbox__labeltext">
+                    Я соглашаюсь на обработку моих
+                    <a href="/privacy/" target="_blank" rel="noreferrer noopener">персональных данных</a>.
+                  </span>
+                </label>
+                <div class="t-input-error"></div>
+              </div>
+            </div>
+            <div class="t-form__errorbox-bottom">
+              <div class="js-errorbox-all t-form__errorbox-wrapper" style="display: none;">
+                <div class="t-form__errorbox-text t-text_xs t-text">
+                  <p class="t-form__errorbox-item js-rule-error js-rule-error-all"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      `;
+    }
+
+    function mountInlineConsultationForms() {
+      [INLINE_FORM_DESKTOP_ID, INLINE_FORM_MOBILE_ID].forEach((recordId) => {
+        const formMount = document.querySelector(
+          `#rec${recordId} .tn-elem[data-elem-id="1570303710057"] .tn-atom__form`
+        );
+
+        if (!(formMount instanceof HTMLElement)) return;
+        if (formMount.dataset.bbInlineMounted === 'true') return;
+
+        formMount.innerHTML = buildInlineFormMarkup(recordId);
+        formMount.dataset.bbInlineMounted = 'true';
+      });
+    }
+
     addClass([INLINE_FORM_DESKTOP_ID, INLINE_FORM_MOBILE_ID], 'bb-form-record');
 
     setText(
@@ -535,6 +639,8 @@
       .querySelectorAll(`#rec${INLINE_FORM_DESKTOP_ID}, #rec${INLINE_FORM_MOBILE_ID}`)
       .forEach((record) => record.classList.add('bb-inline-form-record'));
 
+    mountInlineConsultationForms();
+
     POPUP_FORM_IDS.forEach((popupId) => {
       const popup = document.getElementById(`rec${popupId}`);
       if (popup instanceof HTMLElement) {
@@ -545,6 +651,13 @@
       if (popupNode instanceof HTMLElement) {
         popupNode.setAttribute('aria-label', 'Запишитесь на бесплатную консультацию');
       }
+    });
+
+    [160, 480, 1200].forEach((delay) => {
+      window.setTimeout(() => {
+        mountInlineConsultationForms();
+        syncRefinedLayout();
+      }, delay);
     });
   }
 
