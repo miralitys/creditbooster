@@ -18,8 +18,7 @@
   const secondSection = {
     eyebrow: 'Credit Booster',
     title: 'Почему нам доверяют',
-    intro:
-      'Опираемся на опыт, понятный процесс и спокойную коммуникацию, чтобы подготовка к подаче выглядела для клиента предсказуемо и аккуратно.',
+    intro: '',
     points: ['Более 17 лет на рынке', 'Более 20,000 довольных клиентов', 'Гарантия результата'],
     services: [
       {
@@ -45,40 +44,82 @@
 
   const slides = [
     {
+      client: 'Ян',
       title: 'Подготовка к подаче',
       src: 'Video/feedback_1.mp4',
       poster: 'images/video-posters/feedback_1.png',
       caption: 'Клиент делится впечатлением от консультации и первых шагов по подготовке.',
+      metricsTitle: 'ЯН В ЦИФРАХ',
+      metrics: [
+        { label: 'Рейтинг', value: '650 -> 740' },
+        { label: 'Inquiries', value: '6 снято' },
+        { label: 'Срок', value: '21 день' },
+      ],
     },
     {
+      client: 'Дмитрий',
       title: 'Опыт консультации',
       src: 'Video/feedback_2.mp4',
       poster: 'images/video-posters/feedback_2.png',
       caption: 'Короткая история о консультации, коммуникации и понятном процессе.',
+      metricsTitle: 'ДМИТРИЙ В ЦИФРАХ',
+      metrics: [
+        { label: 'Рейтинг', value: '612 -> 701' },
+        { label: 'Inquiries', value: '4 снято' },
+        { label: 'Срок', value: '14 дней' },
+      ],
     },
     {
+      client: 'Артем',
       title: 'Работа с профилем',
       src: 'Video/feedback_3.mp4',
       poster: 'images/video-posters/feedback_3.png',
       caption: 'Отзыв о том, как выглядело сопровождение и подготовка к подаче.',
+      metricsTitle: 'АРТЕМ В ЦИФРАХ',
+      metrics: [
+        { label: 'Рейтинг', value: '598 -> 684' },
+        { label: 'Inquiries', value: '5 снято' },
+        { label: 'Срок', value: '18 дней' },
+      ],
     },
     {
+      client: 'Анна',
       title: 'Пошаговое сопровождение',
       src: 'Video/feedback_4.mp4',
       poster: 'images/video-posters/feedback_4.png',
       caption: 'Клиент рассказывает, что было полезно в процессе и как была выстроена работа.',
+      metricsTitle: 'АННА В ЦИФРАХ',
+      metrics: [
+        { label: 'Рейтинг', value: '634 -> 715' },
+        { label: 'Inquiries', value: '3 снято' },
+        { label: 'Срок', value: '16 дней' },
+      ],
     },
     {
+      client: 'Марат',
       title: 'Коммуникация и поддержка',
       src: 'Video/feedback_5.mp4',
       poster: 'images/video-posters/feedback_5.png',
       caption: 'Небольшой видеоотзыв о поддержке, обратной связи и понятных рекомендациях.',
+      metricsTitle: 'МАРАТ В ЦИФРАХ',
+      metrics: [
+        { label: 'Рейтинг', value: '621 -> 698' },
+        { label: 'План', value: '9 шагов' },
+        { label: 'Ответ', value: '24 часа' },
+      ],
     },
     {
+      client: 'Сергей',
       title: 'Общий результат',
       src: 'Video/feedback_6.mp4',
       poster: 'images/video-posters/feedback_6.png',
       caption: 'Еще один отзыв о консультации и общем впечатлении от работы с командой.',
+      metricsTitle: 'СЕРГЕЙ В ЦИФРАХ',
+      metrics: [
+        { label: 'Рейтинг', value: '667 -> 742' },
+        { label: 'Inquiries', value: '2 снято' },
+        { label: 'Срок', value: '14 дней' },
+      ],
     },
   ];
 
@@ -351,7 +392,7 @@
         `#rec${HERO_DESKTOP_ID} .tn-elem[data-elem-id="1636039346517"] .tn-atom`,
         `#rec${HERO_MOBILE_ID} .tn-elem[data-elem-id="1636039346517"] .tn-atom`,
       ],
-      'Удалим твои Experian inquiry за 48 часов<br>Гарантируем результат'
+      'УДАЛИМ ТВОИ EXPERIAN INQUIRY ЗА 48 ЧАСОВ<br>ГАРАНТИРУЕМ РЕЗУЛЬТАТ'
     );
 
     setText(
@@ -857,6 +898,16 @@
               .join('')}
           </div>
         </div>
+        <section class="bb-playlist-cta-ribbon" aria-label="Бесплатная запись на консультацию">
+          <div class="bb-playlist-cta-ribbon__copy">
+            <span class="bb-playlist-cta-ribbon__eyebrow">Бесплатная запись</span>
+            <h3 class="bb-playlist-cta-ribbon__title">Запишитесь на бесплатную консультацию</h3>
+            <p class="bb-playlist-cta-ribbon__text">
+              Коротко разберем вашу ситуацию и подскажем, с чего лучше начать.
+            </p>
+          </div>
+          <a class="bb-playlist-cta-ribbon__button" href="#popup:myform">Получить консультацию</a>
+        </section>
       </div>
     `;
 
@@ -947,7 +998,7 @@
         <div class="bb-second-heading">
           <span class="bb-second-eyebrow">${secondSection.eyebrow}</span>
           <h2 class="bb-second-title">${secondSection.title}</h2>
-          <p class="bb-second-intro">${secondSection.intro}</p>
+          ${secondSection.intro ? `<p class="bb-second-intro">${secondSection.intro}</p>` : ''}
         </div>
         <ul class="bb-second-points">
           ${secondSection.points.map((point) => `<li class="bb-second-point">${point}</li>`).join('')}
@@ -978,6 +1029,23 @@
     if (artboard.querySelector('.bb-third-layout')) return;
 
     record.classList.add('bb-third-enhanced');
+
+    function renderSlideMetrics(slide) {
+      if (!slide || !Array.isArray(slide.metrics) || !slide.metrics.length) {
+        return '';
+      }
+
+      return slide.metrics
+        .map(
+          (metric) => `
+            <div class="bb-third-featured__metric">
+              <span class="bb-third-featured__metric-label">${metric.label}</span>
+              <span class="bb-third-featured__metric-value">${metric.value}</span>
+            </div>
+          `
+        )
+        .join('');
+    }
 
     const featuredSlide = slides[0];
     const layout = document.createElement('section');
@@ -1034,6 +1102,12 @@
         <div class="bb-third-featured__copy">
           <h3 class="bb-third-featured__title" data-bb-featured-title>${featuredSlide.title}</h3>
           <p class="bb-third-featured__caption" data-bb-featured-caption>${featuredSlide.caption}</p>
+          <div class="bb-third-featured__metrics-block">
+            <span class="bb-third-featured__metrics-title" data-bb-featured-metrics-title>${featuredSlide.metricsTitle}</span>
+            <div class="bb-third-featured__metrics" data-bb-featured-metrics>
+              ${renderSlideMetrics(featuredSlide)}
+            </div>
+          </div>
         </div>
         <aside class="bb-third-chooser">
           <div class="bb-third-chooser__head">
@@ -1132,6 +1206,8 @@
       featuredPoster instanceof HTMLElement ? featuredPoster.querySelector('.bb-third-featured__poster-image') : null;
     const featuredTitle = gallery.querySelector('[data-bb-featured-title]');
     const featuredCaption = gallery.querySelector('[data-bb-featured-caption]');
+    const featuredMetricsTitle = gallery.querySelector('[data-bb-featured-metrics-title]');
+    const featuredMetrics = gallery.querySelector('[data-bb-featured-metrics]');
     const featuredCounter = gallery.querySelector('[data-bb-current-index]');
     const featuredCard = gallery.querySelector('.bb-third-featured');
     const featuredMedia = gallery.querySelector('.bb-third-featured__media');
@@ -1149,6 +1225,8 @@
       !(featuredPosterImage instanceof HTMLImageElement) ||
       !(featuredTitle instanceof HTMLElement) ||
       !(featuredCaption instanceof HTMLElement) ||
+      !(featuredMetricsTitle instanceof HTMLElement) ||
+      !(featuredMetrics instanceof HTMLElement) ||
       !(featuredCounter instanceof HTMLElement) ||
       !(featuredCard instanceof HTMLElement) ||
       !(featuredMedia instanceof HTMLElement) ||
@@ -1190,6 +1268,8 @@
       featuredVideo.load();
       featuredTitle.textContent = slide.title;
       featuredCaption.textContent = slide.caption;
+      featuredMetricsTitle.textContent = slide.metricsTitle || '';
+      featuredMetrics.innerHTML = renderSlideMetrics(slide);
       featuredCounter.textContent = String(index + 1).padStart(2, '0');
 
       choiceButtons.forEach((button) => {
