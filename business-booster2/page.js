@@ -361,6 +361,27 @@
     });
   }
 
+  function setupClarityTimer() {
+    const timer = document.querySelector('[data-bb2-clarity-timer]');
+    if (!(timer instanceof HTMLElement)) return;
+
+    let secondsLeft = 30;
+
+    function renderTime() {
+      const minutes = String(Math.floor(secondsLeft / 60)).padStart(2, '0');
+      const seconds = String(secondsLeft % 60).padStart(2, '0');
+      timer.textContent = `${minutes}:${seconds}`;
+    }
+
+    renderTime();
+
+    window.setInterval(() => {
+      secondsLeft = secondsLeft > 0 ? secondsLeft - 1 : 30;
+      renderTime();
+    }, 1000);
+  }
+
   setupReviews();
   setupLeadForm();
+  setupClarityTimer();
 })();
