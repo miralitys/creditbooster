@@ -472,7 +472,7 @@ input {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 56% center;
+  object-position: 56% top;
   filter: saturate(1.08) contrast(1.08) brightness(0.98);
 }
 
@@ -3798,7 +3798,7 @@ input {
   }
 
   .bb2-frame__photo {
-    object-position: 58% center;
+    object-position: 58% top;
   }
 
   .bb2-frame__report {
