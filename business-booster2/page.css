@@ -814,7 +814,8 @@ input {
   height: 80px;
   border-radius: 14px;
   background:
-    linear-gradient(90deg, #e9dcc1 0%, #fff5e4 36%, #d8cdb6 100%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0)) top / 100% 16px no-repeat,
+    linear-gradient(90deg, #d5c7a8 0%, #faf5e4 18%, #efe4c8 52%, #d9ccb2 100%);
   box-shadow:
     0 16px 28px rgba(0, 0, 0, 0.3),
     0 0 22px rgba(255, 197, 82, 0.24);
@@ -823,11 +824,20 @@ input {
 .bb2-cash::before {
   content: '';
   position: absolute;
-  inset: 0;
-  border-radius: inherit;
+  inset: 8px;
+  border-radius: 10px;
   background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.02)),
-    repeating-linear-gradient(90deg, rgba(12, 73, 35, 0.12) 0 8px, transparent 8px 20px);
+    radial-gradient(circle at 18% 22%, rgba(98, 126, 74, 0.2) 0 8px, rgba(98, 126, 74, 0) 9px),
+    radial-gradient(circle at 82% 78%, rgba(98, 126, 74, 0.12) 0 6px, rgba(98, 126, 74, 0) 7px),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.01)),
+    repeating-linear-gradient(180deg, rgba(49, 78, 41, 0.08) 0 2px, transparent 2px 7px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0) 18%, rgba(92, 120, 66, 0.05) 18%, rgba(92, 120, 66, 0.05) 82%, rgba(255, 255, 255, 0.18) 82%, rgba(255, 255, 255, 0) 100%),
+    linear-gradient(90deg, #fbf7ea 0%, #ece1c6 100%);
+  border: 1px solid rgba(103, 131, 77, 0.14);
+  box-shadow:
+    -8px 8px 0 -4px rgba(248, 241, 223, 0.94),
+    -14px 14px 0 -7px rgba(236, 227, 205, 0.74),
+    inset 0 1px 0 rgba(255, 255, 255, 0.56);
 }
 
 .bb2-cash::after {
@@ -835,10 +845,15 @@ input {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 54px;
-  width: 28px;
-  background: #d2b471;
-  box-shadow: inset 0 0 0 1px rgba(122, 88, 22, 0.18);
+  left: 52px;
+  width: 32px;
+  border-radius: 2px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 244, 182, 0.46) 0 10px, rgba(255, 244, 182, 0) 11px),
+    linear-gradient(180deg, #f3de98 0%, #d4b066 45%, #b98731 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(122, 88, 22, 0.18),
+    0 0 0 1px rgba(255, 236, 176, 0.1);
 }
 
 .bb2-cash--left {
