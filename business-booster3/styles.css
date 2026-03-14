@@ -422,6 +422,38 @@ input::placeholder {
   letter-spacing: -0.03em;
 }
 
+.hero__micro-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 22px;
+  max-width: 620px;
+}
+
+.hero-copy-card {
+  padding: 18px 20px;
+  border: 1px solid rgba(199, 211, 228, 0.84);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: var(--shadow-soft);
+}
+
+.hero-copy-card strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.hero-copy-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
 .hero__text {
   margin: 20px 0 0;
   max-width: 600px;
@@ -635,6 +667,31 @@ input::placeholder {
   line-height: 1.45;
 }
 
+.section-micro-rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.section-micro-rail--center {
+  justify-content: center;
+}
+
+.section-micro-rail span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(21, 101, 230, 0.12);
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 650;
+  box-shadow: var(--shadow-soft);
+}
+
 .scenario-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -814,20 +871,33 @@ input::placeholder {
 }
 
 .early-proof {
-  max-width: 860px;
+  position: relative;
+  display: grid;
+  gap: 18px;
+  max-width: 920px;
   margin: 0 auto;
-  padding: 24px 28px;
+  padding: 28px 32px;
   border: 1px solid rgba(199, 211, 228, 0.86);
   border-radius: 26px;
   background:
     radial-gradient(circle at top right, rgba(240, 195, 111, 0.16), transparent 28%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(244, 248, 255, 0.94) 100%);
-  box-shadow: 0 24px 46px rgba(16, 32, 61, 0.08);
+  box-shadow: 0 28px 56px rgba(16, 32, 61, 0.1);
+}
+
+.early-proof::before {
+  content: "“";
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  color: rgba(21, 101, 230, 0.12);
+  font-size: 86px;
+  line-height: 1;
+  font-weight: 700;
 }
 
 .early-proof__label {
   display: inline-flex;
-  margin-bottom: 14px;
   color: var(--primary);
   font-size: 12px;
   font-weight: 700;
@@ -861,6 +931,25 @@ input::placeholder {
   color: var(--muted);
   font-size: 13px;
   font-weight: 650;
+}
+
+.early-proof__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.early-proof__chips span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(21, 101, 230, 0.1);
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .conversion-block__form {
@@ -1017,9 +1106,9 @@ input::placeholder {
 
 .proof-screen__layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.98fr) minmax(0, 0.88fr);
-  gap: 22px;
-  align-items: stretch;
+  grid-template-columns: minmax(0, 1.18fr) minmax(0, 1fr);
+  gap: 26px;
+  align-items: start;
 }
 
 .proof-stat-card,
@@ -1034,8 +1123,8 @@ input::placeholder {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 100%;
-  padding: 36px;
+  min-height: 620px;
+  padding: 42px clamp(30px, 4vw, 46px);
   border-color: rgba(240, 195, 111, 0.34);
   background:
     radial-gradient(circle at top right, rgba(240, 195, 111, 0.3), transparent 28%),
@@ -1052,55 +1141,90 @@ input::placeholder {
   text-transform: uppercase;
 }
 
+.proof-stat-card__eyebrow {
+  display: block;
+  margin-top: 14px;
+  max-width: 15ch;
+  color: #33455f;
+  font-size: 17px;
+  line-height: 1.35;
+  font-weight: 650;
+}
+
 .proof-stat-card strong {
   display: block;
-  margin-top: 20px;
-  font-size: clamp(82px, 10vw, 136px);
-  line-height: 0.8;
+  margin-top: 26px;
+  font-size: clamp(108px, 14vw, 178px);
+  line-height: 0.74;
   letter-spacing: -0.09em;
 }
 
 .proof-stat-card p {
-  margin: 18px 0 0;
-  color: var(--muted);
-  font-size: 16px;
-  line-height: 1.62;
+  max-width: 20ch;
+  margin: 24px 0 0;
+  color: #465979;
+  font-size: 17px;
+  line-height: 1.64;
 }
 
 .proof-stat-card__foot {
   display: grid;
-  gap: 10px;
-  margin-top: 22px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 30px;
 }
 
 .proof-stat-card__foot span {
   display: inline-flex;
   align-items: center;
-  min-height: 38px;
-  padding: 0 14px;
-  border-radius: 999px;
+  min-height: 56px;
+  padding: 14px 16px;
+  border-radius: 18px;
   background: rgba(16, 32, 61, 0.08);
   color: var(--text);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
+  line-height: 1.4;
+}
+
+.proof-screen__side {
+  display: grid;
+  gap: 22px;
+  align-content: start;
 }
 
 .proof-screen__cards {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  gap: 16px;
 }
 
 .proof-card {
-  min-height: 190px;
-  padding: 24px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 100%);
+  min-height: 170px;
+  padding: 22px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.06) 100%);
+}
+
+.proof-card__meta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  margin-bottom: 18px;
+  border-radius: 999px;
+  background: rgba(240, 195, 111, 0.16);
+  color: #ffe6b8;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
 }
 
 .proof-card__title {
   display: block;
-  margin-bottom: 12px;
-  font-size: 20px;
+  margin-bottom: 10px;
+  font-size: 21px;
   line-height: 1.15;
   letter-spacing: -0.03em;
   font-weight: 700;
@@ -1118,7 +1242,7 @@ input::placeholder {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.04) 100%);
 }
 
 .proof-media__trigger {
@@ -1635,13 +1759,13 @@ input::placeholder {
 }
 
 .final-form {
-  max-width: 860px;
+  max-width: 920px;
   margin: 0 auto;
-  padding: clamp(56px, 7vw, 92px);
+  padding: clamp(72px, 8vw, 124px);
   border: 1px solid rgba(210, 219, 232, 0.68);
   border-radius: var(--radius-xl);
   background: rgba(255, 255, 255, 0.98);
-  box-shadow: 0 24px 52px rgba(16, 32, 61, 0.06);
+  box-shadow: 0 20px 44px rgba(16, 32, 61, 0.05);
 }
 
 .final-form__copy {
@@ -1658,8 +1782,8 @@ input::placeholder {
 }
 
 .final-form__panel {
-  max-width: 560px;
-  margin: 42px auto 0;
+  max-width: 500px;
+  margin: 52px auto 0;
   padding: 0;
   border: 0;
   border-radius: 0;
@@ -1668,8 +1792,19 @@ input::placeholder {
 }
 
 .lead-form--final {
-  max-width: none;
+  max-width: 500px;
   margin: 0;
+}
+
+.lead-form--final .lead-form__field input {
+  min-height: 60px;
+  border-radius: 20px;
+}
+
+.lead-form--final .lead-form__consent {
+  margin-top: 18px;
+  color: #7a879b;
+  font-size: 12px;
 }
 
 .lead-form__grid--final {
@@ -1771,7 +1906,7 @@ input::placeholder {
   }
 
   .final-form__panel {
-    max-width: 720px;
+    max-width: 560px;
   }
 }
 
@@ -1821,6 +1956,7 @@ input::placeholder {
   }
 
   .hero__grid,
+  .hero__micro-grid,
   .hero-panel__proofs,
   .trust-strip,
   .scenario-grid,
@@ -1865,10 +2001,15 @@ input::placeholder {
   }
 
   .proof-stat-card strong {
-    font-size: clamp(56px, 13vw, 78px);
+    font-size: clamp(72px, 16vw, 108px);
+  }
+
+  .proof-stat-card__foot {
+    grid-template-columns: 1fr;
   }
 
   .proof-screen__badges,
+  .section-micro-rail,
   .benefits-intro-rail,
   .reviews-proof-strip,
   .conversion-block__signals {
@@ -1946,15 +2087,18 @@ input::placeholder {
   .hero__assurances,
   .conversion-block__signals,
   .proof-screen__badges,
+  .section-micro-rail,
   .benefits-intro-rail,
   .reviews-proof-strip,
-  .early-proof__meta {
+  .early-proof__meta,
+  .early-proof__chips {
     gap: 8px;
   }
 
   .hero__assurance,
   .conversion-block__signals span,
   .proof-screen__badges span,
+  .section-micro-rail span,
   .benefits-intro-rail span,
   .reviews-proof-strip span,
   .proof-stat-card__foot span {
@@ -1973,6 +2117,12 @@ input::placeholder {
 
   .early-proof__text {
     font-size: 18px;
+  }
+
+  .early-proof::before {
+    top: 18px;
+    right: 18px;
+    font-size: 64px;
   }
 
   .review-card__title {

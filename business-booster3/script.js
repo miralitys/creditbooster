@@ -5,7 +5,7 @@ const reviewData = [
   {
     client: "Ян",
     title: "Подготовка к подаче",
-    caption: "Клиент делится впечатлением от консультации и первых шагов по подготовке.",
+    caption: "Клиент рассказывает, что дал первый разбор и как стало понятнее, с чего начинать.",
     src: "Video/feedback_1.mp4",
     poster: "images/video-posters/feedback_1.png",
     metricsTitle: "ЯН В ЦИФРАХ",
@@ -300,7 +300,7 @@ function setupProofVideo() {
     root.innerHTML = `
       <iframe
         src="https://www.youtube-nocookie.com/embed/${WHY_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1&playsinline=1"
-        title="Почему выбирают Credit Booster"
+        title="Как проходит работа с Credit Booster"
         loading="lazy"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin"
