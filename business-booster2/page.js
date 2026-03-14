@@ -112,7 +112,7 @@
     const list = document.querySelector('[data-bb2-review-list]');
     if (!(list instanceof HTMLElement)) return;
 
-    const visibleCount = 3;
+    const visibleCount = 4;
     const start = Math.min(Math.max(activeIndex - 2, 0), Math.max(reviewData.length - visibleCount, 0));
     const visibleReviews = reviewData.slice(start, start + visibleCount);
 
@@ -156,7 +156,6 @@
     const metrics = document.querySelector('[data-bb2-review-metrics]');
     const current = document.querySelector('[data-bb2-review-current]');
     const total = document.querySelector('[data-bb2-review-total]');
-    const banner = document.querySelector('[data-bb2-review-banner]');
 
     if (
       !review ||
@@ -190,11 +189,6 @@
     metrics.innerHTML = review.metrics.map(buildMetricCard).join('');
     current.textContent = String(index + 1).padStart(2, '0');
     total.textContent = String(reviewData.length).padStart(2, '0');
-
-    if (banner instanceof HTMLElement) {
-      const nextReview = reviewData[(index + 1) % reviewData.length];
-      banner.style.backgroundImage = `linear-gradient(180deg, rgba(10, 14, 20, 0.18) 0%, rgba(10, 14, 20, 0.8) 100%), url('${nextReview.poster}')`;
-    }
 
     renderReviewList(index);
 
