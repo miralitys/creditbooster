@@ -285,8 +285,9 @@ input {
 }
 
 .bb2-copy {
+  align-self: start;
   max-width: 760px;
-  padding: 30px 0 34px;
+  padding: 8px 0 34px;
 }
 
 .bb2-copy h1 {
