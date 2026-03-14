@@ -34,6 +34,18 @@
   --radius-md: 22px;
   --radius-sm: 16px;
   --container: min(1200px, calc(100% - 40px));
+  --type-micro: 11px;
+  --type-label: 12px;
+  --type-chip: 13px;
+  --type-ui: 14px;
+  --type-body: 15px;
+  --type-body-lg: 16px;
+  --type-body-xl: 17px;
+  --type-title-sm: 18px;
+  --type-title-md: 20px;
+  --type-title-lg: clamp(22px, 3vw, 26px);
+  --type-title-xl: clamp(26px, 3.4vw, 30px);
+  --type-cta-title: clamp(28px, 3.8vw, 38px);
 }
 
 *,
@@ -162,7 +174,7 @@ input::placeholder {
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.72);
   color: var(--primary);
-  font-size: 12px;
+  font-size: var(--type-label);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -191,7 +203,7 @@ input::placeholder {
   margin: 18px 0 0;
   max-width: 700px;
   color: var(--muted);
-  font-size: 18px;
+  font-size: var(--type-body-xl);
   line-height: 1.62;
 }
 
@@ -220,7 +232,7 @@ input::placeholder {
   min-height: 56px;
   padding: 0 28px;
   border-radius: 18px;
-  font-size: 15px;
+  font-size: var(--type-ui);
   font-weight: 700;
   line-height: 1;
   transition:
@@ -252,11 +264,11 @@ input::placeholder {
 }
 
 .button--hero {
-  min-width: 292px;
-  min-height: 70px;
-  padding: 0 40px;
+  min-width: 248px;
+  min-height: 58px;
+  padding: 0 30px;
   border-radius: 22px;
-  font-size: 17px;
+  font-size: 14px;
   letter-spacing: -0.01em;
   box-shadow: 0 28px 54px rgba(21, 101, 230, 0.34);
 }
@@ -321,7 +333,7 @@ input::placeholder {
 
 .site-nav a {
   color: var(--text);
-  font-size: 15px;
+  font-size: var(--type-ui);
   font-weight: 600;
 }
 
@@ -411,8 +423,8 @@ input::placeholder {
 .hero__title {
   margin: 0;
   max-width: 11ch;
-  font-size: clamp(44px, 6vw, 78px);
-  line-height: 0.93;
+  font-size: clamp(31px, 4.2vw, 55px);
+  line-height: 0.98;
   letter-spacing: -0.05em;
   font-weight: 750;
   text-wrap: balance;
@@ -422,8 +434,8 @@ input::placeholder {
   margin: 22px 0 0;
   max-width: 18ch;
   color: var(--text);
-  font-size: clamp(22px, 3vw, 29px);
-  line-height: 1.2;
+  font-size: clamp(17px, 2.3vw, 22px);
+  line-height: 1.32;
   font-weight: 620;
   letter-spacing: -0.03em;
 }
@@ -448,7 +460,7 @@ input::placeholder {
   display: block;
   margin-bottom: 8px;
   color: var(--text);
-  font-size: 16px;
+  font-size: var(--type-body-lg);
   line-height: 1.2;
   letter-spacing: -0.02em;
 }
@@ -456,7 +468,7 @@ input::placeholder {
 .hero-copy-card p {
   margin: 0;
   color: var(--muted);
-  font-size: 14px;
+  font-size: var(--type-body);
   line-height: 1.55;
 }
 
@@ -464,8 +476,8 @@ input::placeholder {
   margin: 20px 0 0;
   max-width: 600px;
   color: var(--muted);
-  font-size: 18px;
-  line-height: 1.7;
+  font-size: var(--type-body);
+  line-height: 1.65;
 }
 
 .hero__actions {
@@ -481,26 +493,44 @@ input::placeholder {
 
 .hero__trust-chip {
   display: grid;
-  gap: 6px;
-  min-height: 94px;
-  padding: 18px 18px 16px;
+  gap: 8px;
+  align-content: start;
+  min-height: 84px;
+  padding: 14px 16px;
   border: 1px solid rgba(199, 211, 228, 0.88);
   border-radius: 22px;
   background: rgba(255, 255, 255, 0.88);
   box-shadow: 0 18px 34px rgba(16, 32, 61, 0.08);
 }
 
-.hero__trust-chip strong {
-  font-size: 21px;
-  line-height: 1.05;
-  letter-spacing: -0.04em;
+.hero__trust-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(85, 103, 131, 0.96);
+  font-size: var(--type-micro);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-.hero__trust-chip small {
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.45;
-  font-weight: 650;
+.hero__trust-kicker::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(21, 101, 230, 0.9) 0%, rgba(15, 78, 179, 0.88) 100%);
+  box-shadow: 0 0 0 4px rgba(21, 101, 230, 0.09);
+}
+
+.hero__trust-title {
+  color: var(--text);
+  font-size: var(--type-body);
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+  font-weight: 680;
+  text-wrap: balance;
 }
 
 .hero__visual {
@@ -622,19 +652,19 @@ input::placeholder {
 
 .proof-mini-card--featured strong {
   color: #ffffff;
-  font-size: 26px;
+  font-size: var(--type-title-lg);
 }
 
 .proof-mini-card--featured p {
   max-width: 42ch;
-  color: rgba(235, 243, 255, 0.78);
+  color: #ffffff;
 }
 
 .proof-mini-card__label {
   display: inline-flex;
   margin-bottom: 14px;
   color: var(--primary);
-  font-size: 12px;
+  font-size: var(--type-label);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -643,7 +673,7 @@ input::placeholder {
 .proof-mini-card strong {
   display: block;
   margin-bottom: 10px;
-  font-size: 21px;
+  font-size: var(--type-title-md);
   line-height: 1.12;
   letter-spacing: -0.03em;
 }
@@ -651,7 +681,7 @@ input::placeholder {
 .proof-mini-card p {
   margin: 0;
   color: var(--muted);
-  font-size: 14px;
+  font-size: var(--type-body);
   line-height: 1.62;
 }
 
@@ -684,7 +714,7 @@ input::placeholder {
 .trust-strip__item span {
   display: block;
   color: var(--text);
-  font-size: 14px;
+  font-size: var(--type-body);
   line-height: 1.35;
   font-weight: 700;
 }
@@ -692,7 +722,7 @@ input::placeholder {
 .trust-strip__item small {
   display: block;
   color: var(--muted);
-  font-size: 13px;
+  font-size: var(--type-body);
   line-height: 1.45;
 }
 
@@ -716,7 +746,7 @@ input::placeholder {
   border: 1px solid rgba(21, 101, 230, 0.12);
   background: rgba(255, 255, 255, 0.86);
   color: var(--text);
-  font-size: 13px;
+  font-size: var(--type-chip);
   font-weight: 650;
   box-shadow: var(--shadow-soft);
 }
@@ -743,7 +773,7 @@ input::placeholder {
   display: inline-flex;
   margin-bottom: 18px;
   color: var(--primary);
-  font-size: 12px;
+  font-size: var(--type-label);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -751,7 +781,7 @@ input::placeholder {
 
 .scenario-card h3 {
   margin: 0;
-  font-size: 28px;
+  font-size: var(--type-title-lg);
   line-height: 1.06;
   letter-spacing: -0.04em;
 }
@@ -759,7 +789,7 @@ input::placeholder {
 .scenario-card p {
   margin: 16px 0 0;
   color: var(--muted);
-  font-size: 16px;
+  font-size: var(--type-body-lg);
   line-height: 1.65;
 }
 
@@ -775,7 +805,7 @@ input::placeholder {
   position: relative;
   padding-left: 18px;
   color: var(--text);
-  font-size: 14px;
+  font-size: var(--type-body);
   line-height: 1.55;
   font-weight: 600;
 }
@@ -795,7 +825,7 @@ input::placeholder {
   margin-top: auto;
   padding-top: 24px;
   color: var(--text);
-  font-size: 15px;
+  font-size: var(--type-ui);
   font-weight: 650;
 }
 
@@ -816,7 +846,7 @@ input::placeholder {
   margin: 18px 0 0;
   max-width: 640px;
   color: var(--muted-inverse);
-  font-size: 18px;
+  font-size: var(--type-body-xl);
   line-height: 1.66;
 }
 
@@ -836,7 +866,7 @@ input::placeholder {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: #edf4ff;
-  font-size: 13px;
+  font-size: var(--type-chip);
   font-weight: 650;
 }
 
@@ -866,13 +896,13 @@ input::placeholder {
   border-radius: 50%;
   background: rgba(240, 195, 111, 0.18);
   color: #ffe2a8;
-  font-size: 14px;
+  font-size: var(--type-ui);
   font-weight: 700;
 }
 
 .conversion-step h3 {
   margin: 0;
-  font-size: 19px;
+  font-size: var(--type-title-sm);
   line-height: 1.2;
   letter-spacing: -0.02em;
 }
@@ -880,7 +910,7 @@ input::placeholder {
 .conversion-step p {
   margin: 8px 0 0;
   color: var(--muted-inverse);
-  font-size: 15px;
+  font-size: var(--type-body);
   line-height: 1.58;
 }
 
@@ -891,7 +921,7 @@ input::placeholder {
   border-radius: 22px;
   background: rgba(255, 255, 255, 0.05);
   color: #e9effa;
-  font-size: 16px;
+  font-size: var(--type-body);
   line-height: 1.6;
 }
 
@@ -902,12 +932,14 @@ input::placeholder {
 .early-proof {
   position: relative;
   display: grid;
-  gap: 14px;
-  max-width: 720px;
+  grid-template-columns: minmax(0, 1.35fr) minmax(250px, 0.82fr);
+  gap: 26px;
+  max-width: 1080px;
   margin: 0 auto;
-  padding: 22px 24px;
+  align-items: stretch;
+  padding: 28px 30px;
   border: 1px solid rgba(199, 211, 228, 0.86);
-  border-radius: 26px;
+  border-radius: 30px;
   background:
     radial-gradient(circle at top right, rgba(240, 195, 111, 0.16), transparent 28%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(244, 248, 255, 0.94) 100%);
@@ -917,18 +949,24 @@ input::placeholder {
 .early-proof::before {
   content: "“";
   position: absolute;
-  top: 20px;
-  right: 28px;
+  top: 18px;
+  right: 22px;
   color: rgba(21, 101, 230, 0.12);
-  font-size: 86px;
+  font-size: 72px;
   line-height: 1;
   font-weight: 700;
+}
+
+.early-proof__copy {
+  display: grid;
+  align-content: start;
+  gap: 16px;
 }
 
 .early-proof__label {
   display: inline-flex;
   color: var(--primary);
-  font-size: 12px;
+  font-size: var(--type-label);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -937,26 +975,56 @@ input::placeholder {
 .early-proof__text {
   margin: 0;
   color: var(--text);
-  max-width: 34ch;
-  font-size: 20px;
-  line-height: 1.44;
+  max-width: 30ch;
+  font-size: var(--type-body-xl);
+  line-height: 1.5;
   letter-spacing: -0.025em;
 }
 
 .early-proof__meta {
-  margin-top: 4px;
+  margin-top: 0;
 }
 
 .early-proof__meta span {
   display: inline-flex;
   align-items: center;
-  min-height: 30px;
-  padding: 0 10px;
+  min-height: 32px;
+  padding: 0 12px;
   border-radius: 999px;
-  background: rgba(16, 32, 61, 0.05);
-  color: #556783;
-  font-size: 11px;
-  font-weight: 650;
+  background: rgba(21, 101, 230, 0.09);
+  color: var(--primary);
+  font-size: var(--type-micro);
+  font-weight: 700;
+}
+
+.early-proof__aside {
+  display: grid;
+  align-content: center;
+  gap: 12px;
+  min-height: 100%;
+  padding: 24px 22px;
+  border: 1px solid rgba(180, 195, 221, 0.9);
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(237, 243, 252, 0.92) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    0 18px 34px rgba(16, 32, 61, 0.08);
+}
+
+.early-proof__value {
+  color: var(--text);
+  font-size: clamp(34px, 5vw, 52px);
+  line-height: 0.96;
+  letter-spacing: -0.05em;
+  font-weight: 760;
+}
+
+.early-proof__caption {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--type-body);
+  line-height: 1.55;
 }
 
 .conversion-block__form {
@@ -976,7 +1044,7 @@ input::placeholder {
   display: inline-flex;
   margin-bottom: 16px;
   color: var(--primary);
-  font-size: 12px;
+  font-size: var(--type-label);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -984,7 +1052,7 @@ input::placeholder {
 
 .form-card h3 {
   margin: 0;
-  font-size: 32px;
+  font-size: var(--type-title-xl);
   line-height: 1.04;
   letter-spacing: -0.04em;
 }
@@ -992,7 +1060,7 @@ input::placeholder {
 .form-card p {
   margin: 14px 0 0;
   color: var(--muted);
-  font-size: 16px;
+  font-size: var(--type-body-lg);
   line-height: 1.62;
 }
 
@@ -1028,7 +1096,7 @@ input::placeholder {
   align-items: flex-start;
   margin-top: 16px;
   color: #4a5c76;
-  font-size: 13px;
+  font-size: var(--type-chip);
   line-height: 1.55;
 }
 
@@ -1058,7 +1126,7 @@ input::placeholder {
 
 .lead-form__message {
   margin: 16px 0 0;
-  font-size: 14px;
+  font-size: var(--type-ui);
   line-height: 1.55;
 }
 
@@ -1157,7 +1225,7 @@ input::placeholder {
 .proof-stat-card__label {
   display: inline-flex;
   color: var(--primary);
-  font-size: 12px;
+  font-size: var(--type-label);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1168,7 +1236,7 @@ input::placeholder {
   margin-top: 16px;
   max-width: 15ch;
   color: #33455f;
-  font-size: 18px;
+  font-size: var(--type-body-xl);
   line-height: 1.35;
   font-weight: 650;
 }
@@ -1187,7 +1255,7 @@ input::placeholder {
   max-width: 18ch;
   margin: 28px 0 0;
   color: #445779;
-  font-size: 18px;
+  font-size: var(--type-body-xl);
   line-height: 1.66;
 }
 
@@ -1206,7 +1274,7 @@ input::placeholder {
   border-radius: 18px;
   background: rgba(16, 32, 61, 0.09);
   color: var(--text);
-  font-size: 12px;
+  font-size: var(--type-label);
   font-weight: 700;
   line-height: 1.4;
 }
@@ -1241,7 +1309,7 @@ input::placeholder {
   border-radius: 999px;
   background: rgba(240, 195, 111, 0.16);
   color: #ffe6b8;
-  font-size: 12px;
+  font-size: var(--type-label);
   font-weight: 700;
   letter-spacing: 0.06em;
 }
@@ -1249,7 +1317,7 @@ input::placeholder {
 .proof-card__title {
   display: block;
   margin-bottom: 10px;
-  font-size: 20px;
+  font-size: var(--type-title-md);
   line-height: 1.15;
   letter-spacing: -0.03em;
   font-weight: 700;
@@ -1259,7 +1327,7 @@ input::placeholder {
 .proof-card p {
   margin: 0;
   color: rgba(235, 243, 255, 0.74);
-  font-size: 15px;
+  font-size: var(--type-body);
   line-height: 1.62;
 }
 
@@ -1308,7 +1376,7 @@ input::placeholder {
   display: inline-flex;
   margin-bottom: 10px;
   color: #dbe7ff;
-  font-size: 12px;
+  font-size: var(--type-label);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1316,7 +1384,7 @@ input::placeholder {
 
 .proof-media__caption strong {
   display: block;
-  font-size: 20px;
+  font-size: var(--type-title-md);
   line-height: 1.12;
   letter-spacing: -0.03em;
   color: #ffffff;
@@ -1325,7 +1393,7 @@ input::placeholder {
 .proof-media__caption p {
   margin: 10px 0 0;
   color: rgba(235, 243, 255, 0.74);
-  font-size: 15px;
+  font-size: var(--type-body);
   line-height: 1.6;
 }
 
@@ -1353,7 +1421,7 @@ input::placeholder {
   background: rgba(255, 255, 255, 0.88);
   border: 1px solid rgba(199, 211, 228, 0.84);
   color: var(--text);
-  font-size: 13px;
+  font-size: var(--type-chip);
   font-weight: 650;
 }
 
@@ -1370,14 +1438,14 @@ input::placeholder {
   display: inline-flex;
   margin-bottom: 18px;
   color: var(--primary);
-  font-size: 14px;
+  font-size: var(--type-ui);
   font-weight: 700;
   letter-spacing: 0.08em;
 }
 
 .benefit-card h3 {
   margin: 0;
-  font-size: 28px;
+  font-size: var(--type-title-lg);
   line-height: 1.08;
   letter-spacing: -0.04em;
 }
@@ -1385,7 +1453,7 @@ input::placeholder {
 .benefit-card p {
   margin: 16px 0 0;
   color: var(--muted);
-  font-size: 16px;
+  font-size: var(--type-body-lg);
   line-height: 1.64;
 }
 
@@ -1407,7 +1475,7 @@ input::placeholder {
   display: inline-flex;
   margin-bottom: 10px;
   color: #c9dbff;
-  font-size: 12px;
+  font-size: var(--type-label);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1416,7 +1484,7 @@ input::placeholder {
 .cta-band h2 {
   margin: 0;
   max-width: 15ch;
-  font-size: clamp(30px, 4vw, 44px);
+  font-size: var(--type-cta-title);
   line-height: 0.98;
   letter-spacing: -0.04em;
 }
@@ -1425,7 +1493,7 @@ input::placeholder {
   margin: 12px 0 0;
   max-width: 560px;
   color: var(--muted-inverse);
-  font-size: 16px;
+  font-size: var(--type-body-lg);
   line-height: 1.62;
 }
 
@@ -1438,7 +1506,7 @@ input::placeholder {
 
 .cta-band__note {
   color: #dce7fb;
-  font-size: 14px;
+  font-size: var(--type-ui);
   line-height: 1.5;
 }
 
@@ -1490,6 +1558,8 @@ input::placeholder {
 }
 
 .review-card {
+  display: grid;
+  grid-template-rows: 248px auto;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 26px;
@@ -1513,20 +1583,31 @@ input::placeholder {
 
 .review-card__thumb {
   position: relative;
+  display: grid;
+  align-items: end;
+  justify-items: center;
   overflow: hidden;
-  background: #d7e1ef;
+  padding: 16px 16px 0;
+  background:
+    radial-gradient(circle at top center, rgba(240, 195, 111, 0.24), transparent 32%),
+    linear-gradient(180deg, rgba(232, 239, 249, 0.96) 0%, rgba(194, 208, 228, 0.88) 100%);
 }
 
 .review-card__thumb img {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  max-height: 232px;
+  aspect-ratio: auto;
+  object-fit: contain;
+  object-position: center top;
+  border-radius: 22px 22px 0 0;
 }
 
 .review-card__play {
   position: absolute;
+  top: 16px;
   right: 16px;
-  bottom: 16px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1546,7 +1627,7 @@ input::placeholder {
   display: inline-flex;
   margin-bottom: 10px;
   color: #dbe7ff;
-  font-size: 12px;
+  font-size: var(--type-label);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1555,7 +1636,7 @@ input::placeholder {
 .review-card__title {
   display: block;
   margin-bottom: 10px;
-  font-size: 21px;
+  font-size: var(--type-title-md);
   line-height: 1.12;
   letter-spacing: -0.03em;
   font-weight: 700;
@@ -1564,7 +1645,7 @@ input::placeholder {
 
 .review-card__text {
   color: rgba(235, 243, 255, 0.76);
-  font-size: 14px;
+  font-size: var(--type-body);
   line-height: 1.58;
 }
 
@@ -1650,7 +1731,7 @@ input::placeholder {
 .reviews-stage__client {
   display: inline-flex;
   color: #dbe7ff;
-  font-size: 13px;
+  font-size: var(--type-label);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1660,7 +1741,7 @@ input::placeholder {
   display: inline-flex;
   gap: 8px;
   align-items: baseline;
-  font-size: 18px;
+  font-size: var(--type-body-xl);
   font-weight: 700;
   color: #ffffff;
 }
@@ -1682,7 +1763,7 @@ input::placeholder {
 .reviews-stage__caption {
   margin: 14px 0 0;
   color: rgba(235, 243, 255, 0.78);
-  font-size: 17px;
+  font-size: var(--type-body-lg);
   line-height: 1.68;
 }
 
@@ -1694,7 +1775,7 @@ input::placeholder {
   display: inline-flex;
   margin-bottom: 16px;
   color: #eef4ff;
-  font-size: 13px;
+  font-size: var(--type-label);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1718,7 +1799,7 @@ input::placeholder {
   display: block;
   margin-bottom: 12px;
   color: rgba(235, 243, 255, 0.64);
-  font-size: 12px;
+  font-size: var(--type-label);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1741,7 +1822,7 @@ input::placeholder {
 
 .metric-card__stat-unit {
   color: rgba(235, 243, 255, 0.72);
-  font-size: 15px;
+  font-size: var(--type-ui);
   line-height: 1.3;
 }
 
@@ -1764,7 +1845,7 @@ input::placeholder {
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.1);
   color: #ffffff;
-  font-size: 12px;
+  font-size: var(--type-label);
   font-weight: 700;
 }
 
@@ -1803,7 +1884,7 @@ input::placeholder {
 .final-form__copy .section-intro {
   max-width: 500px;
   margin-top: 16px;
-  font-size: 16px;
+  font-size: var(--type-body-lg);
 }
 
 .final-form__panel {
@@ -1829,7 +1910,7 @@ input::placeholder {
 .lead-form--final .lead-form__consent {
   margin-top: 18px;
   color: #7a879b;
-  font-size: 12px;
+  font-size: var(--type-label);
 }
 
 .lead-form__grid--final {
@@ -1856,7 +1937,7 @@ input::placeholder {
 
 .site-footer__link {
   color: var(--muted);
-  font-size: 14px;
+  font-size: var(--type-ui);
   font-weight: 600;
 }
 
@@ -2075,8 +2156,12 @@ input::placeholder {
     font-size: clamp(34px, 10vw, 46px);
   }
 
+  .hero__title {
+    font-size: clamp(24px, 7vw, 32px);
+  }
+
   .hero__subtitle {
-    font-size: 21px;
+    font-size: 15px;
   }
 
   .hero__text,
@@ -2087,9 +2172,42 @@ input::placeholder {
     font-size: 16px;
   }
 
+  .hero__text {
+    font-size: 13px;
+  }
+
+  .button--hero {
+    min-width: 100%;
+    min-height: 54px;
+    padding: 0 24px;
+    font-size: 14px;
+  }
+
+  .hero__trust-chip {
+    min-height: 74px;
+    padding: 12px 14px;
+  }
+
+  .hero__trust-kicker {
+    font-size: 9px;
+  }
+
+  .hero__trust-title {
+    font-size: 13px;
+  }
+
   .hero__trust-line {
     grid-template-columns: 1fr;
     gap: 10px;
+  }
+
+  .early-proof__text {
+    max-width: none;
+    font-size: 17px;
+  }
+
+  .early-proof__value {
+    font-size: 34px;
   }
 
   .scenario-card,
@@ -2152,11 +2270,17 @@ input::placeholder {
   }
 
   .early-proof {
+    grid-template-columns: 1fr;
+    gap: 18px;
     padding: 18px;
   }
 
   .early-proof__text {
     font-size: 18px;
+  }
+
+  .early-proof__aside {
+    padding: 18px;
   }
 
   .early-proof::before {

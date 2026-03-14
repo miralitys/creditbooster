@@ -11,7 +11,7 @@ const reviewData = [
     metricsTitle: "ЯН В ЦИФРАХ",
     metrics: [
       { label: "Рейтинг", value: "650 -> 740" },
-      { label: "Inquiries", value: "6 снято" },
+      { label: "Запросы", value: "6 снято" },
       { label: "Срок", value: "21 день" },
     ],
   },
@@ -24,7 +24,7 @@ const reviewData = [
     metricsTitle: "ДМИТРИЙ В ЦИФРАХ",
     metrics: [
       { label: "Рейтинг", value: "612 -> 701" },
-      { label: "Inquiries", value: "3 снято" },
+      { label: "Запросы", value: "3 снято" },
       { label: "Срок", value: "14 дней" },
     ],
   },
@@ -37,7 +37,7 @@ const reviewData = [
     metricsTitle: "АРТЕМ В ЦИФРАХ",
     metrics: [
       { label: "Рейтинг", value: "598 -> 684" },
-      { label: "Inquiries", value: "5 снято" },
+      { label: "Запросы", value: "5 снято" },
       { label: "Срок", value: "18 дней" },
     ],
   },
@@ -50,7 +50,7 @@ const reviewData = [
     metricsTitle: "АННА В ЦИФРАХ",
     metrics: [
       { label: "Рейтинг", value: "634 -> 715" },
-      { label: "Inquiries", value: "3 снято" },
+      { label: "Запросы", value: "3 снято" },
       { label: "Срок", value: "16 дней" },
     ],
   },
@@ -76,7 +76,7 @@ const reviewData = [
     metricsTitle: "СЕРГЕЙ В ЦИФРАХ",
     metrics: [
       { label: "Рейтинг", value: "667 -> 742" },
-      { label: "Inquiries", value: "2 снято" },
+      { label: "Запросы", value: "2 снято" },
       { label: "Срок", value: "14 дней" },
     ],
   },
@@ -300,7 +300,7 @@ function setupProofVideo() {
     root.innerHTML = `
       <iframe
         src="https://www.youtube-nocookie.com/embed/${WHY_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1&playsinline=1"
-        title="Как проходит работа с Credit Booster"
+        title="Видео об основных ошибках при работе с кредитной историей"
         loading="lazy"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin"
@@ -434,12 +434,12 @@ function bindLeadForm(form) {
     }
 
     if (!EMAIL_RE.test(values.email)) {
-      showFormMessage(form, "Введите корректный email.", true);
+      showFormMessage(form, "Введите корректный адрес электронной почты.", true);
       return;
     }
 
     if (normalizePhone(values.phone).length !== 10) {
-      showFormMessage(form, "Укажите телефон в US формате (10 цифр).", true);
+      showFormMessage(form, "Укажите телефон в американском формате (10 цифр).", true);
       return;
     }
 
