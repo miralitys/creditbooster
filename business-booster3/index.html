@@ -151,7 +151,7 @@
     </header>
 
     <main class="page-main">
-      <section class="hero section">
+      <section class="hero section section--hero">
         <div class="container">
           <div class="hero__shell">
             <div class="hero__grid">
@@ -166,16 +166,30 @@
                   На первом созвоне коротко разберем ситуацию, покажем безопасный следующий шаг
                   и подскажем, с чего лучше начать именно в вашем кейсе.
                 </p>
+                <div class="hero__assurances">
+                  <span class="hero__assurance">Experian inquiry за 48 часов</span>
+                  <span class="hero__assurance">Четкий план под ваш кейс</span>
+                  <span class="hero__assurance">Честная оценка без давления</span>
+                </div>
                 <div class="hero__actions">
                   <a class="button button--primary button--hero" href="#application" data-scroll-form>
                     Получить консультацию
                   </a>
                 </div>
-                <p class="hero__trust-line">
-                  <span>17+ лет практики</span>
-                  <span>6487 клиентов</span>
-                  <span>Физические и юридические лица</span>
-                </p>
+                <div class="hero__trust-line">
+                  <span class="hero__trust-chip">
+                    <strong>17+</strong>
+                    <small>лет практики</small>
+                  </span>
+                  <span class="hero__trust-chip">
+                    <strong>6487</strong>
+                    <small>клиентов</small>
+                  </span>
+                  <span class="hero__trust-chip">
+                    <strong>2</strong>
+                    <small>формата работы</small>
+                  </span>
+                </div>
               </div>
 
               <div class="hero__visual">
@@ -195,7 +209,7 @@
                     </div>
                   </div>
                   <div class="hero-panel__proofs">
-                    <article class="proof-mini-card">
+                    <article class="proof-mini-card proof-mini-card--featured">
                       <span class="proof-mini-card__label">Факт 01</span>
                       <strong>6487+ клиентов</strong>
                       <p>Через понятный разбор и пошаговый маршрут к финансированию.</p>
@@ -218,7 +232,7 @@
         </div>
       </section>
 
-      <section class="section section--tight" id="trust-strip">
+      <section class="section section--tight section--strip" id="trust-strip">
         <div class="container">
           <div class="trust-strip">
             <article class="trust-strip__item">
@@ -241,7 +255,7 @@
         </div>
       </section>
 
-      <section class="section" id="solutions">
+      <section class="section section--paper" id="solutions">
         <div class="container">
           <div class="section-heading">
             <span class="section-eyebrow">Кому это подходит</span>
@@ -259,9 +273,12 @@
               <span class="scenario-card__tag">Сценарий 01</span>
               <h3>Готовитесь к подаче на финансирование</h3>
               <p>
-                Помогаем понять, что в профиле уже работает на вас, а что лучше исправить до
-                заявки, чтобы не идти в подачу вслепую.
+                Покажем, что уже работает на вас и что лучше усилить до подачи.
               </p>
+              <ul class="scenario-card__list">
+                <li>Разбор сильных и слабых зон профиля</li>
+                <li>Приоритеты перед заявкой без хаоса</li>
+              </ul>
               <div class="scenario-card__accent">Пошаговый план перед подачей</div>
             </article>
 
@@ -269,9 +286,12 @@
               <span class="scenario-card__tag">Сценарий 02</span>
               <h3>Нужно разобраться с inquiries и спорными записями</h3>
               <p>
-                Показываем, какие факторы мешают сильнее всего, и выстраиваем приоритеты без
-                хаотичных действий и лишних обещаний.
+                Определим, какие факторы тормозят одобрение сильнее всего и с чего начать.
               </p>
+              <ul class="scenario-card__list">
+                <li>Фокус на реально важных записях</li>
+                <li>Без лишних действий и пустых обещаний</li>
+              </ul>
               <div class="scenario-card__accent">Фокус на том, что влияет на решение</div>
             </article>
 
@@ -279,9 +299,12 @@
               <span class="scenario-card__tag">Сценарий 03</span>
               <h3>Нужен понятный маршрут для личного или business credit</h3>
               <p>
-                Работаем с кейсами частных клиентов и бизнеса, когда нужен не общий совет, а
-                понятный порядок действий под конкретную цель.
+                Соберем понятную стратегию под личную цель или бизнес-задачу.
               </p>
+              <ul class="scenario-card__list">
+                <li>Частные клиенты и компании</li>
+                <li>Понятный порядок действий под цель</li>
+              </ul>
               <div class="scenario-card__accent">Физические и юридические лица</div>
             </article>
           </div>
@@ -294,7 +317,7 @@
         </div>
       </section>
 
-      <section class="section" id="application">
+      <section class="section section--contrast" id="application">
         <div class="container">
           <div class="conversion-block">
             <div class="conversion-block__copy">
@@ -306,6 +329,11 @@
                 На первой консультации разберем вашу ситуацию, определим, что мешает двигаться
                 к одобрению, и подскажем, какие шаги действительно стоит сделать в первую очередь.
               </p>
+              <div class="conversion-block__signals">
+                <span>Быстрый разбор кейса</span>
+                <span>Приоритеты без догадок</span>
+                <span>Понятный следующий шаг</span>
+              </div>
 
               <div class="conversion-steps">
                 <article class="conversion-step">
@@ -335,6 +363,17 @@
                 Наша задача на первом шаге — не “продать во что бы то ни стало”, а дать понятную
                 и спокойную рамку для решения.
               </div>
+              <article class="mini-proof-quote">
+                <p class="mini-proof-quote__text">
+                  “После первой консультации стало понятно, какие шаги действительно стоит делать.
+                  Без хаоса, давления и лишних действий.”
+                </p>
+                <div class="mini-proof-quote__meta">
+                  <strong>Ян</strong>
+                  <span>Клиент Credit Booster</span>
+                  <span>650 -> 740</span>
+                </div>
+              </article>
             </div>
 
             <div class="conversion-block__form">
@@ -385,7 +424,7 @@
         </div>
       </section>
 
-      <section class="section" id="proof">
+      <section class="section section--spotlight" id="proof">
         <div class="container">
           <div class="proof-screen">
             <div class="section-heading section-heading--left">
@@ -398,6 +437,11 @@
                 дают вам уверенность, что вы обращаетесь к команде, которая знает, как довести до
                 результата.
               </p>
+              <div class="proof-screen__badges">
+                <span>6487+ клиентов</span>
+                <span>17+ лет опыта</span>
+                <span>Частные и бизнес-кейсы</span>
+              </div>
             </div>
 
             <div class="proof-screen__layout">
@@ -408,6 +452,10 @@
                   клиентов прошли через наш разбор, получили понятный маршрут и понимание, как
                   двигаться к подаче без лишнего шума.
                 </p>
+                <div class="proof-stat-card__foot">
+                  <span>17+ лет на рынке</span>
+                  <span>100% прозрачные шаги</span>
+                </div>
               </article>
 
               <div class="proof-screen__cards">
@@ -444,6 +492,7 @@
                   <span class="proof-media__play" aria-hidden="true">▶</span>
                 </button>
                 <div class="proof-media__caption">
+                  <span class="proof-media__eyebrow">Видео о формате работы</span>
                   <strong>Как выглядит работа с нами</strong>
                   <p>Короткое видео о подходе, прозрачности процесса и клиентском опыте.</p>
                 </div>
@@ -453,7 +502,7 @@
         </div>
       </section>
 
-      <section class="section" id="process">
+      <section class="section section--wash" id="process">
         <div class="container">
           <div class="section-heading">
             <span class="section-eyebrow">Почему выбирают Credit Booster</span>
@@ -465,6 +514,11 @@
               процесс и понятный план действий, который помогает двигаться к результату без
               лишних рисков.
             </p>
+            <div class="benefits-intro-rail">
+              <span>Экспертность</span>
+              <span>Прозрачность</span>
+              <span>Спокойный маршрут к результату</span>
+            </div>
           </div>
 
           <div class="benefits-grid">
@@ -496,7 +550,7 @@
         </div>
       </section>
 
-      <section class="section section--tight">
+      <section class="section section--tight section--cta">
         <div class="container">
           <div class="cta-band">
             <div class="cta-band__copy">
@@ -514,7 +568,7 @@
         </div>
       </section>
 
-      <section class="section" id="reviews">
+      <section class="section section--gallery" id="reviews">
         <div class="container">
           <div class="reviews-section">
             <div class="section-heading">
@@ -526,6 +580,11 @@
                 Реальные отзывы помогают лучше понять, как проходит работа, каких результатов
                 удается добиться и почему клиенты рекомендуют Credit Booster своим знакомым.
               </p>
+              <div class="reviews-proof-strip">
+                <span>Видеоотзывы клиентов</span>
+                <span>Реальные кейсы и цифры</span>
+                <span>Единая доказательная галерея</span>
+              </div>
             </div>
 
             <div class="reviews-grid" data-review-list></div>
@@ -580,7 +639,7 @@
         </div>
       </section>
 
-      <section class="section" id="final-application">
+      <section class="section section--quiet" id="final-application">
         <div class="container">
           <div class="final-form">
             <div class="final-form__copy">
@@ -593,41 +652,42 @@
                 только один ясный следующий шаг.
               </p>
             </div>
-
-            <form class="lead-form lead-form--final" data-form-placement="final" novalidate>
-              <div class="lead-form__grid lead-form__grid--final">
-                <label class="lead-form__field">
-                  <span class="sr-only">Ваше имя</span>
-                  <input type="text" name="Name" placeholder="Ваше имя" autocomplete="name" />
+            <div class="final-form__panel">
+              <form class="lead-form lead-form--final" data-form-placement="final" novalidate>
+                <div class="lead-form__grid lead-form__grid--final">
+                  <label class="lead-form__field">
+                    <span class="sr-only">Ваше имя</span>
+                    <input type="text" name="Name" placeholder="Ваше имя" autocomplete="name" />
+                  </label>
+                  <label class="lead-form__field">
+                    <span class="sr-only">Ваш email</span>
+                    <input type="email" name="email" placeholder="Ваш email" autocomplete="email" />
+                  </label>
+                  <label class="lead-form__field">
+                    <span class="sr-only">Телефон</span>
+                    <input type="tel" name="Phone" placeholder="(555) 555-5555" autocomplete="tel" />
+                  </label>
+                </div>
+                <label class="lead-form__consent lead-form__consent--light">
+                  <input type="checkbox" name="Checkbox" checked />
+                  <span>
+                    Я соглашаюсь на обработку моих
+                    <a href="/privacy/" target="_blank" rel="noreferrer noopener">
+                      персональных данных
+                    </a>
+                    .
+                  </span>
                 </label>
-                <label class="lead-form__field">
-                  <span class="sr-only">Ваш email</span>
-                  <input type="email" name="email" placeholder="Ваш email" autocomplete="email" />
-                </label>
-                <label class="lead-form__field">
-                  <span class="sr-only">Телефон</span>
-                  <input type="tel" name="Phone" placeholder="(555) 555-5555" autocomplete="tel" />
-                </label>
-              </div>
-              <label class="lead-form__consent lead-form__consent--light">
-                <input type="checkbox" name="Checkbox" checked />
-                <span>
-                  Я соглашаюсь на обработку моих
-                  <a href="/privacy/" target="_blank" rel="noreferrer noopener">
-                    персональных данных
-                  </a>
-                  .
-                </span>
-              </label>
-              <button
-                class="button button--primary lead-form__submit lead-form__submit--wide"
-                type="submit"
-                data-label-loading="Отправляем..."
-              >
-                Обсудить мой кейс
-              </button>
-              <p class="lead-form__message lead-form__message--light" data-form-message hidden></p>
-            </form>
+                <button
+                  class="button button--primary lead-form__submit lead-form__submit--wide"
+                  type="submit"
+                  data-label-loading="Отправляем..."
+                >
+                  Обсудить мой кейс
+                </button>
+                <p class="lead-form__message lead-form__message--light" data-form-message hidden></p>
+              </form>
+            </div>
           </div>
         </div>
       </section>
