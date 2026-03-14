@@ -2953,9 +2953,10 @@ input {
 
 .bb2-contact {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(380px, 460px);
-  gap: 34px;
-  padding: 34px;
+  grid-template-columns: minmax(0, 1.08fr) minmax(380px, 470px);
+  gap: 28px;
+  align-items: start;
+  padding: 28px;
 }
 
 .bb2-contact__eyebrow {
@@ -2967,9 +2968,115 @@ input {
   letter-spacing: 0.08em;
 }
 
+.bb2-contact__copy {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+}
+
+.bb2-contact__lead {
+  max-width: 760px;
+}
+
+.bb2-contact__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.bb2-contact__chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 219, 124, 0.22);
+  background:
+    linear-gradient(180deg, rgba(19, 28, 40, 0.84) 0%, rgba(10, 16, 24, 0.96) 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 239, 183, 0.04),
+    0 0 18px rgba(255, 206, 93, 0.06);
+  color: #f5ddb0;
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.bb2-contact__highlights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.bb2-contact-point {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  padding: 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 219, 124, 0.14);
+  background:
+    linear-gradient(180deg, rgba(14, 22, 33, 0.92) 0%, rgba(7, 12, 19, 0.98) 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 239, 183, 0.03),
+    0 12px 28px rgba(0, 0, 0, 0.22);
+}
+
+.bb2-contact-point__step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 211, 108, 0.32);
+  background:
+    radial-gradient(circle at 50% 24%, rgba(255, 224, 146, 0.22), rgba(255, 224, 146, 0) 56%),
+    linear-gradient(180deg, rgba(33, 43, 58, 0.94) 0%, rgba(15, 22, 30, 0.98) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 0 18px rgba(255, 206, 93, 0.1);
+  color: #ffd979;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.bb2-contact-point__copy {
+  display: grid;
+  gap: 8px;
+}
+
+.bb2-contact-point__copy h3 {
+  margin: 0;
+  color: #ffdc85;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.bb2-contact-point__copy p {
+  margin: 0;
+  color: rgba(241, 236, 224, 0.78);
+  font-size: 16px;
+  line-height: 1.45;
+}
+
 .bb2-form {
   display: grid;
-  gap: 16px;
+  gap: 15px;
+  padding: 22px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 219, 124, 0.16);
+  background:
+    linear-gradient(180deg, rgba(13, 21, 32, 0.94) 0%, rgba(7, 12, 20, 0.98) 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 239, 183, 0.03),
+    0 18px 36px rgba(0, 0, 0, 0.26);
 }
 
 .bb2-form__status {
@@ -3148,6 +3255,10 @@ input {
     max-width: calc(100% - 170px);
     padding-right: 0;
   }
+
+  .bb2-contact__highlights {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 980px) {
@@ -3250,6 +3361,18 @@ input {
   .bb2-grid,
   .bb2-contact {
     grid-template-columns: 1fr;
+  }
+
+  .bb2-contact {
+    gap: 22px;
+  }
+
+  .bb2-contact__highlights {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .bb2-form {
+    max-width: 620px;
   }
 
   .bb2-trust__frame {
@@ -3941,6 +4064,56 @@ input {
   .bb2-reviews__spark,
   .bb2-reviews__shard {
     display: none;
+  }
+
+  .bb2-contact {
+    gap: 18px;
+  }
+
+  .bb2-contact__copy {
+    gap: 16px;
+  }
+
+  .bb2-contact__chips {
+    gap: 8px;
+  }
+
+  .bb2-contact__chip {
+    min-height: 38px;
+    padding: 0 14px;
+    font-size: 14px;
+  }
+
+  .bb2-contact__highlights {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .bb2-contact-point {
+    grid-template-columns: 46px minmax(0, 1fr);
+    gap: 12px;
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .bb2-contact-point__step {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    font-size: 16px;
+  }
+
+  .bb2-contact-point__copy h3 {
+    font-size: 19px;
+  }
+
+  .bb2-contact-point__copy p {
+    font-size: 15px;
+  }
+
+  .bb2-form {
+    padding: 18px;
+    border-radius: 20px;
   }
 
   .bb2-frame {
