@@ -468,26 +468,6 @@ input::placeholder {
   line-height: 1.7;
 }
 
-.hero__assurances {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 24px;
-}
-
-.hero__assurance {
-  display: inline-flex;
-  align-items: center;
-  min-height: 42px;
-  padding: 0 15px;
-  border: 1px solid rgba(21, 101, 230, 0.12);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.82);
-  color: var(--text);
-  font-size: 13px;
-  font-weight: 650;
-}
-
 .hero__actions {
   margin-top: 42px;
 }
@@ -970,13 +950,13 @@ input::placeholder {
 .early-proof__meta span {
   display: inline-flex;
   align-items: center;
-  min-height: 34px;
-  padding: 0 12px;
+  min-height: 30px;
+  padding: 0 10px;
   border-radius: 999px;
-  background: rgba(16, 32, 61, 0.06);
-  color: #415573;
-  font-size: 12px;
-  font-weight: 700;
+  background: rgba(16, 32, 61, 0.05);
+  color: #556783;
+  font-size: 11px;
+  font-weight: 650;
 }
 
 .conversion-block__form {
@@ -2142,7 +2122,6 @@ input::placeholder {
     max-width: none;
   }
 
-  .hero__assurances,
   .conversion-block__signals,
   .proof-screen__badges,
   .section-micro-rail,
@@ -2153,7 +2132,6 @@ input::placeholder {
     gap: 8px;
   }
 
-  .hero__assurance,
   .conversion-block__signals span,
   .proof-screen__badges span,
   .section-micro-rail span,
