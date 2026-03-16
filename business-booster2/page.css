@@ -2507,15 +2507,15 @@ input {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 350px;
-  gap: 22px;
+  grid-template-columns: 1fr;
+  gap: 0;
   align-items: start;
 }
 
 .bb2-reviews__main {
   display: grid;
   grid-template-columns: minmax(300px, 400px) minmax(0, 1fr);
-  gap: 24px;
+  gap: 24px 28px;
   align-items: start;
   min-width: 0;
 }
@@ -2722,198 +2722,87 @@ input {
   min-width: 0;
 }
 
-.bb2-reviews__sidebar {
-  padding: 16px;
-  border-radius: 28px;
-  border: 1px solid rgba(255, 221, 140, 0.42);
+.bb2-reviews__switcher {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 18px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 221, 140, 0.22);
   background:
     linear-gradient(180deg, rgba(13, 21, 32, 0.8) 0%, rgba(8, 13, 21, 0.92) 100%);
   box-shadow:
-    inset 0 0 0 1px rgba(255, 239, 183, 0.05),
-    0 0 24px rgba(255, 206, 93, 0.12);
+    inset 0 0 0 1px rgba(255, 239, 183, 0.04),
+    0 0 22px rgba(255, 206, 93, 0.08);
 }
 
-.bb2-reviews__sidebar-top {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 16px;
-  align-items: center;
-  min-height: 0;
-  padding: 18px;
-  border-radius: 22px;
-  overflow: hidden;
-  background:
-    linear-gradient(180deg, rgba(10, 14, 20, 0.58) 0%, rgba(10, 14, 20, 0.86) 100%),
-    linear-gradient(135deg, rgba(255, 208, 101, 0.14), rgba(99, 214, 255, 0.08));
-  border: 1px solid rgba(255, 221, 140, 0.44);
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 239, 183, 0.08),
-    0 0 22px rgba(255, 206, 93, 0.14);
-}
-
-.bb2-reviews__sidebar-top::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 14% 18%, rgba(255, 208, 101, 0.16), rgba(255, 208, 101, 0) 40%),
-    linear-gradient(90deg, rgba(255, 208, 101, 0.08), rgba(98, 215, 255, 0.08));
-}
-
-.bb2-reviews__sidebar-copy {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  gap: 6px;
-}
-
-.bb2-reviews__sidebar-kicker {
-  color: rgba(255, 246, 215, 0.64);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.bb2-reviews__sidebar-label {
-  position: relative;
-  z-index: 1;
-  color: #fff3c7;
-  font-size: 24px;
-  line-height: 1.05;
-  font-weight: 800;
-}
-
-.bb2-reviews__sidebar-note {
-  position: relative;
-  z-index: 1;
-  margin: 0;
-  color: rgba(245, 241, 255, 0.72);
-  font-size: 15px;
-  line-height: 1.35;
-}
-
-.bb2-reviews__sidebar-arrow {
-  position: relative;
-  z-index: 1;
+.bb2-reviews__nav {
   width: 56px;
   height: 56px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0;
-  border-radius: 50%;
-  border: 1px solid rgba(98, 215, 255, 0.68);
-  background: rgba(10, 17, 27, 0.68);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 221, 140, 0.34);
+  background:
+    linear-gradient(180deg, rgba(16, 24, 35, 0.86) 0%, rgba(8, 13, 20, 0.98) 100%);
   box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
-    0 0 24px rgba(98, 215, 255, 0.24);
-  color: #7be5ff;
+    inset 0 0 0 1px rgba(255, 239, 183, 0.04),
+    0 0 18px rgba(255, 206, 93, 0.08);
+  color: #ffd978;
   cursor: pointer;
 }
 
-.bb2-reviews__sidebar-arrow svg {
-  width: 28px;
-  height: 28px;
+.bb2-reviews__nav svg {
+  width: 24px;
+  height: 24px;
   fill: none;
   stroke: currentColor;
-  stroke-width: 1.8;
+  stroke-width: 1.9;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.bb2-reviews__list {
-  display: grid;
-  gap: 12px;
-  margin-top: 16px;
+.bb2-reviews__dots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
 
-.bb2-reviews__item {
-  display: grid;
-  grid-template-columns: 102px minmax(0, 1fr);
-  gap: 14px;
-  align-items: stretch;
-  width: 100%;
-  padding: 12px;
-  border-radius: 22px;
-  border: 1px solid rgba(255, 221, 140, 0.28);
+.bb2-reviews__dot {
+  min-width: 54px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 221, 140, 0.26);
   background:
-    linear-gradient(180deg, rgba(13, 21, 32, 0.76) 0%, rgba(8, 13, 21, 0.9) 100%);
+    linear-gradient(180deg, rgba(13, 21, 32, 0.72) 0%, rgba(8, 13, 21, 0.94) 100%);
   box-shadow:
-    inset 0 0 0 1px rgba(255, 239, 183, 0.04),
-    0 0 18px rgba(255, 206, 93, 0.08);
-  color: inherit;
-  text-align: left;
+    inset 0 0 0 1px rgba(255, 239, 183, 0.03),
+    0 0 12px rgba(255, 206, 93, 0.04);
+  color: rgba(255, 245, 212, 0.76);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 800;
   cursor: pointer;
 }
 
-.bb2-reviews__item.is-active {
-  border-color: rgba(255, 221, 140, 0.7);
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 239, 183, 0.08),
-    0 0 26px rgba(255, 206, 93, 0.2);
-}
-
-.bb2-reviews__item-thumb {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 18px;
-  min-height: 136px;
+.bb2-reviews__dot.is-active {
+  border-color: rgba(255, 221, 140, 0.74);
   background:
-    radial-gradient(circle at 50% 20%, rgba(255, 220, 138, 0.14), rgba(255, 220, 138, 0) 34%),
-    linear-gradient(180deg, #050a10 0%, #03070c 100%);
-}
-
-.bb2-reviews__item-thumb img {
-  box-sizing: border-box;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center top;
-  padding: 4px 0 0;
-}
-
-.bb2-reviews__item-thumb span {
-  position: absolute;
-  left: 10px;
-  bottom: 10px;
-  width: 38px;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: rgba(10, 17, 27, 0.76);
-  border: 1px solid rgba(98, 215, 255, 0.62);
-  box-shadow: 0 0 16px rgba(98, 215, 255, 0.22);
-  color: #7be5ff;
-  font-size: 15px;
-}
-
-.bb2-reviews__item-meta {
-  display: grid;
-  align-self: center;
-  gap: 6px;
-}
-
-.bb2-reviews__item-label {
-  color: rgba(255, 248, 232, 0.66);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.bb2-reviews__item-title {
-  color: #ffe8ac;
-  font-size: 20px;
-  line-height: 1.12;
-  font-weight: 700;
+    linear-gradient(180deg, rgba(92, 72, 18, 0.92) 0%, rgba(62, 44, 8, 0.98) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 247, 201, 0.12),
+    0 0 22px rgba(255, 206, 93, 0.18);
+  color: #ffe39a;
 }
 
 .bb2-grid {
@@ -3250,10 +3139,6 @@ input {
 
   .bb2-reviews__body {
     grid-template-columns: 1fr;
-  }
-
-  .bb2-reviews__sidebar {
-    max-width: 860px;
   }
 
   .bb2-reviews__main {
@@ -3625,6 +3510,10 @@ input {
 
   .bb2-reviews__button {
     width: min(100%, 360px);
+  }
+
+  .bb2-reviews__switcher {
+    gap: 12px;
   }
 
   .bb2-reviews__coin--right,
@@ -4026,59 +3915,30 @@ input {
     font-size: 24px;
   }
 
-  .bb2-reviews__sidebar {
-    padding: 12px;
-    border-radius: 22px;
-  }
-
-  .bb2-reviews__sidebar-top {
-    grid-template-columns: 1fr auto;
-    min-height: 0;
-    padding: 14px;
-    border-radius: 18px;
-  }
-
-  .bb2-reviews__sidebar-kicker {
-    font-size: 11px;
-  }
-
-  .bb2-reviews__sidebar-label {
-    font-size: 18px;
-  }
-
-  .bb2-reviews__sidebar-note {
-    font-size: 14px;
-  }
-
-  .bb2-reviews__sidebar-arrow {
-    width: 52px;
-    height: 52px;
-  }
-
-  .bb2-reviews__item {
-    grid-template-columns: 86px minmax(0, 1fr);
-    gap: 12px;
-    padding: 10px;
-    border-radius: 18px;
-  }
-
   .bb2-review-metrics {
     grid-template-columns: 1fr;
   }
 
-  .bb2-reviews__item-thumb {
-    min-height: 100px;
-    border-radius: 14px;
+  .bb2-reviews__switcher {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    padding: 14px;
   }
 
-  .bb2-reviews__item-thumb span {
-    width: 32px;
-    height: 32px;
+  .bb2-reviews__nav {
+    width: 48px;
+    height: 48px;
+  }
+
+  .bb2-reviews__dots {
+    width: 100%;
+    gap: 6px;
+  }
+
+  .bb2-reviews__dot {
+    min-width: 42px;
+    min-height: 38px;
+    padding: 0 8px;
     font-size: 13px;
-  }
-
-  .bb2-reviews__item-title {
-    font-size: 18px;
   }
 
   .bb2-reviews__coin,

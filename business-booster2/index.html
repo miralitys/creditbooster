@@ -605,32 +605,33 @@
 
                   <a class="bb2-button bb2-reviews__button" href="#contact">Получить консультацию</a>
                 </div>
-              </div>
 
-              <aside class="bb2-reviews__sidebar">
-                <div class="bb2-reviews__sidebar-top">
-                  <div class="bb2-reviews__sidebar-copy">
-                    <span class="bb2-reviews__sidebar-kicker">Навигация по кейсам</span>
-                    <span class="bb2-reviews__sidebar-label">Следующие отзывы</span>
-                    <p class="bb2-reviews__sidebar-note">
-                      Переключайте истории и смотрите, как меняются результаты и формат сопровождения.
-                    </p>
-                  </div>
+                <div class="bb2-reviews__switcher" aria-label="Переключение отзывов">
                   <button
-                    class="bb2-reviews__sidebar-arrow"
+                    class="bb2-reviews__nav bb2-reviews__nav--prev"
+                    type="button"
+                    data-bb2-review-prev
+                    aria-label="Предыдущий отзыв"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M15 6l-6 6 6 6"></path>
+                    </svg>
+                  </button>
+
+                  <div class="bb2-reviews__dots" data-bb2-review-dots></div>
+
+                  <button
+                    class="bb2-reviews__nav bb2-reviews__nav--next"
                     type="button"
                     data-bb2-review-next
                     aria-label="Следующий отзыв"
                   >
                     <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M12 5v14"></path>
-                      <path d="M7 14l5 5 5-5"></path>
+                      <path d="M9 6l6 6-6 6"></path>
                     </svg>
                   </button>
                 </div>
-
-                <div class="bb2-reviews__list" data-bb2-review-list></div>
-              </aside>
+              </div>
             </div>
           </div>
         </div>

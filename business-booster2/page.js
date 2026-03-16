@@ -108,36 +108,25 @@
     `;
   }
 
-  function renderReviewList(activeIndex) {
-    const list = document.querySelector('[data-bb2-review-list]');
-    if (!(list instanceof HTMLElement)) return;
+  function renderReviewDots(activeIndex) {
+    const dots = document.querySelector('[data-bb2-review-dots]');
+    if (!(dots instanceof HTMLElement)) return;
 
-    const visibleCount = 4;
-    const start = Math.min(Math.max(activeIndex - 2, 0), Math.max(reviewData.length - visibleCount, 0));
-    const visibleReviews = reviewData.slice(start, start + visibleCount);
-
-    list.innerHTML = visibleReviews
-      .map((review, offset) => {
-        const index = start + offset;
+    dots.innerHTML = reviewData
+      .map((review, index) => {
         const activeClass = index === activeIndex ? ' is-active' : '';
         const isPressed = index === activeIndex ? 'true' : 'false';
         const reviewNumber = String(index + 1).padStart(2, '0');
 
         return `
           <button
-            class="bb2-reviews__item${activeClass}"
+            class="bb2-reviews__dot${activeClass}"
             type="button"
             data-bb2-review-index="${index}"
+            aria-label="Показать отзыв ${reviewNumber}: ${review.title}"
             aria-pressed="${isPressed}"
           >
-            <span class="bb2-reviews__item-thumb">
-              <img src="${review.poster}" alt="${review.title}" loading="lazy" decoding="async" />
-              <span aria-hidden="true">▶</span>
-            </span>
-            <span class="bb2-reviews__item-meta">
-              <span class="bb2-reviews__item-label">Отзыв ${reviewNumber}</span>
-              <span class="bb2-reviews__item-title">${review.title}</span>
-            </span>
+            ${reviewNumber}
           </button>
         `;
       })
@@ -190,7 +179,7 @@
     current.textContent = String(index + 1).padStart(2, '0');
     total.textContent = String(reviewData.length).padStart(2, '0');
 
-    renderReviewList(index);
+    renderReviewDots(index);
 
     if (autoplay) {
       if (video.readyState >= 2) {
@@ -205,6 +194,7 @@
     const section = document.getElementById('reviews');
     const video = document.querySelector('[data-bb2-review-video]');
     const posterButton = document.querySelector('[data-bb2-review-poster]');
+    const prevButton = document.querySelector('[data-bb2-review-prev]');
     const nextButton = document.querySelector('[data-bb2-review-next]');
 
     if (!(section instanceof HTMLElement) || !(video instanceof HTMLVideoElement) || !(posterButton instanceof HTMLButtonElement)) {
@@ -230,6 +220,12 @@
         posterButton.hidden = false;
       }
     });
+
+    if (prevButton instanceof HTMLButtonElement) {
+      prevButton.addEventListener('click', () => {
+        setActiveReview((activeReviewIndex - 1 + reviewData.length) % reviewData.length, false);
+      });
+    }
 
     if (nextButton instanceof HTMLButtonElement) {
       nextButton.addEventListener('click', () => {
