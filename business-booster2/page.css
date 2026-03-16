@@ -919,7 +919,7 @@ input {
 
 .bb2-trust__frame {
   position: relative;
-  padding: 40px 42px 96px;
+  padding: 40px 42px 194px;
   border-radius: 42px;
   border: 1px solid rgba(255, 220, 138, 0.46);
   background:
@@ -1440,6 +1440,15 @@ input {
   box-shadow:
     inset 0 0 0 1px rgba(255, 239, 183, 0.08),
     0 0 24px rgba(255, 206, 93, 0.16);
+}
+
+.bb2-trust__button {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 108px;
+  transform: translateX(-50%);
+  width: min(calc(100% - 84px), 560px);
 }
 
 .bb2-trust__control {
@@ -3285,7 +3294,7 @@ input {
   }
 
   .bb2-trust__frame {
-    padding: 24px 22px 84px;
+    padding: 24px 22px 168px;
   }
 
   .bb2-trust__title {
@@ -3599,6 +3608,11 @@ input {
   .bb2-trust__controls {
     gap: 10px;
     padding: 10px 12px;
+  }
+
+  .bb2-trust__button {
+    bottom: 102px;
+    width: min(calc(100% - 56px), 520px);
   }
 
   .bb2-trust__control {
@@ -4121,7 +4135,7 @@ input {
 
   .bb2-trust__frame {
     border-radius: 24px;
-    padding: 20px 18px 76px;
+    padding: 20px 18px 156px;
   }
 
   .bb2-trust__eyebrow-logo {
@@ -4191,6 +4205,11 @@ input {
     justify-content: center;
     padding: 10px;
     gap: 8px;
+  }
+
+  .bb2-trust__button {
+    bottom: 96px;
+    width: calc(100% - 36px);
   }
 
   .bb2-trust__control {
