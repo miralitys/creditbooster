@@ -194,13 +194,13 @@ input {
   width: 350px;
   aspect-ratio: 237 / 40;
   background:
-    linear-gradient(90deg, #ffd874 0%, #ffcf5b 26%, #ffb836 50%, #8f98ff 78%, #5568ff 100%);
+    linear-gradient(90deg, #fff0aa 0%, #ffd874 24%, #ffcb56 52%, #ffb936 76%, #f09a14 100%);
   -webkit-mask: url('images/tild3636-3232-4431-a536-313031356438__group_9.svg') no-repeat center / contain;
   mask: url('images/tild3636-3232-4431-a536-313031356438__group_9.svg') no-repeat center / contain;
   filter:
     drop-shadow(0 0 9px rgba(255, 182, 76, 0.66))
     drop-shadow(0 0 20px rgba(255, 182, 76, 0.3))
-    drop-shadow(0 0 26px rgba(76, 113, 255, 0.16));
+    drop-shadow(0 0 28px rgba(255, 190, 74, 0.2));
 }
 
 .bb2-nav {
@@ -1039,12 +1039,12 @@ input {
   display: block;
   width: 272px;
   aspect-ratio: 237 / 40;
-  background: linear-gradient(90deg, #ffd976 0%, #ffc653 36%, #8fa0ff 100%);
+  background: linear-gradient(90deg, #fff0aa 0%, #ffd874 24%, #ffcb56 52%, #ffb936 76%, #f09a14 100%);
   -webkit-mask: url('images/tild3636-3232-4431-a536-313031356438__group_9.svg') no-repeat center / contain;
   mask: url('images/tild3636-3232-4431-a536-313031356438__group_9.svg') no-repeat center / contain;
   filter:
     drop-shadow(0 0 12px rgba(255, 194, 71, 0.42))
-    drop-shadow(0 0 24px rgba(90, 130, 255, 0.14));
+    drop-shadow(0 0 24px rgba(255, 190, 74, 0.2));
 }
 
 .bb2-trust__title {
