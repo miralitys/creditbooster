@@ -2075,8 +2075,8 @@ input {
 
 .bb2-clarity__timer {
   display: grid;
-  grid-template-columns: 60px minmax(0, 1fr) auto;
-  gap: 18px;
+  grid-template-columns: 60px minmax(0, 1fr);
+  gap: 18px 20px;
   align-items: center;
   margin-top: 28px;
   max-width: 520px;
@@ -2121,11 +2121,17 @@ input {
   font-weight: 500;
 }
 
+.bb2-clarity__timer-copy {
+  min-width: 0;
+}
+
 .bb2-clarity__timer-badge {
+  grid-column: 1 / -1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 122px;
+  width: 100%;
+  min-width: 0;
   min-height: 62px;
   padding: 0 20px;
   border-radius: 22px;
@@ -3411,7 +3417,7 @@ input {
   }
 
   .bb2-clarity__timer {
-    grid-template-columns: 54px minmax(0, 1fr) auto;
+    grid-template-columns: 54px minmax(0, 1fr);
     gap: 14px;
   }
 
@@ -3795,7 +3801,7 @@ input {
   }
 
   .bb2-clarity__timer {
-    grid-template-columns: 1fr;
+    grid-template-columns: 48px minmax(0, 1fr);
     gap: 12px;
     margin-top: 18px;
     padding: 16px;
