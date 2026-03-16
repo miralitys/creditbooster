@@ -3810,8 +3810,9 @@ input {
   }
 
   .bb2-fit__item {
-    grid-template-columns: 1fr;
+    grid-template-columns: 64px minmax(0, 1fr);
     gap: 12px;
+    align-items: center;
   }
 
   .bb2-fit__icon {
@@ -4234,7 +4235,9 @@ input {
   }
 
   .bb2-trust__stat {
-    grid-template-columns: 1fr;
+    grid-template-columns: 82px minmax(0, 1fr);
+    gap: 14px;
+    align-items: center;
   }
 
   .bb2-trust__icon {
