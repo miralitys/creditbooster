@@ -3272,8 +3272,14 @@ input {
 
 @media (max-width: 980px) {
   :root {
-    --bb2-page-scale: 0.78;
+    --bb2-page-scale: 1;
     --container: min(100% - 28px, 100%);
+  }
+
+  .bb2-page {
+    width: 100%;
+    margin-inline: 0;
+    zoom: 1;
   }
 
   .bb2-header__inner {
@@ -3716,7 +3722,7 @@ input {
 
 @media (max-width: 680px) {
   :root {
-    --bb2-page-scale: 0.86;
+    --bb2-page-scale: 1;
   }
 
   .bb2-hero {
