@@ -2520,8 +2520,9 @@ input {
 
 .bb2-reviews__main {
   display: grid;
-  grid-template-columns: minmax(300px, 400px) minmax(0, 1fr);
+  grid-template-columns: minmax(300px, 390px) minmax(560px, 860px);
   gap: 24px 28px;
+  justify-content: center;
   align-items: start;
   min-width: 0;
 }
@@ -2625,6 +2626,8 @@ input {
 }
 
 .bb2-reviews__copy {
+  display: grid;
+  gap: 22px;
   max-width: none;
   align-self: stretch;
   padding: 22px 22px 24px;
@@ -2637,9 +2640,20 @@ input {
     0 16px 34px rgba(0, 0, 0, 0.28);
 }
 
+.bb2-reviews__copy-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 320px);
+  gap: 24px;
+  align-items: end;
+}
+
+.bb2-reviews__copy-text {
+  min-width: 0;
+}
+
 .bb2-reviews__featured-title {
   margin: 0;
-  max-width: 10ch;
+  max-width: 11ch;
   font-family: 'Montserrat', sans-serif;
   font-size: clamp(38px, 3.1vw, 58px);
   line-height: 0.98;
@@ -2656,7 +2670,7 @@ input {
 
 .bb2-reviews__caption {
   margin: 16px 0 0;
-  max-width: 18ch;
+  max-width: 24ch;
   color: #f5f2ff;
   font-size: clamp(19px, 1.45vw, 26px);
   line-height: 1.28;
@@ -2723,9 +2737,10 @@ input {
 }
 
 .bb2-reviews__button {
-  margin-top: 24px;
-  width: min(100%, 360px);
+  margin-top: 0;
+  width: 100%;
   min-width: 0;
+  align-self: end;
 }
 
 .bb2-reviews__switcher {
@@ -3497,6 +3512,11 @@ input {
     margin-inline: auto;
   }
 
+  .bb2-reviews__copy-head {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
+    gap: 18px;
+  }
+
   .bb2-reviews__counter [data-bb2-review-current] {
     font-size: 32px;
   }
@@ -3515,7 +3535,7 @@ input {
   }
 
   .bb2-reviews__button {
-    width: min(100%, 360px);
+    width: 100%;
   }
 
   .bb2-reviews__switcher {
@@ -3896,6 +3916,11 @@ input {
     font-size: clamp(28px, 8.5vw, 40px);
   }
 
+  .bb2-reviews__copy-head {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
   .bb2-reviews__caption {
     margin-top: 18px;
     font-size: 18px;
@@ -3923,6 +3948,10 @@ input {
 
   .bb2-review-metrics {
     grid-template-columns: 1fr;
+  }
+
+  .bb2-reviews__button {
+    width: min(100%, 360px);
   }
 
   .bb2-reviews__switcher {
