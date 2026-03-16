@@ -3729,7 +3729,7 @@ input {
   }
 
   .bb2-header__actions {
-    width: 100%;
+    display: none;
   }
 
   .bb2-button {
