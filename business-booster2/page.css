@@ -3784,6 +3784,10 @@ input {
     padding: 10px 16px;
   }
 
+  .bb2-clarity__title {
+    font-size: clamp(35px, 7.2vw, 58px);
+  }
+
   .bb2-clarity__list {
     gap: 14px;
   }
