@@ -286,17 +286,11 @@
 
       const formData = new FormData(form);
       const name = String(formData.get('name') || '').trim();
-      const email = String(formData.get('email') || '').trim();
       const phone = String(formData.get('phone') || '').trim();
       const consent = Boolean(formData.get('consent'));
 
       if (name.length < 2) {
         showError('Введите корректное имя.');
-        return;
-      }
-
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        showError('Введите корректный email.');
         return;
       }
 
@@ -321,7 +315,6 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             name,
-            email,
             phone,
             source: 'website|business-booster2',
             pageUrl: window.location.href,

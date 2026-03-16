@@ -53,7 +53,7 @@ function validateLeadPayload(payload) {
   const phoneDigits = phone.replace(/\D/g, '');
 
   if (name.length < 2) return 'Некорректное имя';
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return 'Некорректный email';
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return 'Некорректный email';
   if (phoneDigits.length < 10) return 'Некорректный телефон';
   return '';
 }
