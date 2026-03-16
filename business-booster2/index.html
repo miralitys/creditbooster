@@ -141,17 +141,11 @@
                   alt="Клиент Credit Booster"
                 />
                 <div class="bb2-frame__report">
-                  <div class="bb2-report">
-                    <div class="bb2-report__label">CREDIT REPORT</div>
-                    <div class="bb2-report__title">CREDIT SCORE</div>
-                    <div class="bb2-report__meter">
-                      <span class="bb2-report__meter-red"></span>
-                      <span class="bb2-report__meter-yellow"></span>
-                      <span class="bb2-report__meter-green"></span>
-                      <span class="bb2-report__needle"></span>
-                    </div>
-                    <div class="bb2-report__score">700+</div>
-                  </div>
+                  <img
+                    class="bb2-frame__report-image"
+                    src="images/credit-report-score-card.svg"
+                    alt="Credit report with 740+ personal credit score"
+                  />
                 </div>
 
                 <a class="bb2-play" href="#reviews" aria-label="Смотреть отзывы">
@@ -306,15 +300,38 @@
                   </div>
                   <div class="bb2-trust-card__report">
                     <div class="bb2-trust-report">
+                      <div class="bb2-trust-report__brand">
+                        <span class="bb2-trust-report__brand-mark" aria-hidden="true">
+                          <svg viewBox="0 0 24 24">
+                            <path d="M12 3l7 3v5c0 4.2-2.5 7.7-7 10-4.5-2.3-7-5.8-7-10V6l7-3z"></path>
+                            <path d="M9.5 12.3l1.6 1.6 3.3-3.3"></path>
+                          </svg>
+                        </span>
+                        <span class="bb2-trust-report__brand-text">GlobalCreditInfo</span>
+                      </div>
                       <div class="bb2-trust-report__label">CREDIT REPORT</div>
-                      <div class="bb2-trust-report__title">CREDIT SCORE</div>
+                      <div class="bb2-trust-report__title">PERSONAL CREDIT SCORE</div>
+                      <div class="bb2-trust-report__subtitle">КРЕДИТНЫЙ РЕЙТИНГ</div>
                       <div class="bb2-trust-report__meter">
-                        <span class="bb2-trust-report__arc bb2-trust-report__arc--red"></span>
-                        <span class="bb2-trust-report__arc bb2-trust-report__arc--yellow"></span>
-                        <span class="bb2-trust-report__arc bb2-trust-report__arc--green"></span>
+                        <span class="bb2-trust-report__band bb2-trust-report__band--red"></span>
+                        <span class="bb2-trust-report__band bb2-trust-report__band--yellow"></span>
+                        <span class="bb2-trust-report__band bb2-trust-report__band--green"></span>
+                        <span class="bb2-trust-report__dial-label bb2-trust-report__dial-label--left">POOR 300-600</span>
+                        <span class="bb2-trust-report__dial-label bb2-trust-report__dial-label--center">FAIR 601-680</span>
+                        <span class="bb2-trust-report__dial-label bb2-trust-report__dial-label--right">EXCELLENT 681-850</span>
                         <span class="bb2-trust-report__needle"></span>
                       </div>
-                      <div class="bb2-trust-report__score">700+</div>
+                      <div class="bb2-trust-report__score">740+</div>
+                      <div class="bb2-trust-report__score-note">(Range: 300-850, FICO Score 8)</div>
+                      <div class="bb2-trust-report__factors">
+                        <div class="bb2-trust-report__factors-title">КЛЮЧЕВЫЕ ФАКТОРЫ</div>
+                        <ul class="bb2-trust-report__factors-list">
+                          <li>История платежей: отлично</li>
+                          <li>Использование кредита: низкое</li>
+                          <li>Новые запросы: хорошо</li>
+                        </ul>
+                      </div>
+                      <div class="bb2-trust-report__meta">Обновлено: 26 Oct 2023 | TransUnion, Equifax</div>
                     </div>
                   </div>
                 </article>
@@ -539,59 +556,89 @@
                 <h2 class="bb2-reviews__title">Короткие истории о консультации и сопровождении</h2>
               </div>
 
-              <div class="bb2-reviews__counter" aria-live="polite">
-                <span data-bb2-review-current>06</span>
-                <span>/</span>
-                <span data-bb2-review-total>06</span>
+              <div class="bb2-reviews__intro">
+                <p class="bb2-reviews__lead">
+                  Смотрите, как клиенты описывают консультацию, коммуникацию с командой и подготовку к
+                  подаче на funding.
+                </p>
+
+                <div class="bb2-reviews__counter" aria-live="polite">
+                  <span data-bb2-review-current>06</span>
+                  <span>/</span>
+                  <span data-bb2-review-total>06</span>
+                </div>
               </div>
             </div>
 
             <div class="bb2-reviews__body">
               <div class="bb2-reviews__main">
-                <div class="bb2-reviews__device-wrap">
-                  <div class="bb2-reviews__device">
-                    <div class="bb2-reviews__device-screen">
-                      <video
-                        class="bb2-reviews__video"
-                        data-bb2-review-video
-                        controls
-                        playsinline
-                        preload="metadata"
-                        poster="/business-booster2/images/video-posters/feedback_6.png"
-                      >
-                        <source src="/business-booster2/Video/feedback_6.mp4" type="video/mp4" />
-                      </video>
+                <div class="bb2-reviews__spotlight">
+                  <div class="bb2-reviews__device-wrap">
+                    <div class="bb2-reviews__device">
+                      <div class="bb2-reviews__device-screen">
+                        <video
+                          class="bb2-reviews__video"
+                          data-bb2-review-video
+                          controls
+                          playsinline
+                          preload="metadata"
+                          poster="/business-booster2/images/video-posters/feedback_6.png"
+                        >
+                          <source src="/business-booster2/Video/feedback_6.mp4" type="video/mp4" />
+                        </video>
 
-                      <button
-                        class="bb2-reviews__poster"
-                        type="button"
-                        data-bb2-review-poster
-                        aria-label="Воспроизвести отзыв: Общий результат"
-                      >
-                        <img
-                          src="/business-booster2/images/video-posters/feedback_6.png"
-                          alt="Общий результат"
-                          loading="eager"
-                          decoding="async"
-                        />
-                        <span>▶</span>
-                      </button>
+                        <button
+                          class="bb2-reviews__poster"
+                          type="button"
+                          data-bb2-review-poster
+                          aria-label="Воспроизвести отзыв: Общий результат"
+                        >
+                          <img
+                            src="/business-booster2/images/video-posters/feedback_6.png"
+                            alt="Общий результат"
+                            loading="eager"
+                            decoding="async"
+                          />
+                          <span>▶</span>
+                        </button>
+                      </div>
                     </div>
+                  </div>
+
+                  <div class="bb2-reviews__device-copy">
+                    <span class="bb2-reviews__device-pill">Short-form case</span>
+                    <p class="bb2-reviews__device-note">
+                      Живые вертикальные видео без постановки: что понравилось в консультации, где
+                      помогли и какой был результат.
+                    </p>
                   </div>
                 </div>
 
                 <div class="bb2-reviews__copy">
+                  <div class="bb2-reviews__copy-top">
+                    <p class="bb2-reviews__copy-kicker">Что рассказывает клиент</p>
+                  </div>
+
                   <div class="bb2-reviews__copy-head">
                     <div class="bb2-reviews__copy-text">
+                      <p class="bb2-reviews__metrics-title" data-bb2-review-metrics-title>СЕРГЕЙ В ЦИФРАХ</p>
                       <h3 class="bb2-reviews__featured-title" data-bb2-review-title>Общий результат</h3>
                       <p class="bb2-reviews__caption" data-bb2-review-caption>
                         Еще один отзыв о консультации и общем впечатлении от работы с командой.
                       </p>
-
-                      <p class="bb2-reviews__metrics-title" data-bb2-review-metrics-title>СЕРГЕЙ В ЦИФРАХ</p>
                     </div>
 
-                    <a class="bb2-button bb2-reviews__button" href="#contact">Получить консультацию</a>
+                    <div class="bb2-reviews__aside">
+                      <div class="bb2-reviews__aside-card">
+                        <span class="bb2-reviews__aside-label">Фокус</span>
+                        <p>
+                          Без общих обещаний и шаблонов: консультация, понятный план действий и
+                          сопровождение до следующего шага.
+                        </p>
+                      </div>
+
+                      <a class="bb2-button bb2-reviews__button" href="#contact">Получить консультацию</a>
+                    </div>
                   </div>
 
                   <div class="bb2-review-metrics" data-bb2-review-metrics>
@@ -610,32 +657,36 @@
                       <strong class="bb2-review-metric__value">14 дней</strong>
                     </article>
                   </div>
-                </div>
 
-                <div class="bb2-reviews__switcher" aria-label="Переключение отзывов">
-                  <button
-                    class="bb2-reviews__nav bb2-reviews__nav--prev"
-                    type="button"
-                    data-bb2-review-prev
-                    aria-label="Предыдущий отзыв"
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M15 6l-6 6 6 6"></path>
-                    </svg>
-                  </button>
+                  <div class="bb2-reviews__switcher-wrap">
+                    <p class="bb2-reviews__switcher-title">Выберите историю</p>
 
-                  <div class="bb2-reviews__dots" data-bb2-review-dots></div>
+                    <div class="bb2-reviews__switcher" aria-label="Переключение отзывов">
+                      <button
+                        class="bb2-reviews__nav bb2-reviews__nav--prev"
+                        type="button"
+                        data-bb2-review-prev
+                        aria-label="Предыдущий отзыв"
+                      >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M15 6l-6 6 6 6"></path>
+                        </svg>
+                      </button>
 
-                  <button
-                    class="bb2-reviews__nav bb2-reviews__nav--next"
-                    type="button"
-                    data-bb2-review-next
-                    aria-label="Следующий отзыв"
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M9 6l6 6-6 6"></path>
-                    </svg>
-                  </button>
+                      <div class="bb2-reviews__dots" data-bb2-review-dots></div>
+
+                      <button
+                        class="bb2-reviews__nav bb2-reviews__nav--next"
+                        type="button"
+                        data-bb2-review-next
+                        aria-label="Следующий отзыв"
+                      >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M9 6l6 6-6 6"></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -647,15 +698,15 @@
         <div class="bb2-shell bb2-grid">
           <article class="bb2-card">
             <h2>Как работает?</h2>
-            <p>Разбираем текущую ситуацию, определяем, какие факторы мешают подаче, и даём пошаговый план без хаоса.</p>
+            <p>Смотрим, что мешает подаче, и даём понятный план.</p>
           </article>
           <article class="bb2-card">
             <h2>Отзывы</h2>
-            <p>Показываем реальные кейсы и объясняем, за счёт каких шагов клиенты усиливают заявку перед financing.</p>
+            <p>Показываем реальные кейсы и рабочие шаги перед подачей.</p>
           </article>
           <article class="bb2-card">
             <h2>Почему нам доверяют?</h2>
-            <p>Понятный процесс, коммуникация на русском языке и сопровождение без давления на каждом этапе.</p>
+            <p>Говорим по-русски, ведём понятно и без давления.</p>
           </article>
         </div>
       </section>
@@ -665,15 +716,15 @@
           <div class="bb2-contact">
             <div class="bb2-contact__copy">
               <p class="bb2-contact__eyebrow">Запись на консультацию</p>
-              <h2>Оставьте заявку, и мы свяжемся с вами</h2>
+              <h2>Оставьте заявку</h2>
               <p class="bb2-contact__lead">
-                Оставьте имя и телефон. Мы посмотрим, какая стартовая стратегия подходит под вашу ситуацию, и вернёмся с ответом.
+                Оставьте имя и телефон. Подскажем, с чего лучше начать.
               </p>
 
               <div class="bb2-contact__chips" aria-hidden="true">
-                <span class="bb2-contact__chip">На русском языке</span>
+                <span class="bb2-contact__chip">По-русски</span>
                 <span class="bb2-contact__chip">Без давления</span>
-                <span class="bb2-contact__chip">Понятный старт</span>
+                <span class="bb2-contact__chip">Чёткий старт</span>
               </div>
 
               <div class="bb2-contact__highlights">
@@ -681,31 +732,31 @@
                   <span class="bb2-contact-point__step">01</span>
                   <div class="bb2-contact-point__copy">
                     <h3>Разбираем ситуацию</h3>
-                    <p>Смотрим, что сейчас мешает подаче и где лучше начать.</p>
+                    <p>Понимаем, что мешает подаче.</p>
                   </div>
                 </article>
 
                 <article class="bb2-contact-point">
                   <span class="bb2-contact-point__step">02</span>
                   <div class="bb2-contact-point__copy">
-                    <h3>Подсказываем приоритеты</h3>
-                    <p>Объясняем первые шаги и убираем лишний хаос из процесса.</p>
+                    <h3>Даём приоритеты</h3>
+                    <p>Показываем первые шаги без хаоса.</p>
                   </div>
                 </article>
 
                 <article class="bb2-contact-point">
                   <span class="bb2-contact-point__step">03</span>
                   <div class="bb2-contact-point__copy">
-                    <h3>Выбираем формат старта</h3>
-                    <p>Помогаем понять, нужна только консультация или дальнейшее сопровождение.</p>
+                    <h3>Выбираем старт</h3>
+                    <p>Решаем: консультация или сопровождение.</p>
                   </div>
                 </article>
 
                 <article class="bb2-contact-point">
                   <span class="bb2-contact-point__step">04</span>
                   <div class="bb2-contact-point__copy">
-                    <h3>Остаемся на связи</h3>
-                    <p>После заявки возвращаемся с ответом и следующим понятным шагом.</p>
+                    <h3>Держим связь</h3>
+                    <p>Возвращаемся с ответом и следующим шагом.</p>
                   </div>
                 </article>
               </div>
@@ -728,7 +779,7 @@
               </label>
 
               <label class="bb2-consent">
-                <input type="checkbox" name="consent" required />
+                <input type="checkbox" name="consent" required checked />
                 <span>Согласен(на) на связь по заявке и обработку данных.</span>
               </label>
 
