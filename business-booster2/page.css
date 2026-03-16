@@ -24,6 +24,8 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -54,6 +56,13 @@ input {
   width: calc(100% / var(--bb2-page-scale));
   margin-inline: calc((100% - (100% / var(--bb2-page-scale))) / 2);
   zoom: var(--bb2-page-scale);
+}
+
+@supports not (zoom: 1) {
+  .bb2-page {
+    width: 100%;
+    margin-inline: 0;
+  }
 }
 
 .bb2-shell {
@@ -3731,37 +3740,42 @@ input {
   }
 
   .bb2-hero__content {
-    gap: 24px;
-    padding-top: 28px;
+    gap: 18px;
+    padding-top: 22px;
   }
 
   .bb2-copy {
-    padding: 6px 0 0;
+    max-width: 100%;
+    padding: 4px 6px 0 4px;
   }
 
   .bb2-copy h1 {
-    font-size: clamp(50px, 14vw, 72px);
-    line-height: 0.91;
+    padding-left: 4px;
+    font-size: clamp(42px, 11.4vw, 56px);
+    line-height: 0.94;
+    letter-spacing: -0.05em;
   }
 
   .bb2-copy__accent {
-    margin-top: 18px;
-    gap: 10px;
+    margin-top: 10px;
+    gap: 6px;
   }
 
   .bb2-copy__accent-line {
-    gap: 8px;
-    font-size: clamp(25px, 8vw, 40px);
+    gap: 6px;
+    font-size: clamp(21px, 6.9vw, 31px);
+    line-height: 0.96;
   }
 
   .bb2-copy__accent-note {
-    margin-top: 2px;
-    gap: 8px;
-    font-size: clamp(23px, 7vw, 36px);
+    margin-top: 0;
+    gap: 6px;
+    font-size: clamp(20px, 6.3vw, 29px);
+    line-height: 0.96;
   }
 
   .bb2-button--hero {
-    margin-top: 26px;
+    margin-top: 18px;
   }
 
   .bb2-visual {
