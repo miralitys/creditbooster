@@ -75,7 +75,45 @@
   ];
 
   const metricToneClasses = ['bb2-review-metric--green', 'bb2-review-metric--amber', 'bb2-review-metric--blue'];
-  let activeReviewIndex = reviewData.length - 1;
+  const reviewStorageKey = 'bb2-last-review-index';
+  let activeReviewIndex = getInitialReviewIndex();
+
+  function getRandomReviewIndex(excludeIndex = -1) {
+    if (reviewData.length <= 1) return 0;
+
+    let nextIndex = Math.floor(Math.random() * reviewData.length);
+
+    while (nextIndex === excludeIndex) {
+      nextIndex = Math.floor(Math.random() * reviewData.length);
+    }
+
+    return nextIndex;
+  }
+
+  function getInitialReviewIndex() {
+    let lastIndex = -1;
+
+    try {
+      const storedIndex = window.localStorage.getItem(reviewStorageKey);
+      const parsedIndex = Number.parseInt(storedIndex || '', 10);
+
+      if (Number.isInteger(parsedIndex) && parsedIndex >= 0 && parsedIndex < reviewData.length) {
+        lastIndex = parsedIndex;
+      }
+    } catch (_error) {
+      lastIndex = -1;
+    }
+
+    return getRandomReviewIndex(lastIndex);
+  }
+
+  function storeActiveReviewIndex(index) {
+    try {
+      window.localStorage.setItem(reviewStorageKey, String(index));
+    } catch (_error) {
+      // Ignore storage failures and keep the random fallback behavior.
+    }
+  }
 
   function normalizePhone(value) {
     const digits = String(value || '').replace(/\D/g, '').slice(0, 10);
@@ -163,6 +201,7 @@
     }
 
     activeReviewIndex = index;
+    storeActiveReviewIndex(index);
     video.pause();
     video.currentTime = 0;
     source.src = review.src;

@@ -178,6 +178,7 @@ input {
 .bb2-header__inner {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 28px;
   justify-content: space-between;
 }
@@ -206,9 +207,13 @@ input {
 .bb2-nav {
   display: flex;
   align-items: center;
-  gap: 30px;
-  margin-left: auto;
-  padding-top: 4px;
+  order: 3;
+  flex: 1 1 100%;
+  justify-content: center;
+  gap: 26px;
+  margin-left: 0;
+  padding-top: 0;
+  flex-wrap: wrap;
 }
 
 .bb2-nav a {
@@ -225,6 +230,7 @@ input {
   align-items: center;
   gap: 14px;
   flex: 0 0 auto;
+  margin-left: auto;
 }
 
 .bb2-socials {
@@ -287,9 +293,9 @@ input {
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: minmax(0, 0.96fr) minmax(560px, 0.86fr);
-  gap: clamp(34px, 4vw, 78px);
-  align-items: end;
+  grid-template-columns: minmax(0, 0.88fr) minmax(520px, 0.98fr);
+  gap: clamp(16px, 2.2vw, 34px);
+  align-items: center;
   padding-top: 52px;
 }
 
@@ -380,7 +386,7 @@ input {
 .bb2-visual {
   position: relative;
   min-height: 760px;
-  padding: 14px 28px 72px 92px;
+  padding: 14px 16px 72px 24px;
 }
 
 .bb2-visual__spark {
@@ -433,7 +439,7 @@ input {
   position: relative;
   width: 100%;
   max-width: 652px;
-  margin-left: auto;
+  margin-left: 0;
   padding: 14px;
 }
 
@@ -1415,6 +1421,7 @@ input {
 }
 
 .bb2-trust__controls {
+  display: none !important;
   position: absolute;
   z-index: 2;
   left: 50%;
@@ -1437,7 +1444,7 @@ input {
   position: absolute;
   z-index: 2;
   left: 50%;
-  bottom: 108px;
+  bottom: 36px;
   transform: translateX(-50%);
   width: min(calc(100% - 84px), 560px);
 }
@@ -2009,6 +2016,7 @@ input {
   position: relative;
   z-index: 1;
   max-width: 620px;
+  --bb2-clarity-action-width: 520px;
 }
 
 .bb2-clarity__lead {
@@ -2058,7 +2066,8 @@ input {
 
 .bb2-clarity__button {
   margin-top: 34px;
-  min-width: 440px;
+  width: min(100%, var(--bb2-clarity-action-width));
+  min-width: 0;
 }
 
 .bb2-clarity__timer {
@@ -2067,7 +2076,8 @@ input {
   gap: 18px 20px;
   align-items: center;
   margin-top: 28px;
-  max-width: 520px;
+  width: min(100%, var(--bb2-clarity-action-width));
+  max-width: none;
   padding: 18px 20px;
   border-radius: 26px;
   border: 1px solid rgba(144, 129, 255, 0.76);
@@ -2379,14 +2389,15 @@ input {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
-  gap: 30px;
-  align-items: end;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
   margin-bottom: 34px;
 }
 
 .bb2-reviews__heading {
-  max-width: 880px;
+  max-width: none;
+  min-width: 0;
 }
 
 .bb2-reviews__eyebrow {
@@ -2407,12 +2418,13 @@ input {
 
 .bb2-reviews__title {
   margin: 0;
-  max-width: 11ch;
+  max-width: none;
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(42px, 4vw, 68px);
-  line-height: 0.94;
+  font-size: clamp(30px, 2.4vw, 44px);
+  line-height: 1;
   letter-spacing: -0.065em;
   font-weight: 900;
+  white-space: nowrap;
   color: #ffe29b;
   text-shadow:
     0 2px 0 #6d3e02,
@@ -2423,6 +2435,8 @@ input {
 .bb2-reviews__intro {
   display: grid;
   gap: 18px;
+  width: min(420px, 100%);
+  margin-left: auto;
   justify-items: end;
   align-content: end;
 }
@@ -3788,7 +3802,7 @@ input {
   }
 
   .bb2-trust__button {
-    bottom: 102px;
+    bottom: 34px;
     width: min(calc(100% - 56px), 520px);
   }
 
@@ -4428,7 +4442,7 @@ input {
   }
 
   .bb2-trust__button {
-    bottom: 96px;
+    bottom: 28px;
     width: calc(100% - 36px);
   }
 
@@ -4467,5 +4481,220 @@ input {
 
   .bb2-card p {
     line-height: 1.34;
+  }
+}
+
+/* Typography normalization */
+.bb2-page {
+  --bb2-type-display: clamp(72px, 5.4vw, 112px);
+  --bb2-type-section: clamp(56px, 4.4vw, 82px);
+  --bb2-type-reviews-title: clamp(42px, 3.25vw, 52px);
+  --bb2-type-feature: clamp(34px, 2.6vw, 50px);
+  --bb2-type-card-title: clamp(28px, 2vw, 34px);
+  --bb2-type-body: clamp(18px, 1.2vw, 20px);
+  --bb2-type-label: 15px;
+  --bb2-type-meta: 13px;
+  --bb2-type-metric: clamp(24px, 1.8vw, 32px);
+}
+
+.bb2-page,
+.bb2-page button,
+.bb2-page input,
+.bb2-page textarea,
+.bb2-page select {
+  font-family: 'Manrope', sans-serif;
+}
+
+.bb2-copy h1,
+.bb2-copy__accent,
+.bb2-trust__title,
+.bb2-trust__icon-badge,
+.bb2-trust-card h3,
+.bb2-fit__title,
+.bb2-fit__subtitle,
+.bb2-clarity__title,
+.bb2-clarity__timer-badge,
+.bb2-reviews__title,
+.bb2-reviews__counter,
+.bb2-reviews__featured-title,
+.bb2-review-metric__value,
+.bb2-reviews__dot,
+.bb2-card h2,
+.bb2-contact h2,
+.bb2-contact-point__step,
+.bb2-contact-point__copy h3,
+.bb2-particle--coin::before {
+  font-family: 'Manrope', sans-serif;
+}
+
+.bb2-copy h1 {
+  font-size: var(--bb2-type-display);
+  line-height: 0.9;
+}
+
+.bb2-trust__title,
+.bb2-fit__title,
+.bb2-clarity__title {
+  font-size: var(--bb2-type-section);
+  line-height: 0.94;
+}
+
+.bb2-copy__accent-line,
+.bb2-copy__accent-note,
+.bb2-fit__subtitle,
+.bb2-trust-card h3,
+.bb2-reviews__featured-title {
+  font-size: var(--bb2-type-feature);
+}
+
+.bb2-card h2,
+.bb2-contact h2,
+.bb2-contact-point__copy h3 {
+  font-size: var(--bb2-type-card-title);
+  line-height: 1.02;
+}
+
+.bb2-reviews__title {
+  font-size: var(--bb2-type-reviews-title);
+  line-height: 0.94;
+  white-space: nowrap;
+}
+
+.bb2-trust__stat-copy,
+.bb2-fit__item-copy,
+.bb2-clarity__list li,
+.bb2-clarity__lead,
+.bb2-reviews__caption,
+.bb2-trust-card p,
+.bb2-trust-card li,
+.bb2-card p,
+.bb2-contact p,
+.bb2-contact__lead,
+.bb2-contact-point__copy p,
+.bb2-reviews__lead,
+.bb2-reviews__aside-card p,
+.bb2-reviews__device-note,
+.bb2-form__status {
+  font-size: var(--bb2-type-body);
+  line-height: 1.45;
+}
+
+.bb2-button,
+.bb2-clarity__chip,
+.bb2-contact__chip,
+.bb2-trust__control-label,
+.bb2-field span,
+.bb2-consent span {
+  font-size: var(--bb2-type-label);
+  line-height: 1.2;
+}
+
+.bb2-nav a {
+  font-size: var(--bb2-type-feature);
+  line-height: 0.98;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.bb2-trust__eyebrow,
+.bb2-fit__eyebrow,
+.bb2-clarity__eyebrow,
+.bb2-reviews__eyebrow,
+.bb2-contact__eyebrow,
+.bb2-reviews__copy-kicker,
+.bb2-reviews__metrics-title,
+.bb2-reviews__switcher-title,
+.bb2-reviews__device-pill,
+.bb2-reviews__aside-label,
+.bb2-review-metric__label,
+.bb2-trust-report__label,
+.bb2-report__label,
+.bb2-trust-report__factors-title,
+.bb2-trust-report__meta,
+.bb2-trust-report__score-note,
+.bb2-trust-report__dial-label,
+.bb2-clarity__timer-label {
+  font-size: var(--bb2-type-meta);
+  line-height: 1.2;
+}
+
+.bb2-review-metric__value,
+.bb2-trust-report__score,
+.bb2-report__score,
+.bb2-clarity__timer-badge {
+  font-size: var(--bb2-type-metric);
+  letter-spacing: -0.03em;
+}
+
+@media (max-width: 980px) {
+  .bb2-page {
+    --bb2-type-display: clamp(52px, 8.8vw, 72px);
+    --bb2-type-section: clamp(42px, 6.8vw, 62px);
+    --bb2-type-reviews-title: clamp(34px, 5vw, 44px);
+    --bb2-type-feature: clamp(28px, 4.8vw, 40px);
+    --bb2-type-card-title: clamp(26px, 3.8vw, 32px);
+    --bb2-type-body: clamp(17px, 2.7vw, 19px);
+  }
+
+  .bb2-reviews__title {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 680px) {
+  .bb2-page {
+    --bb2-type-display: clamp(42px, 10.5vw, 52px);
+    --bb2-type-section: clamp(34px, 8.6vw, 42px);
+    --bb2-type-reviews-title: clamp(24px, 6vw, 30px);
+    --bb2-type-feature: clamp(24px, 6vw, 30px);
+    --bb2-type-card-title: clamp(24px, 6vw, 28px);
+    --bb2-type-body: 17px;
+    --bb2-type-label: 14px;
+    --bb2-type-meta: 12px;
+    --bb2-type-metric: clamp(22px, 5.2vw, 28px);
+  }
+
+  .bb2-copy h1 {
+    line-height: 0.96;
+  }
+}
+
+.bb2-clarity__list li {
+  font-size: clamp(36px, 3.2vw, 58px);
+  line-height: 1.12;
+  padding-left: 56px;
+}
+
+.bb2-clarity__list li::before {
+  top: 0.2em;
+  width: 28px;
+  height: 16px;
+  border-left-width: 5px;
+  border-bottom-width: 5px;
+}
+
+@media (max-width: 980px) {
+  .bb2-clarity__list li {
+    font-size: clamp(28px, 4.6vw, 40px);
+    padding-left: 48px;
+  }
+
+  .bb2-clarity__list li::before {
+    width: 24px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 680px) {
+  .bb2-clarity__list li {
+    font-size: clamp(22px, 5.8vw, 28px);
+    padding-left: 40px;
+  }
+
+  .bb2-clarity__list li::before {
+    width: 20px;
+    height: 12px;
+    border-left-width: 4px;
+    border-bottom-width: 4px;
   }
 }
