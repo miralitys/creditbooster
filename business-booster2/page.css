@@ -4756,6 +4756,10 @@ input {
   width: min(var(--bb2-container-max), calc(100% - 64px));
 }
 
+.bb2-hero .bb2-shell {
+  width: min(1720px, calc(100% - 28px));
+}
+
 .bb2-hero,
 .bb2-trust,
 .bb2-fit,
@@ -5591,6 +5595,10 @@ input {
     width: min(var(--bb2-container-max), calc(100% - 40px));
   }
 
+  .bb2-hero .bb2-shell {
+    width: calc(100% - 32px);
+  }
+
   .bb2-hero__content,
   .bb2-trust__grid,
   .bb2-fit__grid,
@@ -5654,6 +5662,10 @@ input {
   }
 
   .bb2-shell {
+    width: calc(100% - 32px);
+  }
+
+  .bb2-hero .bb2-shell {
     width: calc(100% - 32px);
   }
 
@@ -5736,6 +5748,10 @@ input {
   }
 
   .bb2-shell {
+    width: calc(100% - 24px);
+  }
+
+  .bb2-hero .bb2-shell {
     width: calc(100% - 24px);
   }
 
