@@ -176,11 +176,11 @@ input {
 }
 
 .bb2-header__inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 28px;
-  justify-content: space-between;
+  column-gap: clamp(18px, 2vw, 34px);
+  row-gap: 16px;
 }
 
 .bb2-logo {
@@ -207,13 +207,12 @@ input {
 .bb2-nav {
   display: flex;
   align-items: center;
-  order: 3;
-  flex: 1 1 100%;
+  justify-self: center;
   justify-content: center;
-  gap: 26px;
+  gap: clamp(18px, 1.8vw, 32px);
   margin-left: 0;
   padding-top: 0;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .bb2-nav a {
@@ -230,7 +229,8 @@ input {
   align-items: center;
   gap: 14px;
   flex: 0 0 auto;
-  margin-left: auto;
+  justify-self: end;
+  margin-left: 0;
 }
 
 .bb2-socials {
@@ -898,6 +898,8 @@ input {
 }
 
 .bb2-trust {
+  --bb2-trust-button-bottom: 36px;
+  --bb2-trust-button-height: 76px;
   position: relative;
   padding: 20px 0 42px;
   background:
@@ -952,7 +954,7 @@ input {
   position: absolute;
   left: 7%;
   right: 7%;
-  bottom: 48px;
+  bottom: calc(var(--bb2-trust-button-bottom) + (var(--bb2-trust-button-height) / 2) - 1px);
   height: 2px;
   background: linear-gradient(90deg, rgba(255, 213, 115, 0) 0%, rgba(255, 213, 115, 0.9) 18%, rgba(255, 226, 167, 1) 50%, rgba(255, 213, 115, 0.9) 82%, rgba(255, 213, 115, 0) 100%);
   box-shadow:
@@ -1222,6 +1224,14 @@ input {
   max-width: 74%;
 }
 
+.bb2-trust-card--bottom .bb2-trust-card__body {
+  max-width: 100%;
+}
+
+.bb2-trust-card--bottom .bb2-trust-card__shine {
+  right: 32px;
+}
+
 .bb2-trust-card h3 {
   margin: 0 0 18px;
   font-family: 'Montserrat', sans-serif;
@@ -1444,7 +1454,7 @@ input {
   position: absolute;
   z-index: 2;
   left: 50%;
-  bottom: 36px;
+  bottom: var(--bb2-trust-button-bottom);
   transform: translateX(-50%);
   width: min(calc(100% - 84px), 560px);
 }
@@ -2396,6 +2406,8 @@ input {
 }
 
 .bb2-reviews__heading {
+  display: grid;
+  gap: 14px;
   max-width: none;
   min-width: 0;
 }
@@ -2434,8 +2446,8 @@ input {
 
 .bb2-reviews__intro {
   display: grid;
-  gap: 18px;
-  width: min(420px, 100%);
+  gap: 0;
+  width: auto;
   margin-left: auto;
   justify-items: end;
   align-content: end;
@@ -2443,11 +2455,12 @@ input {
 
 .bb2-reviews__lead {
   margin: 0;
-  max-width: 35ch;
+  max-width: none;
   color: rgba(244, 241, 233, 0.78);
   font-size: 18px;
-  line-height: 1.58;
-  text-align: right;
+  line-height: 1.4;
+  text-align: left;
+  white-space: nowrap;
 }
 
 .bb2-reviews__counter {
@@ -3692,6 +3705,7 @@ input {
   .bb2-reviews__lead {
     max-width: none;
     text-align: left;
+    white-space: normal;
   }
 
   .bb2-reviews__counter {
@@ -3802,7 +3816,7 @@ input {
   }
 
   .bb2-trust__button {
-    bottom: 34px;
+    bottom: var(--bb2-trust-button-bottom);
     width: min(calc(100% - 56px), 520px);
   }
 
@@ -4364,6 +4378,8 @@ input {
   }
 
   .bb2-trust {
+    --bb2-trust-button-bottom: 28px;
+    --bb2-trust-button-height: 66px;
     padding-top: 10px;
   }
 
@@ -4442,7 +4458,7 @@ input {
   }
 
   .bb2-trust__button {
-    bottom: 28px;
+    bottom: var(--bb2-trust-button-bottom);
     width: calc(100% - 36px);
   }
 
