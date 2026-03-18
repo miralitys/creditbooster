@@ -950,16 +950,7 @@ input {
 }
 
 .bb2-trust__frame::after {
-  content: '';
-  position: absolute;
-  left: 7%;
-  right: 7%;
-  bottom: calc(var(--bb2-trust-button-bottom) + (var(--bb2-trust-button-height) / 2) - 1px);
-  height: 2px;
-  background: linear-gradient(90deg, rgba(255, 213, 115, 0) 0%, rgba(255, 213, 115, 0.9) 18%, rgba(255, 226, 167, 1) 50%, rgba(255, 213, 115, 0.9) 82%, rgba(255, 213, 115, 0) 100%);
-  box-shadow:
-    0 0 12px rgba(255, 213, 115, 0.72),
-    0 0 28px rgba(255, 213, 115, 0.28);
+  content: none;
 }
 
 .bb2-trust__glow {
@@ -1457,6 +1448,34 @@ input {
   bottom: var(--bb2-trust-button-bottom);
   transform: translateX(-50%);
   width: min(calc(100% - 84px), 560px);
+  min-height: var(--bb2-trust-button-height);
+  height: var(--bb2-trust-button-height);
+  isolation: isolate;
+}
+
+.bb2-trust__button::before,
+.bb2-trust__button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 100vw;
+  height: 2px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  box-shadow:
+    0 0 12px rgba(255, 213, 115, 0.72),
+    0 0 28px rgba(255, 213, 115, 0.28);
+  z-index: -1;
+}
+
+.bb2-trust__button::before {
+  right: 100%;
+  background: linear-gradient(90deg, rgba(255, 213, 115, 0) 0%, rgba(255, 213, 115, 0.9) 82%, rgba(255, 226, 167, 1) 100%);
+}
+
+.bb2-trust__button::after {
+  left: 100%;
+  background: linear-gradient(90deg, rgba(255, 226, 167, 1) 0%, rgba(255, 213, 115, 0.9) 18%, rgba(255, 213, 115, 0) 100%);
 }
 
 .bb2-trust__control {
