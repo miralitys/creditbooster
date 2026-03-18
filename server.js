@@ -1,5 +1,4 @@
 const express = require('express');
-const fs = require('fs');
 const path = require('path');
 const { initLeadsDb, insertLead, updateLeadStatus, getLeads } = require('./lib/leadsDb');
 
@@ -114,17 +113,6 @@ function requireAdminAuth(req, res, next) {
   return next();
 }
 
-function sendHtmlFile(res, filePath, replacements = []) {
-  let html = fs.readFileSync(filePath, 'utf8');
-
-  for (const [from, to] of replacements) {
-    html = html.replace(from, to);
-  }
-
-  res.set('Content-Type', 'text/html; charset=utf-8');
-  res.send(html);
-}
-
 async function sendToGhlWebhook(payload) {
   if (!GHL_WEBHOOK_URL) {
     throw new Error('GHL_WEBHOOK_URL is not configured');
@@ -151,14 +139,8 @@ app.get('/health', (_req, res) => {
   res.json({ ok: true, service: 'creditbooster', crm: GHL_WEBHOOK_URL ? 'configured' : 'not_configured' });
 });
 
-app.get('/', (_req, res) => {
-  sendHtmlFile(res, path.join(rootLandingDir, 'index.html'), [
-    ['https://ads.creditbooster.com/business-booster2/', 'https://ads.creditbooster.com/'],
-  ]);
-});
-
 app.get(['/thank-you', '/thank-you/'], (_req, res) => {
-  sendHtmlFile(res, path.join(__dirname, 'thank-you', 'index.html'));
+  res.sendFile(path.join(__dirname, 'thank-you', 'index.html'));
 });
 
 app.get('/page.css', (_req, res) => {
