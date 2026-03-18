@@ -1,4 +1,5 @@
 (function () {
+  const THANK_YOU_URL = '/business-booster2/thank-you/';
   const reviewData = [
     {
       title: 'Подготовка к подаче',
@@ -180,15 +181,7 @@
   }
 
   function showLeadSuccessModal() {
-    const modal = ensureLeadSuccessModal();
-    leadSuccessLastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    modal.hidden = false;
-    document.body.classList.add('lead-success-open');
-
-    const closeButton = modal.querySelector('[data-lead-success-close]');
-    if (closeButton instanceof HTMLButtonElement) {
-      closeButton.focus();
-    }
+    window.location.assign(THANK_YOU_URL);
   }
 
   function startReviewPlayback(video, posterButton) {
