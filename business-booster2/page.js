@@ -1,5 +1,5 @@
 (function () {
-  const THANK_YOU_URL = '/business-booster2/thank-you/';
+  const THANK_YOU_URL = window.location.pathname === '/' ? '/thank-you/' : '/business-booster2/thank-you/';
   const reviewData = [
     {
       title: 'Подготовка к подаче',

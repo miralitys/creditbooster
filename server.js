@@ -1,4 +1,5 @@
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
 const { initLeadsDb, insertLead, updateLeadStatus, getLeads } = require('./lib/leadsDb');
 
@@ -9,6 +10,7 @@ const GHL_WEBHOOK_URL = (process.env.GHL_WEBHOOK_URL || '').trim();
 const GHL_WEBHOOK_SECRET = (process.env.GHL_WEBHOOK_SECRET || '').trim();
 const ADMIN_USER = (process.env.ADMIN_USER || '').trim();
 const ADMIN_PASS = (process.env.ADMIN_PASS || '').trim();
+const rootLandingDir = path.join(__dirname, 'business-booster2');
 
 const preferredDbPath = process.env.LEADS_DB_PATH
   ? String(process.env.LEADS_DB_PATH)
@@ -112,6 +114,17 @@ function requireAdminAuth(req, res, next) {
   return next();
 }
 
+function sendHtmlFile(res, filePath, replacements = []) {
+  let html = fs.readFileSync(filePath, 'utf8');
+
+  for (const [from, to] of replacements) {
+    html = html.replace(from, to);
+  }
+
+  res.set('Content-Type', 'text/html; charset=utf-8');
+  res.send(html);
+}
+
 async function sendToGhlWebhook(payload) {
   if (!GHL_WEBHOOK_URL) {
     throw new Error('GHL_WEBHOOK_URL is not configured');
@@ -137,6 +150,31 @@ async function sendToGhlWebhook(payload) {
 app.get('/health', (_req, res) => {
   res.json({ ok: true, service: 'creditbooster', crm: GHL_WEBHOOK_URL ? 'configured' : 'not_configured' });
 });
+
+app.get('/', (_req, res) => {
+  sendHtmlFile(res, path.join(rootLandingDir, 'index.html'), [
+    ['https://ads.creditbooster.com/business-booster2/', 'https://ads.creditbooster.com/'],
+  ]);
+});
+
+app.get(['/thank-you', '/thank-you/'], (_req, res) => {
+  sendHtmlFile(res, path.join(__dirname, 'thank-you', 'index.html'));
+});
+
+app.get('/page.css', (_req, res) => {
+  res.sendFile(path.join(rootLandingDir, 'page.css'));
+});
+
+app.get('/page.js', (_req, res) => {
+  res.sendFile(path.join(rootLandingDir, 'page.js'));
+});
+
+app.get('/favicon.ico', (_req, res) => {
+  res.sendFile(path.join(rootLandingDir, 'favicon.ico'));
+});
+
+app.use('/images', express.static(path.join(rootLandingDir, 'images')));
+app.use('/Video', express.static(path.join(rootLandingDir, 'Video')));
 
 app.post('/api/leads', async (req, res) => {
   const error = validateLeadPayload(req.body || {});
