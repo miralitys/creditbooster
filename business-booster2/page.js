@@ -76,6 +76,8 @@
 
   const metricToneClasses = ['bb2-review-metric--green', 'bb2-review-metric--amber', 'bb2-review-metric--blue'];
   const reviewStorageKey = 'bb2-last-review-index';
+  let leadSuccessModal = null;
+  let leadSuccessLastFocused = null;
   let activeReviewIndex = getInitialReviewIndex();
 
   function getRandomReviewIndex(excludeIndex = -1) {
@@ -124,6 +126,69 @@
     if (!p2) return `(${p1}`;
     if (!p3) return `(${p1}) ${p2}`;
     return `(${p1}) ${p2}-${p3}`;
+  }
+
+  function closeLeadSuccessModal() {
+    if (!(leadSuccessModal instanceof HTMLElement)) return;
+    leadSuccessModal.hidden = true;
+    document.body.classList.remove('lead-success-open');
+
+    if (leadSuccessLastFocused instanceof HTMLElement) {
+      leadSuccessLastFocused.focus();
+    }
+
+    leadSuccessLastFocused = null;
+  }
+
+  function ensureLeadSuccessModal() {
+    if (leadSuccessModal instanceof HTMLElement) {
+      return leadSuccessModal;
+    }
+
+    const modal = document.createElement('div');
+    modal.className = 'lead-success-modal';
+    modal.hidden = true;
+    modal.innerHTML = `
+      <div class="lead-success-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="lead-success-title">
+        <div class="lead-success-modal__icon" aria-hidden="true"></div>
+        <p class="lead-success-modal__eyebrow">Заявка отправлена</p>
+        <h2 class="lead-success-modal__title" id="lead-success-title">Спасибо, ваша заявка принята.</h2>
+        <p class="lead-success-modal__text">Мы свяжемся с вами в ближайшее время.</p>
+        <button class="lead-success-modal__action" type="button" data-lead-success-close>
+          Закрыть
+        </button>
+      </div>
+    `;
+
+    modal.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) return;
+      if (target === modal || target.closest('[data-lead-success-close]')) {
+        closeLeadSuccessModal();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && leadSuccessModal instanceof HTMLElement && !leadSuccessModal.hidden) {
+        closeLeadSuccessModal();
+      }
+    });
+
+    document.body.appendChild(modal);
+    leadSuccessModal = modal;
+    return modal;
+  }
+
+  function showLeadSuccessModal() {
+    const modal = ensureLeadSuccessModal();
+    leadSuccessLastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    modal.hidden = false;
+    document.body.classList.add('lead-success-open');
+
+    const closeButton = modal.querySelector('[data-lead-success-close]');
+    if (closeButton instanceof HTMLButtonElement) {
+      closeButton.focus();
+    }
   }
 
   function startReviewPlayback(video, posterButton) {
@@ -306,11 +371,12 @@
     }
 
     function showSuccess() {
-      if (successBox) successBox.hidden = false;
+      if (successBox) successBox.hidden = true;
       if (errorBox) {
         errorBox.hidden = true;
         errorBox.textContent = '';
       }
+      showLeadSuccessModal();
     }
 
     const phoneInput = form.querySelector('input[name="phone"]');

@@ -83,9 +83,74 @@ const reviewData = [
 ];
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+let leadSuccessModal = null;
+let leadSuccessLastFocused = null;
 
 function normalizePhone(value) {
   return String(value || "").replace(/\D/g, "").slice(0, 10);
+}
+
+function closeLeadSuccessModal() {
+  if (!(leadSuccessModal instanceof HTMLElement)) return;
+  leadSuccessModal.hidden = true;
+  document.body.classList.remove("lead-success-open");
+
+  if (leadSuccessLastFocused instanceof HTMLElement) {
+    leadSuccessLastFocused.focus();
+  }
+
+  leadSuccessLastFocused = null;
+}
+
+function ensureLeadSuccessModal() {
+  if (leadSuccessModal instanceof HTMLElement) {
+    return leadSuccessModal;
+  }
+
+  const modal = document.createElement("div");
+  modal.className = "lead-success-modal";
+  modal.hidden = true;
+  modal.innerHTML = `
+    <div class="lead-success-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="lead-success-title">
+      <div class="lead-success-modal__icon" aria-hidden="true"></div>
+      <p class="lead-success-modal__eyebrow">Заявка отправлена</p>
+      <h2 class="lead-success-modal__title" id="lead-success-title">Спасибо, ваша заявка принята.</h2>
+      <p class="lead-success-modal__text">Мы свяжемся с вами в ближайшее время.</p>
+      <button class="lead-success-modal__action" type="button" data-lead-success-close>
+        Закрыть
+      </button>
+    </div>
+  `;
+
+  modal.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+    if (target === modal || target.closest("[data-lead-success-close]")) {
+      closeLeadSuccessModal();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && leadSuccessModal instanceof HTMLElement && !leadSuccessModal.hidden) {
+      closeLeadSuccessModal();
+    }
+  });
+
+  document.body.appendChild(modal);
+  leadSuccessModal = modal;
+  return modal;
+}
+
+function showLeadSuccessModal() {
+  const modal = ensureLeadSuccessModal();
+  leadSuccessLastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+  modal.hidden = false;
+  document.body.classList.add("lead-success-open");
+
+  const closeButton = modal.querySelector("[data-lead-success-close]");
+  if (closeButton instanceof HTMLButtonElement) {
+    closeButton.focus();
+  }
 }
 
 function formatPhone(value) {
@@ -471,11 +536,8 @@ function bindLeadForm(form) {
       if (consentReset instanceof HTMLInputElement) {
         consentReset.checked = true;
       }
-      showFormMessage(
-        form,
-        "Спасибо! Ваша заявка отправлена. В ближайшее время мы с вами свяжемся.",
-        false
-      );
+      clearFormMessage(form);
+      showLeadSuccessModal();
     } catch (error) {
       showFormMessage(
         form,
