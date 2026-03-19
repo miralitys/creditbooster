@@ -305,6 +305,33 @@ input {
   padding: 8px 0 34px;
 }
 
+.bb2-form--hero {
+  display: none;
+  margin-top: 24px;
+  max-width: 520px;
+}
+
+.bb2-form__intro {
+  display: grid;
+  gap: 8px;
+}
+
+.bb2-form__eyebrow {
+  margin: 0;
+  color: #f1d48d;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.bb2-form__lead {
+  margin: 0;
+  color: rgba(244, 241, 233, 0.8);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
 .bb2-copy h1 {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
@@ -2518,6 +2545,7 @@ input {
   gap: 32px;
   align-items: stretch;
   min-width: 0;
+  touch-action: pan-y;
 }
 
 .bb2-reviews__spotlight {
@@ -5012,8 +5040,8 @@ input {
 }
 
 .bb2-hero__content {
-  grid-template-columns: minmax(0, 1.28fr) minmax(360px, 0.72fr);
-  gap: clamp(28px, 3.4vw, 56px);
+  grid-template-columns: minmax(0, 1.4fr) minmax(300px, 0.58fr);
+  gap: clamp(18px, 2.4vw, 34px);
   align-items: center;
   padding-top: clamp(44px, 6vw, 92px);
 }
@@ -5071,7 +5099,7 @@ input {
 }
 
 .bb2-visual {
-  min-height: 660px;
+  min-height: 500px;
   padding: 0;
   display: flex;
   align-items: center;
@@ -5079,8 +5107,8 @@ input {
 }
 
 .bb2-frame {
-  max-width: 470px;
-  padding: 10px;
+  max-width: 330px;
+  padding: 8px;
 }
 
 .bb2-frame__glow {
@@ -5097,22 +5125,22 @@ input {
 }
 
 .bb2-frame__content {
-  min-height: 620px;
-  border-radius: 26px;
+  min-height: 434px;
+  border-radius: 22px;
   box-shadow:
     0 28px 48px rgba(0, 0, 0, 0.32),
     0 0 20px rgba(255, 196, 78, 0.12);
 }
 
 .bb2-frame__content::after {
-  inset: 12px;
-  border-radius: 18px;
+  inset: 10px;
+  border-radius: 16px;
 }
 
 .bb2-play {
-  width: 70px;
-  height: 70px;
-  border-radius: 20px;
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
 }
 
 .bb2-badge--shield {
@@ -5723,6 +5751,14 @@ input {
     width: 100%;
   }
 
+  .bb2-form--hero {
+    display: grid;
+  }
+
+  .bb2-button--hero {
+    display: none;
+  }
+
   .bb2-trust__frame {
     padding-bottom: 150px;
   }
@@ -5796,6 +5832,11 @@ input {
   .bb2-copy {
     gap: 16px;
     padding: 0;
+  }
+
+  .bb2-form--hero {
+    margin-top: 18px;
+    max-width: none;
   }
 
   .bb2-copy h1 {
@@ -6007,6 +6048,28 @@ input {
 }
 
 @media (max-width: 640px) {
+  .bb2-reviews__header {
+    gap: 14px;
+  }
+
+  .bb2-reviews__title {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    letter-spacing: -0.04em;
+    line-height: 1.06;
+  }
+
+  .bb2-reviews__intro {
+    width: 100%;
+    margin-left: 0;
+    justify-items: start;
+  }
+
+  .bb2-reviews__lead {
+    white-space: normal;
+  }
+
   .lead-success-modal {
     padding: 16px;
   }

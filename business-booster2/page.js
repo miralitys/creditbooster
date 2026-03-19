@@ -301,12 +301,18 @@
     }
   }
 
+  function stepReview(offset, autoplay) {
+    const nextIndex = (activeReviewIndex + offset + reviewData.length) % reviewData.length;
+    setActiveReview(nextIndex, autoplay);
+  }
+
   function setupReviews() {
     const section = document.getElementById('reviews');
     const video = document.querySelector('[data-bb2-review-video]');
     const posterButton = document.querySelector('[data-bb2-review-poster]');
     const prevButton = document.querySelector('[data-bb2-review-prev]');
     const nextButton = document.querySelector('[data-bb2-review-next]');
+    const swipeSurface = section instanceof HTMLElement ? section.querySelector('.bb2-reviews__main') : null;
 
     if (!(section instanceof HTMLElement) || !(video instanceof HTMLVideoElement) || !(posterButton instanceof HTMLButtonElement)) {
       return;
@@ -334,14 +340,82 @@
 
     if (prevButton instanceof HTMLButtonElement) {
       prevButton.addEventListener('click', () => {
-        setActiveReview((activeReviewIndex - 1 + reviewData.length) % reviewData.length, false);
+        stepReview(-1, false);
       });
     }
 
     if (nextButton instanceof HTMLButtonElement) {
       nextButton.addEventListener('click', () => {
-        setActiveReview((activeReviewIndex + 1) % reviewData.length, false);
+        stepReview(1, false);
       });
+    }
+
+    if (swipeSurface instanceof HTMLElement) {
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let touchDeltaX = 0;
+      let touchDeltaY = 0;
+      let touchStartedAt = 0;
+
+      function resetSwipeState() {
+        touchStartX = 0;
+        touchStartY = 0;
+        touchDeltaX = 0;
+        touchDeltaY = 0;
+        touchStartedAt = 0;
+      }
+
+      swipeSurface.addEventListener(
+        'touchstart',
+        (event) => {
+          if (event.touches.length !== 1) {
+            resetSwipeState();
+            return;
+          }
+
+          const touch = event.touches[0];
+          touchStartX = touch.clientX;
+          touchStartY = touch.clientY;
+          touchDeltaX = 0;
+          touchDeltaY = 0;
+          touchStartedAt = Date.now();
+        },
+        { passive: true }
+      );
+
+      swipeSurface.addEventListener(
+        'touchmove',
+        (event) => {
+          if (!touchStartedAt || event.touches.length !== 1) return;
+
+          const touch = event.touches[0];
+          touchDeltaX = touch.clientX - touchStartX;
+          touchDeltaY = touch.clientY - touchStartY;
+        },
+        { passive: true }
+      );
+
+      swipeSurface.addEventListener(
+        'touchend',
+        () => {
+          if (!touchStartedAt) return;
+
+          const elapsed = Date.now() - touchStartedAt;
+          const absX = Math.abs(touchDeltaX);
+          const absY = Math.abs(touchDeltaY);
+          const isHorizontalSwipe = absX >= 56 && absX > absY * 1.2;
+          const isFastEnough = elapsed <= 900;
+
+          if (isHorizontalSwipe && isFastEnough) {
+            stepReview(touchDeltaX < 0 ? 1 : -1, false);
+          }
+
+          resetSwipeState();
+        },
+        { passive: true }
+      );
+
+      swipeSurface.addEventListener('touchcancel', resetSwipeState, { passive: true });
     }
 
     document.addEventListener('click', (event) => {
@@ -363,114 +437,125 @@
   }
 
   function setupLeadForm() {
-    const form = document.getElementById('bb2-lead-form');
-    if (!form) return;
+    const forms = Array.from(document.querySelectorAll('[data-bb2-lead-form]'));
+    if (forms.length === 0) return;
 
-    const successBox = form.querySelector('.bb2-form__status--success');
-    const errorBox = form.querySelector('.bb2-form__status--error');
-    const submitButton = form.querySelector('button[type="submit"]');
+    forms.forEach((form, index) => {
+      if (!(form instanceof HTMLFormElement)) return;
 
-    function showError(message) {
-      if (!errorBox) return;
-      errorBox.textContent = message;
-      errorBox.hidden = false;
-      if (successBox) successBox.hidden = true;
-    }
+      const formSource = form.dataset.formSource || `form-${index + 1}`;
+      const formId = `bb2-lead-form-${formSource}`;
+      const successBox = form.querySelector('.bb2-form__status--success');
+      const errorBox = form.querySelector('.bb2-form__status--error');
+      const submitButton = form.querySelector('button[type="submit"]');
 
-    function showSuccess() {
-      if (successBox) successBox.hidden = true;
-      if (errorBox) {
-        errorBox.hidden = true;
-        errorBox.textContent = '';
-      }
-      showLeadSuccessModal();
-    }
-
-    const phoneInput = form.querySelector('input[name="phone"]');
-    if (phoneInput) {
-      phoneInput.addEventListener('input', () => {
-        phoneInput.value = normalizePhone(phoneInput.value);
-      });
-    }
-
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-
-      const formData = new FormData(form);
-      const name = String(formData.get('name') || '').trim();
-      const phone = String(formData.get('phone') || '').trim();
-      const consent = Boolean(formData.get('consent'));
-
-      if (name.length < 2) {
-        showError('Введите корректное имя.');
-        return;
+      function showError(message) {
+        if (!errorBox) return;
+        errorBox.textContent = message;
+        errorBox.hidden = false;
+        if (successBox) successBox.hidden = true;
       }
 
-      if (phone.replace(/\D/g, '').length < 10) {
-        showError('Введите корректный телефон.');
-        return;
+      function showSuccess() {
+        if (successBox) successBox.hidden = true;
+        if (errorBox) {
+          errorBox.hidden = true;
+          errorBox.textContent = '';
+        }
+        showLeadSuccessModal();
       }
 
-      if (!consent) {
-        showError('Подтвердите согласие на связь.');
-        return;
-      }
-
-      if (submitButton) {
-        submitButton.disabled = true;
-        submitButton.textContent = 'Отправляем...';
-      }
-
-      pushDataLayerEvent('lead_submit_attempt', {
-        form_id: 'bb2-lead-form',
-        has_phone: Boolean(phone),
-      });
-
-      try {
-        const response = await fetch('/api/leads', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name,
-            phone,
-            source: 'website|business-booster2',
-            pageUrl: window.location.href,
-            pageTitle: document.title,
-            context: {
-              page_variant: 'business_booster2',
-              page_slug: 'business-booster2',
-            },
-          }),
+      const phoneInput = form.querySelector('input[name="phone"]');
+      if (phoneInput instanceof HTMLInputElement) {
+        phoneInput.addEventListener('input', () => {
+          phoneInput.value = normalizePhone(phoneInput.value);
         });
+      }
 
-        const payload = await response.json().catch(() => ({}));
-        if (!response.ok || !payload.ok) {
-          throw new Error(payload.error || payload.details || 'Не удалось отправить заявку.');
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+        const name = String(formData.get('name') || '').trim();
+        const phone = String(formData.get('phone') || '').trim();
+        const consent = Boolean(formData.get('consent'));
+
+        if (name.length < 2) {
+          showError('Введите корректное имя.');
+          return;
         }
 
-        form.reset();
-        pushDataLayerEvent('lead_submit_success', {
-          form_id: 'bb2-lead-form',
-          lead_type: 'consultation',
-          has_phone: Boolean(phone),
-        });
-        pushDataLayerEvent('Formsuccess', {
-          form_id: 'bb2-lead-form',
-          lead_type: 'consultation',
-          has_phone: Boolean(phone),
-        });
-        window.setTimeout(showSuccess, 150);
-      } catch (error) {
-        pushDataLayerEvent('lead_submit_error', {
-          form_id: 'bb2-lead-form',
-        });
-        showError(error instanceof Error ? error.message : 'Не удалось отправить заявку.');
-      } finally {
-        if (submitButton) {
-          submitButton.disabled = false;
-          submitButton.textContent = 'Получить консультацию';
+        if (phone.replace(/\D/g, '').length < 10) {
+          showError('Введите корректный телефон.');
+          return;
         }
-      }
+
+        if (!consent) {
+          showError('Подтвердите согласие на связь.');
+          return;
+        }
+
+        if (submitButton instanceof HTMLButtonElement) {
+          submitButton.disabled = true;
+          submitButton.textContent = 'Отправляем...';
+        }
+
+        pushDataLayerEvent('lead_submit_attempt', {
+          form_id: formId,
+          form_source: formSource,
+          has_phone: Boolean(phone),
+        });
+
+        try {
+          const response = await fetch('/api/leads', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name,
+              phone,
+              source: 'website|business-booster2',
+              pageUrl: window.location.href,
+              pageTitle: document.title,
+              context: {
+                page_variant: 'business_booster2',
+                page_slug: 'business-booster2',
+                form_source: formSource,
+              },
+            }),
+          });
+
+          const payload = await response.json().catch(() => ({}));
+          if (!response.ok || !payload.ok) {
+            throw new Error(payload.error || payload.details || 'Не удалось отправить заявку.');
+          }
+
+          form.reset();
+          pushDataLayerEvent('lead_submit_success', {
+            form_id: formId,
+            form_source: formSource,
+            lead_type: 'consultation',
+            has_phone: Boolean(phone),
+          });
+          pushDataLayerEvent('Formsuccess', {
+            form_id: formId,
+            form_source: formSource,
+            lead_type: 'consultation',
+            has_phone: Boolean(phone),
+          });
+          window.setTimeout(showSuccess, 150);
+        } catch (error) {
+          pushDataLayerEvent('lead_submit_error', {
+            form_id: formId,
+            form_source: formSource,
+          });
+          showError(error instanceof Error ? error.message : 'Не удалось отправить заявку.');
+        } finally {
+          if (submitButton instanceof HTMLButtonElement) {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Получить консультацию';
+          }
+        }
+      });
     });
   }
 

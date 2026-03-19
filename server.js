@@ -9,7 +9,19 @@ const GHL_WEBHOOK_URL = (process.env.GHL_WEBHOOK_URL || '').trim();
 const GHL_WEBHOOK_SECRET = (process.env.GHL_WEBHOOK_SECRET || '').trim();
 const ADMIN_USER = (process.env.ADMIN_USER || '').trim();
 const ADMIN_PASS = (process.env.ADMIN_PASS || '').trim();
+const ADMIN_TIME_ZONE = 'America/New_York';
 const rootLandingDir = path.join(__dirname, 'business-booster2');
+const adminDateFormatter = new Intl.DateTimeFormat('en-US', {
+  timeZone: ADMIN_TIME_ZONE,
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+  hour12: false,
+  timeZoneName: 'short',
+});
 
 const preferredDbPath = process.env.LEADS_DB_PATH
   ? String(process.env.LEADS_DB_PATH)
@@ -33,6 +45,29 @@ function jsonError(res, status, message, details = undefined) {
   const payload = { ok: false, error: message };
   if (details) payload.details = details;
   res.status(status).json(payload);
+}
+
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function formatAdminDate(value) {
+  if (!value) return '';
+
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return escapeHtml(value);
+  }
+
+  const parts = adminDateFormatter.formatToParts(date);
+  const map = Object.fromEntries(parts.filter((part) => part.type !== 'literal').map((part) => [part.type, part.value]));
+
+  return `${map.month}/${map.day}/${map.year} ${map.hour}:${map.minute}:${map.second} ${map.timeZoneName}`;
 }
 
 function normalizeEmail(value) {
@@ -196,13 +231,13 @@ app.get('/admin', requireAdminAuth, async (req, res) => {
     .map(
       (lead) => `
         <tr>
-          <td>${lead.created_at}</td>
-          <td>${lead.full_name || ''}</td>
-          <td>${lead.email || ''}</td>
-          <td>${lead.phone || ''}</td>
-          <td>${lead.source || ''}</td>
-          <td>${lead.page_slug || ''}</td>
-          <td>${lead.crm_status || ''}</td>
+          <td title="${escapeHtml(lead.created_at)}">${formatAdminDate(lead.created_at)}</td>
+          <td>${escapeHtml(lead.full_name || '')}</td>
+          <td>${escapeHtml(lead.email || '')}</td>
+          <td>${escapeHtml(lead.phone || '')}</td>
+          <td>${escapeHtml(lead.source || '')}</td>
+          <td>${escapeHtml(lead.page_slug || '')}</td>
+          <td>${escapeHtml(lead.crm_status || '')}</td>
         </tr>`
     )
     .join('');
@@ -231,9 +266,10 @@ app.get('/admin', requireAdminAuth, async (req, res) => {
       <body>
         <h1>Заявки</h1>
         <div class="meta">Показаны последние ${leads.length} записей</div>
+        <div class="meta">Часовой пояс: New York (${ADMIN_TIME_ZONE})</div>
         <form method="get">
-          <input name="q" placeholder="Поиск (имя, email, телефон)" value="${String(q).replace(/"/g, '&quot;')}" />
-          <input name="source" placeholder="Source (например website|credit-score)" value="${String(source).replace(/"/g, '&quot;')}" />
+          <input name="q" placeholder="Поиск (имя, email, телефон)" value="${escapeHtml(q)}" />
+          <input name="source" placeholder="Source (например website|credit-score)" value="${escapeHtml(source)}" />
           <button type="submit">Фильтр</button>
         </form>
         <table>

@@ -128,6 +128,35 @@ src="https://www.facebook.com/tr?id=946468284735976&ev=PageView&noscript=1"
               <p class="bb2-copy__accent-note">Гарантируем результат</p>
             </div>
 
+            <form class="bb2-form bb2-form--hero" data-bb2-lead-form data-form-source="hero" novalidate>
+              <div class="bb2-form__intro">
+                <p class="bb2-form__eyebrow">Быстрая заявка</p>
+                <p class="bb2-form__lead">Оставьте имя и телефон. Подскажем, с чего лучше начать.</p>
+              </div>
+
+              <div class="bb2-form__status bb2-form__status--success" hidden>
+                Спасибо! Ваша заявка отправлена. В ближайшее время мы с Вами свяжемся.
+              </div>
+              <div class="bb2-form__status bb2-form__status--error" hidden></div>
+
+              <label class="bb2-field">
+                <span>Имя</span>
+                <input type="text" name="name" placeholder="Ваше имя" autocomplete="name" required />
+              </label>
+
+              <label class="bb2-field">
+                <span>Телефон</span>
+                <input type="tel" name="phone" placeholder="(555) 123-4567" autocomplete="tel" required />
+              </label>
+
+              <label class="bb2-consent">
+                <input type="checkbox" name="consent" required checked />
+                <span>Согласен(на) на связь по заявке и обработку данных.</span>
+              </label>
+
+              <button class="bb2-button bb2-button--form" type="submit">Получить консультацию</button>
+            </form>
+
             <a class="bb2-button bb2-button--hero" href="#contact">Получить консультацию</a>
           </div>
 
@@ -683,7 +712,7 @@ src="https://www.facebook.com/tr?id=946468284735976&ev=PageView&noscript=1"
               </div>
             </div>
 
-            <form id="bb2-lead-form" class="bb2-form" novalidate>
+            <form class="bb2-form bb2-form--contact" data-bb2-lead-form data-form-source="contact" novalidate>
               <div class="bb2-form__status bb2-form__status--success" hidden>
                 Спасибо! Ваша заявка отправлена. В ближайшее время мы с Вами свяжемся.
               </div>
