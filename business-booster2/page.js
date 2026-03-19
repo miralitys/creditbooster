@@ -1,5 +1,6 @@
 (function () {
   const THANK_YOU_URL = '/thank-you/';
+  const PAGE_SLUG = 'business-booster2';
   const reviewData = [
     {
       title: 'Подготовка к подаче',
@@ -127,6 +128,19 @@
     if (!p2) return `(${p1}`;
     if (!p3) return `(${p1}) ${p2}`;
     return `(${p1}) ${p2}-${p3}`;
+  }
+
+  function pushDataLayerEvent(eventName, payload) {
+    if (typeof window === 'undefined') return;
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: eventName,
+      page_slug: PAGE_SLUG,
+      page_path: window.location.pathname,
+      page_title: document.title,
+      ...payload,
+    });
   }
 
   function closeLeadSuccessModal() {
@@ -407,6 +421,11 @@
         submitButton.textContent = 'Отправляем...';
       }
 
+      pushDataLayerEvent('lead_submit_attempt', {
+        form_id: 'bb2-lead-form',
+        has_phone: Boolean(phone),
+      });
+
       try {
         const response = await fetch('/api/leads', {
           method: 'POST',
@@ -430,8 +449,16 @@
         }
 
         form.reset();
-        showSuccess();
+        pushDataLayerEvent('lead_submit_success', {
+          form_id: 'bb2-lead-form',
+          lead_type: 'consultation',
+          has_phone: Boolean(phone),
+        });
+        window.setTimeout(showSuccess, 150);
       } catch (error) {
+        pushDataLayerEvent('lead_submit_error', {
+          form_id: 'bb2-lead-form',
+        });
         showError(error instanceof Error ? error.message : 'Не удалось отправить заявку.');
       } finally {
         if (submitButton) {
@@ -462,6 +489,9 @@
     }, 1000);
   }
 
+  pushDataLayerEvent('landing_view', {
+    page_type: 'landing',
+  });
   setupReviews();
   setupLeadForm();
   setupClarityTimer();
