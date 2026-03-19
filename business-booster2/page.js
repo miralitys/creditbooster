@@ -454,6 +454,11 @@
           lead_type: 'consultation',
           has_phone: Boolean(phone),
         });
+        pushDataLayerEvent('Formsuccess', {
+          form_id: 'bb2-lead-form',
+          lead_type: 'consultation',
+          has_phone: Boolean(phone),
+        });
         window.setTimeout(showSuccess, 150);
       } catch (error) {
         pushDataLayerEvent('lead_submit_error', {
