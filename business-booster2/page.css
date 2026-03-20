@@ -1482,27 +1482,7 @@ input {
 
 .bb2-trust__button::before,
 .bb2-trust__button::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 100vw;
-  height: 2px;
-  transform: translateY(-50%);
-  pointer-events: none;
-  box-shadow:
-    0 0 12px rgba(255, 213, 115, 0.72),
-    0 0 28px rgba(255, 213, 115, 0.28);
-  z-index: -1;
-}
-
-.bb2-trust__button::before {
-  right: 100%;
-  background: linear-gradient(90deg, rgba(255, 213, 115, 0) 0%, rgba(255, 213, 115, 0.9) 82%, rgba(255, 226, 167, 1) 100%);
-}
-
-.bb2-trust__button::after {
-  left: 100%;
-  background: linear-gradient(90deg, rgba(255, 226, 167, 1) 0%, rgba(255, 213, 115, 0.9) 18%, rgba(255, 213, 115, 0) 100%);
+  content: none;
 }
 
 .bb2-trust__control {
@@ -5040,23 +5020,57 @@ input {
 }
 
 .bb2-hero__content {
-  grid-template-columns: minmax(0, 1.4fr) minmax(300px, 0.58fr);
-  gap: clamp(18px, 2.4vw, 34px);
-  align-items: center;
-  padding-top: clamp(44px, 6vw, 92px);
+  grid-template-columns: minmax(0, 1.04fr) minmax(380px, 0.82fr);
+  gap: clamp(34px, 4vw, 66px);
+  align-items: start;
+  padding-top: clamp(32px, 4vw, 68px);
 }
 
 .bb2-copy {
   display: grid;
-  gap: 22px;
-  max-width: 820px;
+  gap: 26px;
+  max-width: 640px;
   padding: 0;
-  align-content: center;
+  align-content: start;
+  padding-top: 22px;
+}
+
+.bb2-copy h1 {
+  max-width: 8.4ch;
+  font-size: clamp(58px, 4.8vw, 84px);
+  line-height: 0.93;
+  letter-spacing: -0.065em;
+  text-shadow:
+    0 2px 0 rgba(109, 62, 2, 0.82),
+    0 12px 24px rgba(0, 0, 0, 0.28),
+    0 0 16px rgba(255, 196, 78, 0.18);
+}
+
+.bb2-form--hero {
+  display: grid;
+  margin-top: 4px;
+  max-width: 560px;
+  padding: 26px;
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(12, 20, 31, 0.96) 0%, rgba(6, 10, 18, 0.98) 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 239, 183, 0.04),
+    0 18px 40px rgba(0, 0, 0, 0.28),
+    0 0 24px rgba(255, 209, 90, 0.08);
+}
+
+.bb2-form--hero .bb2-form__intro {
+  gap: 6px;
+}
+
+.bb2-form--hero .bb2-form__lead {
+  max-width: 32ch;
 }
 
 .bb2-copy__accent {
   margin-top: 0;
-  gap: 12px;
+  gap: 14px;
   color: var(--bb2-body-color);
   font-family: 'Manrope', sans-serif;
   font-weight: 600;
@@ -5064,14 +5078,11 @@ input {
   text-transform: none;
 }
 
-.bb2-copy__accent-line,
-.bb2-copy__accent-note {
-  max-width: 100%;
-}
-
 .bb2-copy__accent-line {
   display: block;
-  font-size: clamp(22px, 1.5vw, 26px);
+  max-width: 20ch;
+  font-size: clamp(22px, 1.55vw, 28px);
+  line-height: 1.28;
 }
 
 .bb2-copy__accent-line > span:not(.bb2-copy__fire) {
@@ -5081,8 +5092,9 @@ input {
 .bb2-copy__accent-note {
   display: inline-flex;
   align-items: center;
-  min-height: 40px;
-  padding: 0 16px;
+  min-height: 42px;
+  max-width: fit-content;
+  padding: 0 18px;
   border-radius: var(--bb2-radius-pill);
   border: 1px solid rgba(255, 224, 151, 0.22);
   background: rgba(255, 217, 124, 0.08);
@@ -5094,21 +5106,18 @@ input {
   text-transform: uppercase;
 }
 
-.bb2-button--hero {
-  margin-top: 6px;
-}
-
 .bb2-visual {
-  min-height: 500px;
+  min-height: 580px;
   padding: 0;
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .bb2-frame {
-  max-width: 330px;
-  padding: 8px;
+  max-width: 408px;
+  margin-left: auto;
+  padding: 10px;
 }
 
 .bb2-frame__glow {
@@ -5125,27 +5134,37 @@ input {
 }
 
 .bb2-frame__content {
-  min-height: 434px;
-  border-radius: 22px;
+  min-height: 548px;
+  border-radius: 26px;
   box-shadow:
     0 28px 48px rgba(0, 0, 0, 0.32),
     0 0 20px rgba(255, 196, 78, 0.12);
 }
 
 .bb2-frame__content::after {
-  inset: 10px;
-  border-radius: 16px;
+  inset: 12px;
+  border-radius: 20px;
 }
 
 .bb2-play {
-  width: 58px;
-  height: 58px;
-  border-radius: 18px;
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+}
+
+.bb2-visual__spark,
+.bb2-particles--trail,
+.bb2-badge--sync,
+.bb2-badge--chart,
+.bb2-cash--left,
+.bb2-cash--right,
+.bb2-hero__shard {
+  display: none;
 }
 
 .bb2-badge--shield {
-  top: 18px;
-  right: 12px;
+  top: 22px;
+  right: 30px;
   width: 62px;
   height: 62px;
   border-radius: 18px;
