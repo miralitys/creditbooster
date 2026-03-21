@@ -78,6 +78,8 @@
 
   const metricToneClasses = ['bb2-review-metric--green', 'bb2-review-metric--amber', 'bb2-review-metric--blue'];
   const reviewStorageKey = 'bb2-last-review-index';
+  const utmStorageKey = 'bb2-utm-params';
+  const trackedUtmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
   let leadSuccessModal = null;
   let leadSuccessLastFocused = null;
   let activeReviewIndex = getInitialReviewIndex();
@@ -141,6 +143,70 @@
       page_title: document.title,
       ...payload,
     });
+  }
+
+  function emptyUtmParams() {
+    return trackedUtmKeys.reduce((acc, key) => {
+      acc[key] = '';
+      return acc;
+    }, {});
+  }
+
+  function readCurrentUtmParams() {
+    const utm = emptyUtmParams();
+    const params = new URLSearchParams(window.location.search);
+
+    trackedUtmKeys.forEach((key) => {
+      utm[key] = String(params.get(key) || '').trim();
+    });
+
+    return utm;
+  }
+
+  function hasAnyUtmValue(utm) {
+    return trackedUtmKeys.some((key) => Boolean(String(utm?.[key] || '').trim()));
+  }
+
+  function getStoredUtmParams() {
+    const fallback = emptyUtmParams();
+
+    try {
+      const raw = window.localStorage.getItem(utmStorageKey);
+      if (!raw) return fallback;
+
+      const parsed = JSON.parse(raw);
+      return trackedUtmKeys.reduce((acc, key) => {
+        acc[key] = String(parsed?.[key] || '').trim();
+        return acc;
+      }, fallback);
+    } catch (_error) {
+      return fallback;
+    }
+  }
+
+  function storeUtmParams(utm) {
+    try {
+      window.localStorage.setItem(utmStorageKey, JSON.stringify(utm));
+    } catch (_error) {
+      // Ignore storage failures and keep using current URL params.
+    }
+  }
+
+  function getTrackedUtmParams() {
+    const currentUtm = readCurrentUtmParams();
+    const storedUtm = getStoredUtmParams();
+
+    if (hasAnyUtmValue(currentUtm)) {
+      const mergedUtm = trackedUtmKeys.reduce((acc, key) => {
+        acc[key] = currentUtm[key] || storedUtm[key] || '';
+        return acc;
+      }, emptyUtmParams());
+
+      storeUtmParams(mergedUtm);
+      return mergedUtm;
+    }
+
+    return storedUtm;
   }
 
   function closeLeadSuccessModal() {
@@ -507,6 +573,7 @@
         });
 
         try {
+          const utm = getTrackedUtmParams();
           const response = await fetch('/api/leads', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -520,6 +587,7 @@
                 page_variant: 'business_booster2',
                 page_slug: 'business-booster2',
                 form_source: formSource,
+                utm,
               },
             }),
           });

@@ -82,6 +82,18 @@ function normalizeName(value) {
   return String(value || '').trim();
 }
 
+function normalizeUtm(raw) {
+  const source = raw && typeof raw === 'object' ? raw : {};
+
+  return {
+    utm_source: String(source.utm_source || '').trim(),
+    utm_medium: String(source.utm_medium || '').trim(),
+    utm_campaign: String(source.utm_campaign || '').trim(),
+    utm_content: String(source.utm_content || '').trim(),
+    utm_term: String(source.utm_term || '').trim(),
+  };
+}
+
 function validateLeadPayload(payload) {
   const name = normalizeName(payload.name);
   const email = normalizeEmail(payload.email);
@@ -98,6 +110,8 @@ function buildWebhookPayload(body, req) {
   const name = normalizeName(body.name);
   const email = normalizeEmail(body.email);
   const phone = normalizePhone(body.phone);
+  const context = body.context && typeof body.context === 'object' ? body.context : {};
+  const utm = normalizeUtm(body.utm || context.utm);
 
   return {
     event: 'lead_submit',
@@ -118,7 +132,8 @@ function buildWebhookPayload(body, req) {
       referrer: req.get('referer') || '',
       user_agent: req.get('user-agent') || '',
     },
-    context: body.context || {},
+    context,
+    utm,
     quiz_answers: body.quizAnswers || {},
     raw: body,
   };
@@ -209,6 +224,11 @@ app.post('/api/leads', async (req, res) => {
     pageTitle: webhookPayload.page.title,
     ip: req.ip,
     userAgent: webhookPayload.page.user_agent,
+    utmSource: webhookPayload.utm.utm_source,
+    utmMedium: webhookPayload.utm.utm_medium,
+    utmCampaign: webhookPayload.utm.utm_campaign,
+    utmContent: webhookPayload.utm.utm_content,
+    utmTerm: webhookPayload.utm.utm_term,
   });
 
   try {
@@ -227,6 +247,12 @@ app.post('/api/leads', async (req, res) => {
 app.get('/admin', requireAdminAuth, async (req, res) => {
   const { q = '', source = '' } = req.query;
   const leads = await getLeads(dbPath, { q: String(q), source: String(source) });
+
+  function renderUtmLine(label, value) {
+    const safeValue = String(value || '').trim() || '—';
+    return `<span class="utm-line"><strong>${label}:</strong> ${escapeHtml(safeValue)}</span>`;
+  }
+
   const rows = leads
     .map(
       (lead) => `
@@ -237,6 +263,13 @@ app.get('/admin', requireAdminAuth, async (req, res) => {
           <td>${escapeHtml(lead.phone || '')}</td>
           <td>${escapeHtml(lead.source || '')}</td>
           <td>${escapeHtml(lead.page_slug || '')}</td>
+          <td class="utm-cell">
+            ${renderUtmLine('UTM Source', lead.utm_source)}
+            ${renderUtmLine('UTM Medium', lead.utm_medium)}
+            ${renderUtmLine('UTM Campaign', lead.utm_campaign)}
+            ${renderUtmLine('UTM Content', lead.utm_content)}
+            ${renderUtmLine('UTM Term', lead.utm_term)}
+          </td>
           <td>${escapeHtml(lead.crm_status || '')}</td>
         </tr>`
     )
@@ -261,6 +294,9 @@ app.get('/admin', requireAdminAuth, async (req, res) => {
           th { background: #f0f3ff; font-weight: 600; }
           tr:last-child td { border-bottom: none; }
           .meta { font-size: 13px; color: #6b7280; }
+          .utm-cell { min-width: 260px; white-space: normal; line-height: 1.45; }
+          .utm-line { display: block; }
+          .utm-line strong { color: #111827; }
         </style>
       </head>
       <body>
@@ -281,11 +317,12 @@ app.get('/admin', requireAdminAuth, async (req, res) => {
               <th>Телефон</th>
               <th>Source</th>
               <th>Страница</th>
+              <th>UTM</th>
               <th>CRM</th>
             </tr>
           </thead>
           <tbody>
-            ${rows || '<tr><td colspan="7">Нет данных</td></tr>'}
+            ${rows || '<tr><td colspan="8">Нет данных</td></tr>'}
           </tbody>
         </table>
       </body>
