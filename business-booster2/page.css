@@ -5108,7 +5108,7 @@ input {
   margin-top: 0;
   display: grid;
   gap: 14px;
-  max-width: 35rem;
+  max-width: 39rem;
   color: var(--bb2-body-color);
   font-family: 'Manrope', sans-serif;
   font-weight: 600;
@@ -5118,9 +5118,9 @@ input {
 
 .bb2-copy__accent-line {
   display: block;
-  max-width: 21ch;
-  font-size: clamp(23px, 1.62vw, 28px);
-  line-height: 1.2;
+  max-width: 30ch;
+  font-size: clamp(21px, 1.45vw, 25px);
+  line-height: 1.15;
 }
 
 .bb2-copy__accent-line > span:not(.bb2-copy__fire) {
